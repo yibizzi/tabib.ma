@@ -1,0 +1,22 @@
+<section id="values" class="values">
+
+    <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+            <h2>{{smallTitle}}</h2>
+            <p>{{title}}</p>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-4 mt-4 mt-lg-0 isolated" *ngFor="let card of cardsDetails">
+                <div class="box" data-aos="fade-up" data-aos-delay="200">
+                    <img [src]="card.imagePath" class="img-fluid" alt="">
+                    <h3>{{card.title}}</h3>
+                    <p>{{card.description}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
