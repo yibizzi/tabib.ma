@@ -7,6 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/homepage/hero/hero.component';
 import { BigCardWithImageComponent } from './components/homepage/card_image/big-card-with-image/big-card-with-image.component';
 import { ListOfCardsComponent } from './components/homepage/card_image/list-of-cards/list-of-cards.component';
+import { FooterComponent } from './components/homepage/footer/footer.component';
+import { TextInputCardComponent } from './components/homepage/text-input-card/text-input-card.component';
+import { ContactUsFormComponent } from './components/homepage/contact-us-form/contact-us-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +18,15 @@ import { ListOfCardsComponent } from './components/homepage/card_image/list-of-c
     HeaderComponent,
     HeroComponent,
     ListOfCardsComponent,
-    BigCardWithImageComponent
+    BigCardWithImageComponent,
+    FooterComponent,
+    TextInputCardComponent,
+    ContactUsFormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
