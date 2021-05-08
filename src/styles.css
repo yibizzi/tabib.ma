@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    position:absolute;
+    margin-left: 950px;
+}
+
+.buttons{
+    margin-top: 15px;
+}
