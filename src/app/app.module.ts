@@ -5,14 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/homepage/hero/hero.component';
-import { BigCardWithImageComponent } from './components/homepage/card_image/big-card-with-image/big-card-with-image.component';
-import { ListOfCardsComponent } from './components/homepage/card_image/list-of-cards/list-of-cards.component';
-import { FooterComponent } from './components/homepage/footer/footer.component';
-import { TextInputCardComponent } from './components/homepage/text-input-card/text-input-card.component';
+import { BigCardWithImageComponent } from './components/common/card_image/big-card-with-image/big-card-with-image.component';
+import { ListOfCardsComponent } from './components/common/card_image/list-of-cards/list-of-cards.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { ContactUsFormComponent } from './components/homepage/contact-us-form/contact-us-form.component';
 import { FormsModule } from '@angular/forms';
 import { HomeBodyComponent } from './components/homepage/home-body/home-body.component';
-import { NewsLetterSubscriberComponent } from './components/homepage/news-letter-subscriber/news-letter-subscriber.component';
+import { NewsLetterSubscriberComponent } from './components/common/news-letter-subscriber/news-letter-subscriber.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { NewsLetterSubscriberComponent } from './components/homepage/news-letter
     ListOfCardsComponent,
     BigCardWithImageComponent,
     FooterComponent,
-    TextInputCardComponent,
     ContactUsFormComponent,
     HomeBodyComponent,
     NewsLetterSubscriberComponent,
