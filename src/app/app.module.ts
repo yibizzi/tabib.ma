@@ -11,6 +11,8 @@ import { FooterComponent } from './components/homepage/footer/footer.component';
 import { TextInputCardComponent } from './components/homepage/text-input-card/text-input-card.component';
 import { ContactUsFormComponent } from './components/homepage/contact-us-form/contact-us-form.component';
 import { FormsModule } from '@angular/forms';
+import { HomeBodyComponent } from './components/homepage/home-body/home-body.component';
+import { NewsLetterSubscriberComponent } from './components/homepage/news-letter-subscriber/news-letter-subscriber.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     TextInputCardComponent,
     ContactUsFormComponent,
+    HomeBodyComponent,
+    NewsLetterSubscriberComponent,
   ],
   imports: [
     BrowserModule,
