@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './loginpage.component.html',
   styleUrls: ['./loginpage.component.css']
 })
-export class LoginpageComponent {
+export class LoginPageComponent {
 
   login(data: {
     email: string,
