@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PaymentsListComponent } from './payments-list/payments-list.component';
 import { ChosedPaymentsListComponent } from './chosed-payments-list/chosed-payments-list.component';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PaymentsListComponent,
-    ChosedPaymentsListComponent
+    ChosedPaymentsListComponent,
+    PaymentMethodComponent
   ],
   imports: [
     BrowserModule,
