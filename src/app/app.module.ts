@@ -12,6 +12,7 @@ import { ContactUsFormComponent } from './components/homepage/contact-us-form/co
 import { FormsModule } from '@angular/forms';
 import { HomeBodyComponent } from './components/homepage/home-body/home-body.component';
 import { NewsLetterSubscriberComponent } from './components/common/news-letter-subscriber/news-letter-subscriber.component';
+import { LoginpageComponent } from './components/authentication/loginpage/loginpage.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NewsLetterSubscriberComponent } from './components/common/news-letter-s
     ContactUsFormComponent,
     HomeBodyComponent,
     NewsLetterSubscriberComponent,
+    LoginpageComponent,
   ],
   imports: [
     BrowserModule,
