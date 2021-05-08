@@ -6,9 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-letter-subscriber.component.css']
 })
 export class NewsLetterSubscriberComponent  {
-
   subscribe(email: string){
     console.log(email);
   }
-
 }
