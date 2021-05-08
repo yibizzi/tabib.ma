@@ -9,6 +9,7 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { PaymentFailedComponent } from './payment-failed/payment-failed.component';
+import { PaymentCodeGenerationComponent } from './payment-code-generation/payment-code-generation.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PaymentFailedComponent } from './payment-failed/payment-failed.componen
     PaymentMethodComponent,
     PaymentFormComponent,
     PaymentSuccessComponent,
-    PaymentFailedComponent
+    PaymentFailedComponent,
+    PaymentCodeGenerationComponent
   ],
   imports: [
     BrowserModule,
