@@ -7,6 +7,7 @@ import { PaymentsListComponent } from './payments-list/payments-list.component';
 import { ChosedPaymentsListComponent } from './chosed-payments-list/chosed-payments-list.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
     PaymentsListComponent,
     ChosedPaymentsListComponent,
     PaymentMethodComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,
