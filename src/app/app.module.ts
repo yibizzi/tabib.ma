@@ -24,6 +24,7 @@ import { HomeBodyComponent } from './components/homepage/home-body/home-body.com
 import { NewsLetterSubscriberComponent } from './components/common/news-letter-subscriber/news-letter-subscriber.component';
 import { LoginPageComponent } from './components/authentication/loginpage/loginpage.component';
 import {RouterModule } from '@angular/router';
+import { DoctorProfilePageComponent } from './doctor-profile-page/doctor-profile-page.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {RouterModule } from '@angular/router';
     HomeBodyComponent,
     NewsLetterSubscriberComponent,
     LoginPageComponent,
+    DoctorProfilePageComponent,
   ],
   imports: [
     BrowserModule,
