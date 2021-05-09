@@ -21,6 +21,7 @@ import { PaymentFormComponent } from './components/payment/payment-form/payment-
 import { PaymentMethodComponent } from './components/payment/payment-method/payment-method.component';
 import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
 import { PaymentsListComponent } from './components/payment/payments-list/payments-list.component';
+import { SignupPageComponent } from './components/authentication/signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PaymentsListComponent } from './components/payment/payments-list/paymen
     HomeBodyComponent,
     NewsLetterSubscriberComponent,
     LoginPageComponent,
+    SignupPageComponent,
   ],
   imports: [
     BrowserModule,
