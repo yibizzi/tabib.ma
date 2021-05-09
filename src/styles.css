@@ -1,6 +1,44 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 /* You can add global styles to this file, and also import other style files */
+
+
+/*--------------------------------------------------------------
+# Form Buttons
+--------------------------------------------------------------*/
+
+.btn-blue {
+    background-color: #1A237E;
+    width: 150px;
+    color: #fff;
+    border-radius: 2px
+}
+
+.btn-blue:hover {
+    background-color: #000;
+    cursor: pointer
+}
+
+/*--------------------------------------------------------------
+# Form inputs
+--------------------------------------------------------------*/
+
+form input,
+form textarea {
+    padding: 10px 12px 10px 12px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
+
+
 /*--------------------------------------------------------------
 # Sections
 --------------------------------------------------------------*/

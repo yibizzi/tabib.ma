@@ -22,6 +22,7 @@ import { PaymentMethodComponent } from './components/payment/payment-method/paym
 import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
 import { PaymentsListComponent } from './components/payment/payments-list/payments-list.component';
 import { SignupPageComponent } from './components/authentication/signup-page/signup-page.component';
+import { ForgotPasswordPageComponent } from './components/authentication/forgot-password-page/forgot-password-page.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SignupPageComponent } from './components/authentication/signup-page/sig
     NewsLetterSubscriberComponent,
     LoginPageComponent,
     SignupPageComponent,
+    ForgotPasswordPageComponent,
   ],
   imports: [
     BrowserModule,
