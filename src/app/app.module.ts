@@ -3,13 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PaymentsListComponent } from './payments-list/payments-list.component';
-import { ChosedPaymentsListComponent } from './chosed-payments-list/chosed-payments-list.component';
-import { PaymentMethodComponent } from './payment-method/payment-method.component';
-import { PaymentFormComponent } from './payment-form/payment-form.component';
-import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { PaymentFailedComponent } from './payment-failed/payment-failed.component';
-import { PaymentCodeGenerationComponent } from './payment-code-generation/payment-code-generation.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/homepage/hero/hero.component';
 import { BigCardWithImageComponent } from './components/common/card_image/big-card-with-image/big-card-with-image.component';
@@ -21,6 +14,13 @@ import { HomeBodyComponent } from './components/homepage/home-body/home-body.com
 import { NewsLetterSubscriberComponent } from './components/common/news-letter-subscriber/news-letter-subscriber.component';
 import { LoginPageComponent } from './components/authentication/loginpage/loginpage.component';
 import {RouterModule } from '@angular/router';
+import { ChosedPaymentsListComponent } from './components/payment/chosed-payments-list/chosed-payments-list.component';
+import { PaymentCodeGenerationComponent } from './components/payment/payment-code-generation/payment-code-generation.component';
+import { PaymentFailedComponent } from './components/payment/payment-failed/payment-failed.component';
+import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
+import { PaymentMethodComponent } from './components/payment/payment-method/payment-method.component';
+import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
+import { PaymentsListComponent } from './components/payment/payments-list/payments-list.component';
 
 @NgModule({
   declarations: [
