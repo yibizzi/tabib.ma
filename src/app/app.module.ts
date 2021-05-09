@@ -25,6 +25,7 @@ import { NewsLetterSubscriberComponent } from './components/common/news-letter-s
 import { LoginPageComponent } from './components/authentication/loginpage/loginpage.component';
 import {RouterModule } from '@angular/router';
 import { DoctorProfilePageComponent } from './doctor-profile-page/doctor-profile-page.component';
+import { PatientsListComponent } from './patients-list/patients-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DoctorProfilePageComponent } from './doctor-profile-page/doctor-profile
     NewsLetterSubscriberComponent,
     LoginPageComponent,
     DoctorProfilePageComponent,
+    PatientsListComponent,
   ],
   imports: [
     BrowserModule,
