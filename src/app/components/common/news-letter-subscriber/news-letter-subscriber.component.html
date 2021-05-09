@@ -1,0 +1,17 @@
+<div class="newsletter">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <h4>Our Newsletter</h4>
+                <p>Subscribe with your email to receive latest news.</p>
+            </div>
+            <div class="col-lg-6">
+                <form #f="ngForm" (ngSubmit)="subscribe(email.value)">
+                    <input ngModel #email="ngModel" email name="email"><input type="submit" value="Subscribe">
+                </form>
+
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Please enter a valid email.</div>
+            </div>
+        </div>
+    </div>
+</div>
