@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/homepage/hero/hero.component';
 import { BigCardWithImageComponent } from './components/common/card_image/big-card-with-image/big-card-with-image.component';
 import { ListOfCardsComponent } from './components/common/card_image/list-of-cards/list-of-cards.component';
@@ -23,11 +22,16 @@ import { PaymentSuccessComponent } from './components/payment/payment-success/pa
 import { PaymentsListComponent } from './components/payment/payments-list/payments-list.component';
 import { SignupPageComponent } from './components/authentication/signup-page/signup-page.component';
 import { ForgotPasswordPageComponent } from './components/authentication/forgot-password-page/forgot-password-page.component';
+import { PatientHomepageComponent } from './components/patient-homepage/patient-homepage.component';
 import { DoctorProfileCardComponent } from './components/doctor-pages/doctor-profile-card/doctor-profile-card.component';
 import { DoctorProfilePageComponent } from './components/doctor-pages/doctor-profile-page/doctor-profile-page.component';
 import { DoctorProfileComponent } from './components/doctor-pages/doctor-profile/doctor-profile.component';
 import { EditDoctorProfileComponent } from './components/doctor-pages/edit-doctor-profile/edit-doctor-profile.component';
 import { PatientsListComponent } from './components/doctor-pages/patients-list/patients-list.component';
+import { PatientHeaderComponent } from './components/headers/patient-header/patient-header.component';
+import { DoctorHeaderComponent } from './components/headers/doctor-header/doctor-header.component';
+import { BaseHeaderComponent } from './components/headers/base-header/base-header.component';
+import { HomeHeaderComponent } from './components/headers/home-header/home-header.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,6 @@ import { PatientsListComponent } from './components/doctor-pages/patients-list/p
     PaymentSuccessComponent,
     PaymentFailedComponent,
     PaymentCodeGenerationComponent,
-    HeaderComponent,
     HeroComponent,
     ListOfCardsComponent,
     BigCardWithImageComponent,
@@ -55,6 +58,11 @@ import { PatientsListComponent } from './components/doctor-pages/patients-list/p
     PatientsListComponent,
     SignupPageComponent,
     ForgotPasswordPageComponent,
+    PatientHomepageComponent,
+    PatientHeaderComponent,
+    DoctorHeaderComponent,
+    BaseHeaderComponent,
+    HomeHeaderComponent
   ],
   imports: [
     BrowserModule,

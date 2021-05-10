@@ -1,0 +1,15 @@
+<header id="header" class="header" (window:scroll)="scrolled = true;" [ngClass]="{
+  'header-scrolled': scrolled,
+  'fixed-top': !inTop
+}">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+        <a routerLink="" class="logo d-flex align-items-center">
+            <img src="assets/images/logo.png" alt="">
+            <span>Tabib.MA</span>
+        </a>
+        <ng-content></ng-content>
+
+    </div>
+</header>
+<!-- End Header -->

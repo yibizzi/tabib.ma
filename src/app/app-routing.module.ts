@@ -1,3 +1,4 @@
+import { PatientHomepageComponent } from './components/patient-homepage/patient-homepage.component';
 import { ForgotPasswordPageComponent } from './components/authentication/forgot-password-page/forgot-password-page.component';
 import { LoginPageComponent } from './components/authentication/loginpage/loginpage.component';
 import { HomeBodyComponent } from './components/homepage/home-body/home-body.component';
@@ -26,8 +27,11 @@ const routes: Routes = [
   },
   {
     path: "doctor-profile", component: PatientsListComponent
+  }, 
+  {
+    path: "patientHome", component: PatientHomepageComponent
   }
-  
+
 ];
 
 @NgModule({
