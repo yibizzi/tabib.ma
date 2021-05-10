@@ -83,10 +83,11 @@ body {
   }
 
   .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    position:absolute;
-    margin-left: 950px;
+    position:relative;
+    margin-left: 900px;
 }
 
 .buttons{
     margin-top: 15px;
+    margin-bottom: 15px;
 }

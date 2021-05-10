@@ -23,10 +23,18 @@ import { PaymentSuccessComponent } from './components/payment/payment-success/pa
 import { PaymentsListComponent } from './components/payment/payments-list/payments-list.component';
 import { SignupPageComponent } from './components/authentication/signup-page/signup-page.component';
 import { ForgotPasswordPageComponent } from './components/authentication/forgot-password-page/forgot-password-page.component';
+import { DoctorProfileCardComponent } from './components/doctor-pages/doctor-profile-card/doctor-profile-card.component';
+import { DoctorProfilePageComponent } from './components/doctor-pages/doctor-profile-page/doctor-profile-page.component';
+import { DoctorProfileComponent } from './components/doctor-pages/doctor-profile/doctor-profile.component';
+import { EditDoctorProfileComponent } from './components/doctor-pages/edit-doctor-profile/edit-doctor-profile.component';
+import { PatientsListComponent } from './components/doctor-pages/patients-list/patients-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DoctorProfileCardComponent,
+    DoctorProfileComponent,
+    EditDoctorProfileComponent,
     PaymentsListComponent,
     ChosedPaymentsListComponent,
     PaymentMethodComponent,
@@ -43,6 +51,8 @@ import { ForgotPasswordPageComponent } from './components/authentication/forgot-
     HomeBodyComponent,
     NewsLetterSubscriberComponent,
     LoginPageComponent,
+    DoctorProfilePageComponent,
+    PatientsListComponent,
     SignupPageComponent,
     ForgotPasswordPageComponent,
   ],
