@@ -34,6 +34,7 @@ import { HeroComponent } from './components/common/hero/hero.component';
 import { HomeBodyComponent } from './pages/home-page/home-body/home-body.component';
 import { HomeComponent } from './pages/home-page/home/home.component';
 import { HeaderComponent } from './components/headers/header/header.component';
+import { ListOfSmallCardsWithImagesComponent } from './components/common/card_image/list-of-small-cards-with-images/list-of-small-cards-with-images.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { HeaderComponent } from './components/headers/header/header.component';
     BaseHeaderComponent,
     HomeHeaderComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListOfSmallCardsWithImagesComponent
   ],
   imports: [
     BrowserModule,
