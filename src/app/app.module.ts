@@ -23,7 +23,6 @@ import { DoctorProfileCardComponent } from './pages/doctor-pages/doctor-profile-
 import { DoctorProfilePageComponent } from './pages/doctor-pages/doctor-profile-page/doctor-profile-page.component';
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
 import { EditDoctorProfileComponent } from './pages/doctor-pages/edit-doctor-profile/edit-doctor-profile.component';
-import { PatientsListComponent } from './pages/doctor-pages/patients-list/patients-list.component';
 import { PatientHeaderComponent } from './components/headers/patient-header/patient-header.component';
 import { DoctorHeaderComponent } from './components/headers/doctor-header/doctor-header.component';
 import { BaseHeaderComponent } from './components/headers/base-header/base-header.component';
@@ -50,6 +49,13 @@ import { PaymentDetailsComponent } from './pages/patient-pages/patient-profile/p
 import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
 import { PatientComponent } from './pages/patient-pages/patient.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { DoctorHomePageComponent } from './pages/doctor-pages/doctor-home-page/doctor-home-page.component';
+import { DoctorComponent } from './pages/doctor-pages/doctor.component';
+import { DoctorPatientsComponent } from './pages/doctor-pages/doctor-patients/doctor-patients.component';
+import { DoctorPatientProfileComponent } from './pages/doctor-pages/doctor-patients/doctor-patient-profile/doctor-patient-profile.component';
+import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profile/doctor-profile-details/doctor-profile-details.component';
+import { DoctorHistoryComponent } from './pages/doctor-pages/doctor-profile/doctor-history/doctor-history.component';
+import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/patients-list/patients-list.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +103,13 @@ import { AuthGuard } from './services/auth-guard.service';
     PatientProfilePaymentsListComponent,
     PaymentDetailsComponent,
     PaymentMethodsComponent,
-    PaymentProceedComponent
+    PaymentProceedComponent,
+    DoctorComponent,
+    DoctorHomePageComponent,
+    DoctorPatientsComponent,
+    DoctorPatientProfileComponent,
+    DoctorProfileDetailsComponent,
+    DoctorHistoryComponent
   ],
   imports: [
     BrowserModule,
