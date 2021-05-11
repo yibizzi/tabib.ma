@@ -27,6 +27,7 @@ import {RouterModule } from '@angular/router';
 import { DoctorProfilePageComponent } from './doctor-profile-page/doctor-profile-page.component';
 import { PatientsListComponent } from './patients-list/patients-list.component';
 import { AppointmentsPageComponent } from './appointments-page/appointments-page.component';
+import { AppointmentDemandsPageComponent } from './appointment-demands-page/appointment-demands-page.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AppointmentsPageComponent } from './appointments-page/appointments-page
     DoctorProfilePageComponent,
     PatientsListComponent,
     AppointmentsPageComponent,
+    AppointmentDemandsPageComponent,
   ],
   imports: [
     BrowserModule,
