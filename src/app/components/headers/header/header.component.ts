@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated: boolean = true;
 
-  type: "patient" | "doctor" = 'doctor';
+  type: "patient" | "doctor" = 'patient';
 
   constructor() { }
 

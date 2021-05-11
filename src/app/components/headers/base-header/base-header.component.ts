@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-base-header',
@@ -12,6 +12,13 @@ export class BaseHeaderComponent implements OnInit {
   }
 
   scrolled: boolean = false;
+
+  mobileSideBarOpened: boolean = false;
+
+
+  toggleMobileSideBar(){
+    this.mobileSideBarOpened = ! this.mobileSideBarOpened;
+  }
 
   get inTop() : boolean{
     return !(document.documentElement.scrollTop || document.body.scrollTop);
