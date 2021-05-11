@@ -35,6 +35,21 @@ import { HomeBodyComponent } from './pages/home-page/home-body/home-body.compone
 import { HomeComponent } from './pages/home-page/home/home.component';
 import { HeaderComponent } from './components/headers/header/header.component';
 import { ListOfSmallCardsWithImagesComponent } from './components/common/card_image/list-of-small-cards-with-images/list-of-small-cards-with-images.component';
+import { PatientDoctorsComponent } from './pages/patient-pages/patient-doctors/patient-doctors.component';
+import { PatientDoctorProfileComponent } from './pages/patient-pages/patient-doctors/patient-doctor-profile/patient-doctor-profile.component';
+import { PatientDoctorsListComponent } from './pages/patient-pages/patient-doctors/patient-doctors-list/patient-doctors-list.component';
+import { PatientEditProfileComponent } from './pages/patient-pages/patient-profile/patient-edit-profile/patient-edit-profile.component';
+import { PatientAppointmentsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments.component';
+import { PaymentMethodsComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-methods/payment-methods.component';
+import { PaymentProceedComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-proceed/payment-proceed.component';
+import { PatientAppointmentDetailsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointment-details/patient-appointment-details.component';
+import { PatientAppointmentsListComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments-list/patient-appointments-list.component';
+import { PatientPaymentsComponent } from './pages/patient-pages/patient-profile/patient-payments/patient-payments.component';
+import { PatientProfilePaymentsListComponent } from './pages/patient-pages/patient-profile/patient-payments/patient-profile-payments-list/patient-profile-payments-list.component';
+import { PaymentDetailsComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-details/payment-details.component';
+import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
+import { PatientComponent } from './pages/patient-pages/patient.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -68,14 +83,28 @@ import { ListOfSmallCardsWithImagesComponent } from './components/common/card_im
     HomeHeaderComponent,
     HomeComponent,
     HeaderComponent,
-    ListOfSmallCardsWithImagesComponent
+    ListOfSmallCardsWithImagesComponent,
+    PatientComponent,
+    PatientDoctorsComponent,
+    PatientDoctorProfileComponent,
+    PatientDoctorsListComponent,
+    PatientProfileComponent,
+    PatientPaymentsComponent,
+    PatientEditProfileComponent,
+    PatientAppointmentsComponent,
+    PatientAppointmentsListComponent,
+    PatientAppointmentDetailsComponent,
+    PatientProfilePaymentsListComponent,
+    PaymentDetailsComponent,
+    PaymentMethodsComponent,
+    PaymentProceedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
