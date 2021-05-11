@@ -26,6 +26,7 @@ import { LoginPageComponent } from './components/authentication/loginpage/loginp
 import {RouterModule } from '@angular/router';
 import { DoctorProfilePageComponent } from './doctor-profile-page/doctor-profile-page.component';
 import { PatientsListComponent } from './patients-list/patients-list.component';
+import { AppointmentsPageComponent } from './appointments-page/appointments-page.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PatientsListComponent } from './patients-list/patients-list.component';
     LoginPageComponent,
     DoctorProfilePageComponent,
     PatientsListComponent,
+    AppointmentsPageComponent,
   ],
   imports: [
     BrowserModule,
