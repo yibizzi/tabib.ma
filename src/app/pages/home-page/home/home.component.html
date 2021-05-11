@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div *ngIf="!isAuthenticated; else authenticatedHeader">
+    <app-home-body></app-home-body>
+</div>
+
+<ng-template #authenticatedHeader [ngSwitch]="type">
+    <app-patient-homepage *ngSwitchCase="'patient'"></app-patient-homepage>
+    <!-- <app-doctor-homepage *ngSwitchCase="'doctor'"></app-doctor-homepage> -->
+</ng-template>

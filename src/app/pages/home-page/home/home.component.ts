@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  
+  isAuthenticated: boolean = true;
+
+  type: "patient" | "doctor" = 'patient';
+
   constructor() { }
 
   ngOnInit(): void {

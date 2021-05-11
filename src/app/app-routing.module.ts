@@ -8,10 +8,11 @@ import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doct
 import { PatientsListComponent } from './pages/doctor-pages/patients-list/patients-list.component';
 import { PatientHomepageComponent } from './pages/patient-pages/patient-homepage/patient-homepage.component';
 import { HomeBodyComponent } from './pages/home-page/home-body/home-body.component';
+import { HomeComponent } from './pages/home-page/home/home.component';
 
 const routes: Routes = [
   {
-    path: '', component: HomeBodyComponent
+    path: '', component: HomeComponent
   },
   {
     path: "signin", component: LoginPageComponent
