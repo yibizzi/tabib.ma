@@ -1,9 +1,9 @@
 <app-base-header>
     <ul>
         <li><a class="nav-link scrollto active" routerLink="">Home</a></li>
-        <li><a class="nav-link scrollto" href="#about">Doctors</a></li>
-        <li><a class="nav-link scrollto" href="#about">Profile</a></li>
-        <li><a class="nav-link scrollto" href="#portfolio">Payments</a></li>
+        <li><a class="nav-link scrollto" routerLink="/Patient/doctors">Doctors</a></li>
+        <li><a class="nav-link scrollto" routerLink="/Patient/profile/id/edit">Profile</a></li>
+        <li><a class="nav-link scrollto" routerLink="/Patient/payments/id">Payments</a></li>
 
         <li class="dropdown">
             <a [routerLink]="['/profile', user.id]">
@@ -15,15 +15,16 @@
             </a>
             <ul>
                 <li><a routerLink="">VideoConferences</a></li>
-                <li class="dropdown"><a href="#"><span>Personal profile</span> <i class="bi bi-chevron-right"></i></a>
+                <!-- Replace with dynamic id-->
+                <li class="dropdown"><a routerLink="/Patient/profile/id/edit"><span>Personal profile</span> <i class="bi bi-chevron-right"></i></a>
                     <ul>
-                        <li><a href="#">Appointments list</a></li>
-                        <li><a href="#">Payments History</a></li>
-                        <li><a href="#">Medical Record</a></li>
-                        <li><a href="#">Edit profile</a></li>
+                        <li><a routerLink="/Patient/profile/id/Appointments/">Appointments list</a></li>
+                        <li><a routerLink="/Patient/profile/id/payments/">Payments History</a></li>
+                        <!-- <li><a routerLink="/Patient/profile/id">Medical Record</a></li> -->
+                        <li><a routerLink="/Patient/profile/id/edit">Edit profile</a></li>
                     </ul>
                 </li>
-                <li><a routerLink="">Payments Console</a></li>
+                <!-- <li><a routerLink="/Patient/payments">Payments Console</a></li> -->
                 <li><a (click)="logOut()">Log out <i class="bi bi-box-arrow-right"></i></a>
             </ul>
             </li>

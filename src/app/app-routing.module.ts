@@ -1,35 +1,35 @@
-import { DoctorHistoryComponent } from './pages/doctor-pages/doctor-profile/doctor-history/doctor-history.component';
-import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profile/doctor-profile-details/doctor-profile-details.component';
-import { PatientAppointmentDetailsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointment-details/patient-appointment-details.component';
-import { PatientAppointmentsListComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments-list/patient-appointments-list.component';
-import { PatientAppointmentsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
-import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/patients-list/patients-list.component';
 import { PatientHomepageComponent } from './pages/patient-pages/patient-homepage/patient-homepage.component';
 import { HomeBodyComponent } from './pages/home-page/home-body/home-body.component';
 import { HomeComponent } from './pages/home-page/home/home.component';
-import { PatientComponent } from './pages/patient-pages/patient.component';
 import { PatientDoctorsComponent } from './pages/patient-pages/patient-doctors/patient-doctors.component';
+import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
+import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
+import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
+import { DoctorHomePageComponent } from './pages/doctor-pages/doctor-home-page/doctor-home-page.component';
+import { DoctorPatientProfileComponent } from './pages/doctor-pages/doctor-patients/doctor-patient-profile/doctor-patient-profile.component';
+import { DoctorPatientsComponent } from './pages/doctor-pages/doctor-patients/doctor-patients.component';
+import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/patients-list/patients-list.component';
+import { DoctorHistoryComponent } from './pages/doctor-pages/doctor-profile/doctor-history/doctor-history.component';
+import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profile/doctor-profile-details/doctor-profile-details.component';
+import { DoctorComponent } from './pages/doctor-pages/doctor.component';
 import { PatientDoctorProfileComponent } from './pages/patient-pages/patient-doctors/patient-doctor-profile/patient-doctor-profile.component';
 import { PatientDoctorsListComponent } from './pages/patient-pages/patient-doctors/patient-doctors-list/patient-doctors-list.component';
-import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
-import { PatientPaymentsComponent } from './pages/patient-pages/patient-profile/patient-payments/patient-payments.component';
+import { PatientAppointmentDetailsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointment-details/patient-appointment-details.component';
+import { PatientAppointmentsListComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments-list/patient-appointments-list.component';
+import { PatientAppointmentsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments.component';
 import { PatientEditProfileComponent } from './pages/patient-pages/patient-profile/patient-edit-profile/patient-edit-profile.component';
+import { PatientPaymentsComponent } from './pages/patient-pages/patient-profile/patient-payments/patient-payments.component';
 import { PatientProfilePaymentsListComponent } from './pages/patient-pages/patient-profile/patient-payments/patient-profile-payments-list/patient-profile-payments-list.component';
 import { PaymentDetailsComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-details/payment-details.component';
 import { PaymentMethodsComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-methods/payment-methods.component';
 import { PaymentProceedComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-proceed/payment-proceed.component';
+import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
+import { PatientComponent } from './pages/patient-pages/patient.component';
 import { AuthGuard } from './services/auth-guard.service';
-import { DoctorComponent } from './pages/doctor-pages/doctor.component';
-import { DoctorHomePageComponent } from './pages/doctor-pages/doctor-home-page/doctor-home-page.component';
-import { DoctorPatientsComponent } from './pages/doctor-pages/doctor-patients/doctor-patients.component';
-import { DoctorPatientProfileComponent } from './pages/doctor-pages/doctor-patients/doctor-patient-profile/doctor-patient-profile.component';
-import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
-import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
-import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
 
 const routes: Routes = [
   {
@@ -63,7 +63,7 @@ const routes: Routes = [
 
         ]
       },
-      { path: 'payments',  redirectTo: 'all-stuff'},
+      { path: 'payments/:id',  redirectTo: 'profile/:id/payments'},
       { path: '', pathMatch: 'full', redirectTo: 'Home' },
       { path: '**', redirectTo: 'Home' }
     ]
