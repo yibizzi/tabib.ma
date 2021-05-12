@@ -28,6 +28,7 @@ import { DoctorProfilePageComponent } from './doctor-profile-page/doctor-profile
 import { PatientsListComponent } from './patients-list/patients-list.component';
 import { AppointmentsPageComponent } from './appointments-page/appointments-page.component';
 import { AppointmentDemandsPageComponent } from './appointment-demands-page/appointment-demands-page.component';
+import { AppointmentsHistoryPageComponent } from './appointments-history-page/appointments-history-page.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { AppointmentDemandsPageComponent } from './appointment-demands-page/appo
     PatientsListComponent,
     AppointmentsPageComponent,
     AppointmentDemandsPageComponent,
+    AppointmentsHistoryPageComponent,
   ],
   imports: [
     BrowserModule,
