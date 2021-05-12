@@ -13,6 +13,8 @@ interface authResponse { token: string, userId: string }
 export class AuthService {
 
   isAuthenticated = new BehaviorSubject<boolean>(false);
+  userType = new BehaviorSubject<"doctor" | "patient" | null>("patient");
+
   token: string | null;
   userId: string | null;
 
