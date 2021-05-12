@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 //temprary interface
 interface UserModel{
@@ -21,9 +23,14 @@ export class PatientHeaderComponent implements OnInit {
     image: "https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg"
   };
 
-  constructor() { }
+  constructor(private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logOut(){
+    this.auth.logout();
   }
 
 }

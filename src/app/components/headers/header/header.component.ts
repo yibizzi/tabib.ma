@@ -9,15 +9,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  isAuthenticated: boolean = true;
+  isAuthenticated: boolean = false;
 
   type: "patient" | "doctor" | null = 'doctor';
 
   constructor(private auth: AuthService,
     private router: Router) {
-
-
-
   }
 
   ngOnInit(): void {
