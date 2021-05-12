@@ -3,11 +3,8 @@ import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profi
 import { PatientAppointmentDetailsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointment-details/patient-appointment-details.component';
 import { PatientAppointmentsListComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments-list/patient-appointments-list.component';
 import { PatientAppointmentsComponent } from './pages/patient-pages/patient-profile/patient-appointments/patient-appointments.component';
-import { ForgotPasswordPageComponent } from './components/authentication/forgot-password-page/forgot-password-page.component';
-import { LoginPageComponent } from './components/authentication/loginpage/loginpage.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignupPageComponent } from './components/authentication/signup-page/signup-page.component';
 import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
 import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/patients-list/patients-list.component';
@@ -30,6 +27,9 @@ import { DoctorComponent } from './pages/doctor-pages/doctor.component';
 import { DoctorHomePageComponent } from './pages/doctor-pages/doctor-home-page/doctor-home-page.component';
 import { DoctorPatientsComponent } from './pages/doctor-pages/doctor-patients/doctor-patients.component';
 import { DoctorPatientProfileComponent } from './pages/doctor-pages/doctor-patients/doctor-patient-profile/doctor-patient-profile.component';
+import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
+import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
+import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
 
 const routes: Routes = [
   {

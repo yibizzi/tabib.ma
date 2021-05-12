@@ -1,3 +1,5 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,10 +8,9 @@ import { AppComponent } from './app.component';
 import { BigCardWithImageComponent } from './components/common/card_image/big-card-with-image/big-card-with-image.component';
 import { ListOfCardsComponent } from './components/common/card_image/list-of-cards/list-of-cards.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsLetterSubscriberComponent } from './components/common/news-letter-subscriber/news-letter-subscriber.component';
-import { LoginPageComponent } from './components/authentication/loginpage/loginpage.component';
-import {RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ChosedPaymentsListComponent } from './components/payment/chosed-payments-list/chosed-payments-list.component';
 import { PaymentCodeGenerationComponent } from './components/payment/payment-code-generation/payment-code-generation.component';
 import { PaymentFailedComponent } from './components/payment/payment-failed/payment-failed.component';
@@ -17,8 +18,6 @@ import { PaymentFormComponent } from './components/payment/payment-form/payment-
 import { PaymentMethodComponent } from './components/payment/payment-method/payment-method.component';
 import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
 import { PaymentsListComponent } from './components/payment/payments-list/payments-list.component';
-import { SignupPageComponent } from './components/authentication/signup-page/signup-page.component';
-import { ForgotPasswordPageComponent } from './components/authentication/forgot-password-page/forgot-password-page.component';
 import { DoctorProfileCardComponent } from './pages/doctor-pages/doctor-profile-card/doctor-profile-card.component';
 import { DoctorProfilePageComponent } from './pages/doctor-pages/doctor-profile-page/doctor-profile-page.component';
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
@@ -56,6 +55,9 @@ import { DoctorPatientProfileComponent } from './pages/doctor-pages/doctor-patie
 import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profile/doctor-profile-details/doctor-profile-details.component';
 import { DoctorHistoryComponent } from './pages/doctor-pages/doctor-profile/doctor-history/doctor-history.component';
 import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/patients-list/patients-list.component';
+import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
+import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
+import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
@@ -110,13 +112,17 @@ import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/pati
     DoctorPatientProfileComponent,
     DoctorProfileDetailsComponent,
     DoctorHistoryComponent
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AuthService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
