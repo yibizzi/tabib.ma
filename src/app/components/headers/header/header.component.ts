@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  isAuthenticated: boolean = true;
+  isAuthenticated: boolean = false;
 
-  type: "patient" | "doctor" = 'patient';
+  type: "patient" | "doctor" | null = 'doctor';
 
-  constructor() { }
+  constructor(private auth: AuthService,
+    private router: Router) {
+  }
 
   ngOnInit(): void {
+
+    this.auth.isAuthenticated.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
+
+    this.auth.userType.subscribe((userType) => {
+      this.type = userType;
+    })
   }
 
 }
