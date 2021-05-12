@@ -12,7 +12,7 @@ interface authResponse { token: string, userId: string }
 })
 export class AuthService {
 
-  isAuth$ = new BehaviorSubject<boolean>(false);
+  isAuthenticated = new BehaviorSubject<boolean>(false);
   token: string | null;
   userId: string | null;
 
@@ -52,10 +52,9 @@ export class AuthService {
           next: (authData) => {
             this.token = authData.token;
             this.userId = authData.userId;
-            this.isAuth$.next(true);
+            this.isAuthenticated.next(true);
             resolve(true);
           },
-
           error: (error) => {
             reject(error);
           }
@@ -65,7 +64,7 @@ export class AuthService {
   }
 
   logout() {
-    this.isAuth$.next(false);
+    this.isAuthenticated.next(false);
     this.userId = null;
     this.token = null;
   }

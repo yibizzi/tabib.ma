@@ -91,7 +91,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: "signin", component: LoginPageComponent
+    path: "Signin", component: LoginPageComponent,
+  },
+  {
+    path: "signin", redirectTo: "Signin"
   },
   {
     path: "signup", component: SignupPageComponent
