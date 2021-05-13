@@ -30,6 +30,7 @@ import { AppointmentsPageComponent } from './appointments-page/appointments-page
 import { AppointmentDemandsPageComponent } from './appointment-demands-page/appointment-demands-page.component';
 import { AppointmentsHistoryPageComponent } from './appointments-history-page/appointments-history-page.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
+import { AppointmentDetailsComponent } from './appointment-details/appointment-details.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { EditAppointmentComponent } from './edit-appointment/edit-appointment.co
     AppointmentDemandsPageComponent,
     AppointmentsHistoryPageComponent,
     EditAppointmentComponent,
+    AppointmentDetailsComponent,
   ],
   imports: [
     BrowserModule,
