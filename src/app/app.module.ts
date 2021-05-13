@@ -1,3 +1,11 @@
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
+
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
@@ -58,6 +66,8 @@ import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/pati
 import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
 import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
 import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
+import { NavMenuItemComponent } from './pages/patient-pages/patient-profile/nav-menu-item/nav-menu-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -111,7 +121,8 @@ import { SignupPageComponent } from './pages/authentication/signup-page/signup-p
     DoctorPatientsComponent,
     DoctorPatientProfileComponent,
     DoctorProfileDetailsComponent,
-    DoctorHistoryComponent
+    DoctorHistoryComponent,
+    NavMenuItemComponent
 
 
   ],
@@ -120,7 +131,16 @@ import { SignupPageComponent } from './pages/authentication/signup-page/signup-p
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+
+    
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [AuthGuard, AuthService, HttpClient],
   bootstrap: [AppComponent]

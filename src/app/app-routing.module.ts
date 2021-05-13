@@ -60,6 +60,8 @@ const routes: Routes = [
               { path: ':id/proceed', component: PaymentProceedComponent },
             ]
           },
+          
+          { path: '', pathMatch: 'full',redirectTo: 'edit' },
 
         ]
       },
