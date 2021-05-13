@@ -2,20 +2,22 @@
 <section id="counts" class="counts">
     <div class="container" data-aos="fade-up">
         <header class="section-header">
-            <h2>Upcoming appointments</h2>
+            <h2>{{title}}</h2>
         </header>
         <div class="row gy-4 d-flex justify-content-center">
-            <div *ngFor="let item of items" class="col-lg-3 col-md-6">
-                <a [routerLink]="item.router_link">
-                    <div class="count-box">
-                        <img [src]="item.image">
-                        <div>
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter">{{item.title}}</span>
-                            <p>{{item.description}}</p>
+            <ul>
+                <li *ngFor="let item of items" class="col-lg-3 col-md-6">
+                    <a [routerLink]="item.router_link">
+                        <div class="count-box">
+                            <img [src]="item.image">
+                            <div>
+                                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter">{{item.title}}</span>
+                                <p>{{item.description}}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </li>
+            </ul>
         </div>
 
     </div>

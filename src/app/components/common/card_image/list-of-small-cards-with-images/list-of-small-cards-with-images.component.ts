@@ -14,6 +14,9 @@ interface cardItem {
 })
 export class ListOfSmallCardsWithImagesComponent implements OnInit {
 
+  @Input("title")
+  title: string;
+
 
   @Input("items")
   items: cardItem[];

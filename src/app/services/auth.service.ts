@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 //temporary interfaces
-interface authResponse { token: string, userId: string }
+interface authResponse { token: string, patientId?: string, doctorId?: string }
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class AuthService {
   isAuthenticated = new BehaviorSubject<boolean>(false);
   userType = new BehaviorSubject<"doctor" | "patient" | null>("patient");
 
-  token: string | null;
-  userId: string | null;
+  token: string | null | undefined;
+  userId: string | null | undefined;
 
   constructor(private router: Router,
     private http: HttpClient) { }
@@ -48,12 +48,13 @@ export class AuthService {
   login(email: string, password: string) {
     return new Promise((resolve, reject) => {
       (this.http.post(
-        'http://localhost:9000/doctors/auth/login',
+        'http://localhost:9000/patients/auth/login',
         { email: email, password: password }) as Observable<authResponse>)
         .subscribe({
           next: (authData) => {
             this.token = authData.token;
-            this.userId = authData.userId;
+            this.userId = authData.patientId || authData.doctorId;
+            console.log(this.userId);
             this.isAuthenticated.next(true);
             resolve(true);
           },
