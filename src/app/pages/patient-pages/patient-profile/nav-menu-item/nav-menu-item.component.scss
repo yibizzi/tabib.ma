@@ -43,6 +43,10 @@ $primaryColor: map-get($my-app-primary, 500);
     }
 }
 
+mat-icon {
+    margin: 5px;
+}
+
 mat-expansion-panel {
     border-bottom: 1px solid #dfdfdf;
     border-radius: 0;

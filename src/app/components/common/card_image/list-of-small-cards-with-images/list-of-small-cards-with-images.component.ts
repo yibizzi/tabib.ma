@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 interface cardItem {
   title: string,
-  description: string,
+  description?: string,
   image: string,
   router_link: string
 }
