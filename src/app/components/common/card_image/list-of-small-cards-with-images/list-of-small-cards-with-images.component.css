@@ -17,7 +17,7 @@ ul {
 }
 
 li {
-    width: 33%;
+    flex-basis: 40%;
 }
 
 

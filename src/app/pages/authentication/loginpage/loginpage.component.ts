@@ -32,7 +32,7 @@ export class LoginPageComponent {
     console.log(data);
 
     this.auth
-      .login(data.email, data.password)
+      .loginPatient(data.email, data.password)
       .then(value => {
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
         this.router.navigate([returnUrl || '']);

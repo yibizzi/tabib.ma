@@ -7,6 +7,15 @@ import { HttpClient } from '@angular/common/http';
 //temporary interfaces
 interface authResponse { token: string, patientId?: string, doctorId?: string }
 
+interface signUpUser {
+  firstName: string,
+  lastName: string,
+  email:string, 
+  password: string,
+  age: number,
+  phoneNumber: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,14 +30,20 @@ export class AuthService {
   constructor(private router: Router,
     private http: HttpClient) { }
 
-  createNewUser(email: string, password: string) {
+    /**
+     * Create a new patient account and login with the provided credentials.
+     * @param user 
+     * 
+     * @returns 
+     */
+  createNewPatient(user: signUpUser) {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:3000/api/auth/signup',
-        { email: email, password: password })
+        'http://localhost:9000/patients/auth/signup',
+        user)
         .subscribe(
           () => {
-            this.login(email, password).then(
+            this.loginPatient(user.email, user.password).then(
               () => {
                 resolve(true);
               }
@@ -44,8 +59,13 @@ export class AuthService {
         );
     });
   }
-
-  login(email: string, password: string) {
+/**
+ * Login the patient with the provided credentials.
+ * @param email 
+ * @param password 
+ * @returns 
+ */
+  loginPatient(email: string, password: string) {
     return new Promise((resolve, reject) => {
       (this.http.post(
         'http://localhost:9000/patients/auth/login',
@@ -54,7 +74,6 @@ export class AuthService {
           next: (authData) => {
             this.token = authData.token;
             this.userId = authData.patientId || authData.doctorId;
-            console.log(this.userId);
             this.isAuthenticated.next(true);
             resolve(true);
           },
