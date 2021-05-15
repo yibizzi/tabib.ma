@@ -18,13 +18,8 @@ import { ListOfCardsComponent } from './components/common/card_image/list-of-car
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsLetterSubscriberComponent } from './components/common/news-letter-subscriber/news-letter-subscriber.component';
-import { RouterModule } from '@angular/router';
 import { ChosedPaymentsListComponent } from './components/payment/chosed-payments-list/chosed-payments-list.component';
 import { DoctorEditProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-edit-profile/doctor-edit-profile.component';
-import { AppointmentDemandsPageComponent } from './appointment-demands-page/appointment-demands-page.component';
-import { AppointmentDetailsComponent } from './appointment-details/appointment-details.component';
-import { AppointmentsHistoryPageComponent } from './appointments-history-page/appointments-history-page.component';
-import { AppointmentsPageComponent } from './appointments-page/appointments-page.component';
 import { ListOfSmallCardsWithImagesComponent } from './components/common/card_image/list-of-small-cards-with-images/list-of-small-cards-with-images.component';
 import { ContactUsFormComponent } from './components/common/contact-us-form/contact-us-form.component';
 import { HeroComponent } from './components/common/hero/hero.component';
@@ -39,10 +34,6 @@ import { PaymentFormComponent } from './components/payment/payment-form/payment-
 import { PaymentMethodComponent } from './components/payment/payment-method/payment-method.component';
 import { PaymentSuccessComponent } from './components/payment/payment-success/payment-success.component';
 import { PaymentsListComponent } from './components/payment/payments-list/payments-list.component';
-import { DoctorProfileCardComponent } from './doctor-profile-card/doctor-profile-card.component';
-import { DoctorProfilePageComponent } from './doctor-profile-page/doctor-profile-page.component';
-import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
-import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
 import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
 import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
@@ -52,7 +43,6 @@ import { DoctorPatientsComponent } from './pages/doctor-pages/doctor-patients/do
 import { DoctorHistoryComponent } from './pages/doctor-pages/doctor-profile/doctor-history/doctor-history.component';
 import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profile/doctor-profile-details/doctor-profile-details.component';
 import { DoctorComponent } from './pages/doctor-pages/doctor.component';
-import { EditDoctorProfileComponent } from './pages/doctor-pages/edit-doctor-profile/edit-doctor-profile.component';
 import { HomeBodyComponent } from './pages/home-page/home-body/home-body.component';
 import { HomeComponent } from './pages/home-page/home/home.component';
 import { PatientDoctorProfileComponent } from './pages/patient-pages/patient-doctors/patient-doctor-profile/patient-doctor-profile.component';
@@ -71,7 +61,6 @@ import { PaymentMethodsComponent } from './pages/patient-pages/patient-profile/p
 import { PaymentProceedComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-proceed/payment-proceed.component';
 import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
 import { PatientComponent } from './pages/patient-pages/patient.component';
-import { PatientsListComponent } from './patients-list/patients-list.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { DoctorAppointmentsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments.component';
@@ -80,13 +69,17 @@ import { DoctorAppointmentDemandsComponent } from './pages/doctor-pages/doctor-a
 import { DoctorAppointmentsHistoryComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments-history/doctor-appointments-history.component';
 import { DoctorAppointmentsConfirmedComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments-confirmed/doctor-appointments-confirmed.component';
 import { DoctorAppointmentEditComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-edit/doctor-appointment-edit.component';
+import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/patients-list/patients-list.component';
+import { DoctorProfileCardComponent } from './pages/doctor-pages/doctor-profile-card/doctor-profile-card.component';
+import { DoctorProfilePageComponent } from './pages/doctor-pages/doctor-profile-page/doctor-profile-page.component';
+import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DoctorProfileCardComponent,
     DoctorProfileComponent,
-    EditDoctorProfileComponent,
+    DoctorEditProfileComponent,
     PaymentsListComponent,
     ChosedPaymentsListComponent,
     PaymentMethodComponent,
@@ -104,11 +97,6 @@ import { DoctorAppointmentEditComponent } from './pages/doctor-pages/doctor-appo
     LoginPageComponent,
     DoctorProfilePageComponent,
     PatientsListComponent,
-    AppointmentsPageComponent,
-    AppointmentDemandsPageComponent,
-    AppointmentsHistoryPageComponent,
-    EditAppointmentComponent,
-    AppointmentDetailsComponent,
     SignupPageComponent,
     ForgotPasswordPageComponent,
     PatientHomepageComponent,
