@@ -73,6 +73,7 @@ import { AppointmentsHistoryPageComponent } from './appointments-history-page/ap
 import { AppointmentsPageComponent } from './appointments-page/appointments-page.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import { AuthService } from './services/auth.service';
+import { DoctorEditProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-edit-profile/doctor-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +133,8 @@ import { AuthService } from './services/auth.service';
     DoctorPatientProfileComponent,
     DoctorProfileDetailsComponent,
     DoctorHistoryComponent,
-    NavMenuItemComponent
+    NavMenuItemComponent,
+    DoctorEditProfileComponent
 
 
   ],
