@@ -21,7 +21,7 @@ interface signUpUser {
 })
 export class AuthService {
 
-  isAuthenticated = new BehaviorSubject<boolean>(false);
+  isAuthenticated = new BehaviorSubject<boolean>(localStorage.getItem('token') != null);
   userType = new BehaviorSubject<"doctor" | "patient" | null>("patient");
 
   token: string | null | undefined;
@@ -74,6 +74,9 @@ export class AuthService {
           next: (authData) => {
             this.token = authData.token;
             this.userId = authData.patientId || authData.doctorId;
+
+            localStorage.setItem('token', this.token);
+            
             this.isAuthenticated.next(true);
             resolve(true);
           },
