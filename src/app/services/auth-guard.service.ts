@@ -18,9 +18,8 @@ export class AuthGuard implements CanActivate {
       (observer) => {
         this.auth.isAuthenticated.subscribe(
           (auth) => {
-            console.log("listened");
             if (!auth) {
-              this.router.navigate(['/Signin']);
+              this.router.navigate(['/Signin'], {queryParams: {returnUrl: state.url}});
             }
             observer.next(true);
           }

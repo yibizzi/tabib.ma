@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginPageComponent {
   });
 
   constructor(private router: Router,
+    private route : ActivatedRoute,
     private auth: AuthService) { }
 
   login() {
@@ -31,9 +32,10 @@ export class LoginPageComponent {
     console.log(data);
 
     this.auth
-      .login(data.email, data.password)
+      .loginPatient(data.email, data.password)
       .then(value => {
-        this.router.navigate(['']);
+        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '']);
       })
       .catch((err) => {
         console.error(err);

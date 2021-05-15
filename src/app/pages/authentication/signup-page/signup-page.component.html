@@ -20,36 +20,49 @@
                 <div class="line"></div> <small class="or text-center">Or</small>
                 <div class="line"></div>
             </div>
-            <form #f="ngForm" (ngSubmit)="signUp(f.value)">
+            <form [formGroup]="form" (ngSubmit)="signUp()">
+                <div *ngIf="form.errors?.serverError" class="alert alert-danger">
+                    Internal Error, please try again later.
+                </div>
                 <div class="row px-3"> <label class="mb-1">
                         <h6 class="mb-0 text-sm">First name</h6>
-                    </label> <input ngModel fname required class="mb-4" type="text" name="fname"
-                        placeholder="Enter your first name">
+                    </label> <input required class="mb-4" [ngClass]="{'required-empty': firstName?.touched && firstName?.errors?.required}" type="text" formControlName="firstName" placeholder="Enter your first name">
                 </div>
                 <div class="row px-3"> <label class="mb-1">
                         <h6 class="mb-0 text-sm">Last name</h6>
-                    </label> <input ngModel lname required class="mb-4" type="text" name="lname"
-                        placeholder="Enter your last name">
+                    </label> <input required class="mb-4" [ngClass]="{'required-empty': lastName?.touched && lastName?.errors?.required}" type="text" formControlName="lastName" placeholder="Enter your last name">
                 </div>
                 <div class="row px-3"> <label class="mb-1">
                         <h6 class="mb-0 text-sm">Email Address</h6>
-                    </label> <input ngModel email required class="mb-4" type="text" name="email"
-                        placeholder="Enter a valid email address">
+                    </label> <input email required class="mb-4" [ngClass]="{'required-empty': email?.touched && email?.errors?.required}" type="text" formControlName="email" placeholder="Enter a valid email address">
                 </div>
                 <div class="row px-3"> <label class="mb-1">
                         <h6 class="mb-0 text-sm">Date of birth</h6>
-                    </label> <input ngModel bday required class="mb-4" type="date" name="bday"
-                        placeholder="Enter your date of birth">
+                    </label> <input required class="mb-4" [ngClass]="{'required-empty': bday?.touched && bday?.errors?.required}" type="date" formControlName="bday" placeholder="Enter your date of birth">
                 </div>
+
                 <div class="row px-3"> <label class="mb-1">
+                    <h6 class="mb-0 text-sm">Phone Number</h6>
+                </label> <input required class="mb-4" [ngClass]="{'required-empty': phoneNumber?.touched && phoneNumber?.errors?.required}" type="phone" formControlName="phoneNumber" placeholder="Enter your phone">
+                </div>
+
+                <div formGroupName="passwords">
+                    <div class="row px-3"> <label class="mb-1">
                         <h6 class="mb-0 text-sm">Password</h6>
-                    </label> <input ngModel required type="password" name="password" placeholder="Enter password">
-                </div>
-                <div class="row px-3"> <label class="mb-1">
+                    </label> <input required type="password" [ngClass]="{'required-empty': password?.touched && password?.errors?.required}" formControlName="password" placeholder="Enter password">
+                    </div>
+                    <div class="row px-3"> <label class="mb-1">
                         <h6 class="mb-0 text-sm">Confirm Password</h6>
-                    </label> <input ngModel required type="password" name="cpassword" placeholder="Re-enter password">
+                    </label> <input required type="password" [ngClass]="{'required-empty': cpassword?.touched && cpassword?.errors?.required}" formControlName="cpassword" placeholder="Re-enter password">
+                    </div>
+
+                    <div *ngIf="passwords?.touched && passwords?.invalid" class="alert alert-danger">
+                        <div *ngIf="password?.errors?.minlength || cpassword?.errors?.minlength">Password must be more than {{password?.errors?.minlength.requiredLength || cpassword?.errors?.minlength.requiredLength}} characters.</div>
+                        <div *ngIf="passwords?.errors?.PasswordsDontMatch">Passwords must match</div>
+
+                    </div>
                 </div>
-                <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Next</button> </div>
+                <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center" [disabled]="form?.invalid">Next</button> </div>
                 <div class="row mb-4 px-3"> <small class="font-weight-bold">You already have an account? <a
                             class="text-danger "  routerLink="/signin" >Signin</a></small> </div>
             </form>
