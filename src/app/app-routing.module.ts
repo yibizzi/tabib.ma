@@ -5,9 +5,16 @@ import { DoctorProfileComponent } from './doctor-profile/doctor-profile.componen
 import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
 import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
 import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
+import { DoctorAppointmentDemandsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-demands/doctor-appointment-demands.component';
+import { DoctorAppointmentDetailsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-details/doctor-appointment-details.component';
+import { DoctorAppointmentEditComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-edit/doctor-appointment-edit.component';
+import { DoctorAppointmentsConfirmedComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments-confirmed/doctor-appointments-confirmed.component';
+import { DoctorAppointmentsHistoryComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments-history/doctor-appointments-history.component';
+import { DoctorAppointmentsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments.component';
 import { DoctorHomePageComponent } from './pages/doctor-pages/doctor-home-page/doctor-home-page.component';
 import { DoctorPatientProfileComponent } from './pages/doctor-pages/doctor-patients/doctor-patient-profile/doctor-patient-profile.component';
 import { DoctorPatientsComponent } from './pages/doctor-pages/doctor-patients/doctor-patients.component';
+import { DoctorEditProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-edit-profile/doctor-edit-profile.component';
 import { DoctorHistoryComponent } from './pages/doctor-pages/doctor-profile/doctor-history/doctor-history.component';
 import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profile/doctor-profile-details/doctor-profile-details.component';
 import { DoctorComponent } from './pages/doctor-pages/doctor.component';
@@ -58,12 +65,12 @@ const routes: Routes = [
               { path: ':id/proceed', component: PaymentProceedComponent },
             ]
           },
-          
-          { path: '', pathMatch: 'full',redirectTo: 'edit' },
+
+          { path: '', pathMatch: 'full', redirectTo: 'edit' },
 
         ]
       },
-      { path: 'payments/:id',  redirectTo: 'profile/:id/payments'},
+      { path: 'payments/:id', redirectTo: 'profile/:id/payments' },
       { path: '', pathMatch: 'full', redirectTo: 'Home' },
       { path: '**', redirectTo: 'Home' }
     ]
@@ -80,8 +87,18 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'Appointments', component: DoctorAppointmentsComponent, children: [
+          { path: ':id/', component: DoctorAppointmentDetailsComponent },
+          { path: 'edit', component: DoctorAppointmentEditComponent },
+          { path: 'History', component: DoctorAppointmentsHistoryComponent },
+          { path: 'Confirmed', component: DoctorAppointmentsConfirmedComponent },
+          { path: 'Demands', component: DoctorAppointmentDemandsComponent }
+        ]
+      }, 
+      {
         path: 'profile/:id', component: DoctorProfileComponent, children: [
           { path: '', component: DoctorProfileDetailsComponent },
+          { path: 'edit', component: DoctorEditProfileComponent },
           { path: 'History', component: DoctorHistoryComponent }
         ]
       },
@@ -113,7 +130,7 @@ const routes: Routes = [
   },
   {
     path: '', component: HomeComponent
-  },  
+  },
   { path: '**', redirectTo: '' },
 
 ];
