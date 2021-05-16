@@ -14,11 +14,17 @@ import { User } from '../models/userModels/user.model';
 })
 export class AuthService {
 
-  isAuthenticated = new BehaviorSubject<boolean>(localStorage.getItem('token') != null);
+
+
   userType = new BehaviorSubject<"doctor" | "patient" | null>("patient");
 
-  token: string | null | undefined;
+  token: string | null | undefined = localStorage.getItem('token');
   userId: string | null | undefined;
+
+  
+  isAuthenticated = new BehaviorSubject<boolean>(
+    this.token != null &&
+    new JwtHelperService().isTokenExpired(this.token));
 
   constructor(private router: Router,
     private http: HttpClient) { }

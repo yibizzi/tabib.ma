@@ -7,7 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -73,6 +73,7 @@ import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/pati
 import { DoctorProfileCardComponent } from './pages/doctor-pages/doctor-profile-card/doctor-profile-card.component';
 import { DoctorProfilePageComponent } from './pages/doctor-pages/doctor-profile-page/doctor-profile-page.component';
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
+import { AuthInterceptorService } from './services/backend/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -146,7 +147,7 @@ import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doct
     HttpClientModule,
     BrowserAnimationsModule,
 
-    
+
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
@@ -154,7 +155,12 @@ import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doct
     MatButtonModule,
     MatExpansionModule
   ],
-  providers: [AuthGuard, AuthService, HttpClient],
+  providers: [
+    AuthGuard,
+    AuthService,
+    HttpClient,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
