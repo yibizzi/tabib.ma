@@ -5,6 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Patient } from '../models/userModels/patient.model';
 
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../models/userModels/user.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -110,10 +113,32 @@ export class AuthService {
     });
   }
 
+
+
+  getCurrentUser(): User | null {
+    let helper = new JwtHelperService();
+    let token = localStorage.getItem('token');
+
+    if (!token) return null;
+
+    let userData: {
+      userId: string | undefined,
+      userEmail: string,
+      userType: "doctor" | "patient" | undefined
+    } = helper.decodeToken(token);
+
+    return userData.userType == "doctor" ?
+      new Doctor({ email: userData.userEmail, userId: userData.userId })
+      :
+      new Patient({ email: userData.userEmail, userId: userData.userId });
+
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.userId = null;
     this.token = null;
     this.isAuthenticated.next(false);
   }
+
 }
