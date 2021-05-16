@@ -1,20 +1,10 @@
+import { Doctor } from './../models/userModels/doctor.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Patient } from '../models/userModels/patient.model';
 
-
-//temporary interfaces
-interface authResponse { token: string, patientId?: string, doctorId?: string }
-
-interface signUpUser {
-  firstName: string,
-  lastName: string,
-  email:string, 
-  password: string,
-  age: number,
-  phoneNumber: string
-}
 
 @Injectable({
   providedIn: 'root'
@@ -30,20 +20,20 @@ export class AuthService {
   constructor(private router: Router,
     private http: HttpClient) { }
 
-    /**
-     * Create a new patient account and login with the provided credentials.
-     * @param user 
-     * 
-     * @returns 
-     */
-  createNewPatient(user: signUpUser) {
+  /**
+   * Create a new patient account and login with the provided credentials.
+   * @param user 
+   * 
+   * @returns 
+   */
+  createNewPatient(user: Patient) {
     return new Promise((resolve, reject) => {
       this.http.post(
         'http://localhost:9000/patients/auth/signup',
         user)
         .subscribe(
           () => {
-            this.loginPatient(user.email, user.password).then(
+            this.login(user.email, user.password, "patient").then(
               () => {
                 resolve(true);
               }
@@ -59,24 +49,56 @@ export class AuthService {
         );
     });
   }
-/**
- * Login the patient with the provided credentials.
+
+  /**
+ * Create a new doctor account and login with the provided credentials.
+ * @param user 
+ * 
+ * @returns 
+ */
+  createNewDoctor(user: Doctor) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        'http://localhost:9000/doctors/auth/signup',
+        user)
+        .subscribe(
+          () => {
+            this.login(user.email, user.password, "doctor").then(
+              () => {
+                resolve(true);
+              }
+            ).catch(
+              (error) => {
+                reject(error);
+              }
+            );
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
+  /**
+ * Login with the provided credentials.
  * @param email 
  * @param password 
  * @returns 
  */
-  loginPatient(email: string, password: string) {
+  login(email: string | undefined, password: string | undefined, userType: "doctor" | "patient") {
     return new Promise((resolve, reject) => {
       (this.http.post(
-        'http://localhost:9000/patients/auth/login',
-        { email: email, password: password }) as Observable<authResponse>)
+        'http://localhost:9000/' + userType == "doctor" ? "doctors" : "patients" + '/auth/login',
+        { email: email, password: password }) as Observable<{ token: string, doctorId?: string, patientId?: string }>)
         .subscribe({
           next: (authData) => {
             this.token = authData.token;
-            this.userId = authData.patientId || authData.doctorId;
+            this.userId = authData.doctorId || authData.patientId;
 
             localStorage.setItem('token', this.token);
-            
+            localStorage.setItem('userId', this.userId || "");
+
             this.isAuthenticated.next(true);
             resolve(true);
           },
@@ -89,8 +111,9 @@ export class AuthService {
   }
 
   logout() {
-    this.isAuthenticated.next(false);
+    localStorage.removeItem('token');
     this.userId = null;
     this.token = null;
+    this.isAuthenticated.next(false);
   }
 }
