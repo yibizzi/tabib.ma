@@ -1,22 +1,23 @@
+import { Doctor } from './../../models/userModels/doctor.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Appointment } from 'src/app/models/Appointment/appointment.model';
-import { Doctor } from 'src/app/models/userModels/doctor.model';
+import { Patient } from 'src/app/models/userModels/patient.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientsService {
 
-  private apiEndpoint: string = "http://localhost:9000/doctors/";
+  private apiEndpoint: string = "http://localhost:9000/patients/";
 
   constructor(
     private http: HttpClient) { }
 
 
-  getDoctorById(doctorId: string) {
+  getPatientById(patientId: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiEndpoint + doctorId).subscribe(
+      this.http.get(this.apiEndpoint + patientId).subscribe(
         (response) => {
           resolve(response);
         },
@@ -28,7 +29,7 @@ export class PatientsService {
   }
 
 
-  getDoctorsList(offset: number, limit: number) {
+  getPatientsList(offset: number, limit: number) {
     return new Promise((resolve, reject) => {
       this.http.get(this.apiEndpoint, {
         params: {
@@ -47,9 +48,9 @@ export class PatientsService {
   }
 
 
-  updateDoctor(doctor: Doctor) {
+  updatePatient(patient: Patient) {
     return new Promise((resolve, reject) => {
-      this.http.put(this.apiEndpoint + doctor.userId, doctor).subscribe(
+      this.http.put(this.apiEndpoint + patient.userId, patient).subscribe(
         (response) => {
           resolve(response);
         },
@@ -60,9 +61,12 @@ export class PatientsService {
     });
   }
 
-  confirmAppointment(doctor: Doctor, appointment: Appointment) {
+  rateDoctor(patient: Patient, doctor: Doctor, rating: number) {
     return new Promise((resolve, reject) => {
-      this.http.put(this.apiEndpoint + `${doctor.userId}/confirm-appointment`, appointment).subscribe(
+      this.http.post(this.apiEndpoint + `${patient.userId}/rate-doctor`, {
+        doctorId: doctor.userId,
+        rating: rating
+      }).subscribe(
         (response) => {
           resolve(response);
         },
@@ -73,9 +77,42 @@ export class PatientsService {
     });
   }
 
-  deleteAccount(doctor: Doctor) {
+  updateDoctorRating(patient: Patient, doctor: Doctor, rating: number) {
     return new Promise((resolve, reject) => {
-      this.http.delete(this.apiEndpoint + doctor.userId).subscribe(
+      this.http.put(this.apiEndpoint + `${patient.userId}/rate-doctor`, {
+        doctorId: doctor.userId,
+        rating: rating
+      }).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  cancelAppointment(patient: Patient, appointmentId: string) {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.apiEndpoint + `${patient.userId}/cancel-appointment`, {
+        appointmentId: appointmentId
+      }).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+
+
+  deleteAccount(patient: Patient) {
+    return new Promise((resolve, reject) => {
+      this.http.delete(this.apiEndpoint + patient.userId).subscribe(
         (response) => {
           resolve(response);
         },
