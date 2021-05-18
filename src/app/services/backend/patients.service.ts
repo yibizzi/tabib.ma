@@ -51,7 +51,7 @@ export class PatientsService {
             userId: patientId
           }));
         },
-        
+
         (error) => {
           reject(error);
         }
@@ -69,6 +69,26 @@ export class PatientsService {
         }
       }).subscribe(
         (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getPatientAppointments(patientId: string, offset: number, limit: number): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<string[]>(this.apiEndpoint + `${patientId}/appointments`, {
+        params: {
+          'offset': `${offset}`,
+          'limit': `${limit}`,
+
+          'patientId': `${patientId}`,
+        }
+      }).subscribe(
+        (response: string[]) => {
           resolve(response);
         },
         (error) => {

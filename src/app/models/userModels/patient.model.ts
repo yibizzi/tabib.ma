@@ -36,10 +36,10 @@ interface PatientParams {
 export class Patient extends User {
 
 
-    appointments: Appointment[];
-    doctors: Doctor[];
+    appointments: Appointment[] = [];
+    doctors: Doctor[] = [];
     medicalRecord: MedicalRecord;
-    payments: Payment[]
+    payments: Payment[] = [];
     password: string;
     [key: string]: PatientAttributeType;
 
