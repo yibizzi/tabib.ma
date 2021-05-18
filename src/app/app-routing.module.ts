@@ -35,7 +35,7 @@ import { PaymentMethodsComponent } from './pages/patient-pages/patient-profile/p
 import { PaymentProceedComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-proceed/payment-proceed.component';
 import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
 import { PatientComponent } from './pages/patient-pages/patient.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service';
 const routes: Routes = [
   {
     path: 'Patient', component: PatientComponent,
@@ -109,16 +109,16 @@ const routes: Routes = [
     ]
   },
   {
-    path: "Signin", component: LoginPageComponent,
+    path: "Signin", component: LoginPageComponent, canActivate: [LoggedOutGuard]
   },
   {
     path: "signin", redirectTo: "Signin"
   },
   {
-    path: "signup", component: SignupPageComponent
+    path: "signup", component: SignupPageComponent, canActivate: [LoggedOutGuard]
   },
   {
-    path: "forgotPassword", component: ForgotPasswordPageComponent
+    path: "forgotPassword", component: ForgotPasswordPageComponent, canActivate: [LoggedOutGuard]
   },
   {
     path: "payments", component: PaymentFormComponent

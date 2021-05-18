@@ -5,6 +5,8 @@ import * as moment from 'moment';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Patient } from 'src/app/models/userModels/patient.model';
+import { LeadingComment } from '@angular/compiler';
 
 interface signUpUser {
   firstName: string,
@@ -30,7 +32,7 @@ export class SignupPageComponent {
   constructor(fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private route : ActivatedRoute) {
+    private route: ActivatedRoute) {
 
 
     this.form = fb.group({
@@ -52,15 +54,24 @@ export class SignupPageComponent {
 
   signUp() {
 
-    let age = moment().diff(this.bday?.value, 'years');
+    //SignUp as patient for test
+
+    let patient: Patient = new Patient({
+      firstName: this.firstName?.value,
+      lastName: this.lastName?.value,
+      phoneNumber: this.phoneNumber?.value,
+      email: this.email?.value,
+      password: this.password?.value,
+      age: moment().diff(this.bday?.value, 'years'),
+    });
 
     this.auth
-    .createNewPatient({ ...this.form.value, ...this.passwords?.value, age: age }) 
-    .then((value) => {
-      //after signup& login navigate to homepage.
-      this.router.navigate(['']);
-    })
-    .catch((err) => {
+      .createNewPatient(patient)
+      .then((value) => {
+        //after signup& login navigate to homepage.
+        this.router.navigate(['']);
+      })
+      .catch((err) => {
         console.error(err);
         if (err instanceof HttpErrorResponse) {
           if (err.status === 400) {

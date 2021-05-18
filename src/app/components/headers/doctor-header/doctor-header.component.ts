@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DoctorsService } from './../../../services/backend/doctors.service';
+import { Doctor } from './../../../models/userModels/doctor.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 //temprary interface
-interface UserModel{
+interface UserModel {
   id: string,
   fname: string,
   lname: string,
@@ -13,15 +17,24 @@ interface UserModel{
   styleUrls: ['./doctor-header.component.css']
 })
 export class DoctorHeaderComponent implements OnInit {
-  public user: UserModel = {
-    id: "Ag2Z5",
-    fname: "younes",
-    lname: "ibizzi",
-    image: "https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg"
-  };
-  constructor() { }
+
+  @Input('currentUser')
+  doctor: Doctor | null;
+
+  constructor(private doctorsService: DoctorsService,
+    private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
+
+
+    this.doctorsService
+      .doctor$.subscribe((doctor) => {
+        this.doctor = doctor;
+      });
+
+    this.doctorsService.getDoctorById(this.doctor?.userId as string);
+
   }
 
 }

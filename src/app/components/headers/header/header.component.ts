@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Doctor } from 'src/app/models/userModels/doctor.model';
+import { Patient } from 'src/app/models/userModels/patient.model';
+import { User } from 'src/app/models/userModels/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,6 +16,11 @@ export class HeaderComponent implements OnInit {
 
   type: "patient" | "doctor" | null = 'doctor';
 
+  currentPatient: Patient;
+  currentDoctor: Doctor;
+
+
+
   constructor(private auth: AuthService,
     private router: Router) {
   }
@@ -25,7 +33,20 @@ export class HeaderComponent implements OnInit {
 
     this.auth.userType.subscribe((userType) => {
       this.type = userType;
-    })
+
+
+      switch (this.type) {
+        case 'doctor':
+          this.currentDoctor = this.auth.getCurrentUser() as Doctor; 
+          console.log(`-----> ${userType} , ${this.currentDoctor?.userId}`);
+          break;
+
+        default:
+          this.currentPatient = this.auth.getCurrentUser() as Patient;
+          console.log(`-----> ${userType} , ${this.currentPatient?.userId}`);
+           break;
+      };
+    });
   }
 
 }
