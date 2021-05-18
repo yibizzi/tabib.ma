@@ -14,7 +14,7 @@ type PatientAttributeType = number | string | Payment[] | Appointment[] | Doctor
  * Required params structure to create a new patient
  */
 interface PatientParams {
-    email: string,
+    email?: string,
     userId?: string,
     firstName?: string,
     lastName?: string,

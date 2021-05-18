@@ -19,16 +19,15 @@ export class AuthService {
   userType = new BehaviorSubject<"doctor" | "patient" | null>('patient');
 
   token: string | null | undefined = localStorage.getItem('token');
-  userId: string | null | undefined = localStorage.getItem('userId');
 
-  
+
   isAuthenticated = new BehaviorSubject<boolean>(
     this.token != null &&
     !(new JwtHelperService().isTokenExpired(this.token)));
 
   constructor(private router: Router,
-    private http: HttpClient) { 
-    }
+    private http: HttpClient) {
+  }
 
   /**
    * Create a new patient account and login with the provided credentials.
@@ -99,18 +98,16 @@ export class AuthService {
   login(email: string | undefined, password: string | undefined, userType: "doctor" | "patient") {
     return new Promise((resolve, reject) => {
       (this.http.post(
-        'http://localhost:9000/' + userType +'s/auth/login',
+        'http://localhost:9000/' + userType + 's/auth/login',
         { email: email, password: password }) as Observable<{ token: string, doctorId?: string, patientId?: string }>)
         .subscribe({
           next: (authData) => {
             this.token = authData.token;
-            this.userId = authData.doctorId || authData.patientId;
-            this.userType.next(userType);
 
             localStorage.setItem('token', this.token);
-            localStorage.setItem('userId', this.userId || "");
 
             this.isAuthenticated.next(true);
+            this.userType.next(userType);
             resolve(true);
           },
           error: (error) => {
@@ -127,29 +124,32 @@ export class AuthService {
     let helper = new JwtHelperService();
     let token = localStorage.getItem('token');
 
+
     if (!token) return null;
 
-    // let userData: {
-    //   userId: string | undefined,
-    //   userEmail: string,
-    //   userType: "doctor" | "patient" | undefined
-    // } = helper.decodeToken(token);
+    let userData: {
+      patientId?: string,
+      doctorId?: string,
+      role: "doctor" | "patient"
+    } = helper.decodeToken(token);
 
-    // return userData.userType == "doctor" ?
-    //   new Doctor({ email: userData.userEmail, userId: userData.userId })
-    //   :
-    //   new Patient({ email: userData.userEmail, userId: userData.userId });
 
-    return new Patient({ email: "mdlfjqmf", userId: this.userId as string });
+    console.log(`----->`); console.log(userData);
+
+    return userData.role == "doctor" ?
+      new Doctor({ userId: userData.doctorId })
+      :
+      new Patient({userId: userData.patientId });
+
 
   }
 
 
-  sendResetPasswordEmail(email: string, userType: "doctor" | "patient"){
+  sendResetPasswordEmail(email: string, userType: "doctor" | "patient") {
     return new Promise((resolve, reject) => {
       this.http.post(
         'http://localhost:9000/' + userType + 's/auth/reset-password',
-        { email: email}) 
+        { email: email })
         .subscribe({
           next: (response) => {
             resolve(true);
@@ -166,7 +166,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.userId = null;
     this.token = null;
     this.isAuthenticated.next(false);
   }

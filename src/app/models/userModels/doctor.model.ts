@@ -23,7 +23,7 @@ type DoctorAttribute = number | string | PublicInfos | Payment[] | Appointment[]
  * Required params structure to create a new doctor
  */
 interface DoctorParams {
-    email: string,
+    email?: string,
     userId?: string,
     firstName?: string,
     lastName?: string,

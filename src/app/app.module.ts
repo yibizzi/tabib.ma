@@ -75,6 +75,8 @@ import { DoctorProfilePageComponent } from './pages/doctor-pages/doctor-profile-
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
 import { AuthInterceptorService } from './services/backend/auth-interceptor.service';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -153,7 +155,9 @@ import { AuthInterceptorService } from './services/backend/auth-interceptor.serv
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthGuard,

@@ -34,12 +34,17 @@ export class HeaderComponent implements OnInit {
     this.auth.userType.subscribe((userType) => {
       this.type = userType;
 
+
       switch (this.type) {
         case 'doctor':
-          this.currentDoctor = this.auth.getCurrentUser() as Doctor; break;
+          this.currentDoctor = this.auth.getCurrentUser() as Doctor; 
+          console.log(`-----> ${userType} , ${this.currentDoctor?.userId}`);
+          break;
 
         default:
-          this.currentPatient = this.auth.getCurrentUser() as Patient; break;
+          this.currentPatient = this.auth.getCurrentUser() as Patient;
+          console.log(`-----> ${userType} , ${this.currentPatient?.userId}`);
+           break;
       };
     });
   }

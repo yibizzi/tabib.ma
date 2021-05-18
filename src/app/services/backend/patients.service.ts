@@ -6,6 +6,8 @@ import { Patient } from 'src/app/models/userModels/patient.model';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+
+//Temporary
 interface patientServer {
   "fullName": {
     "firstName": string,

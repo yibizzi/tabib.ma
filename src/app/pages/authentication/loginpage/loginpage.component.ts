@@ -36,7 +36,6 @@ export class LoginPageComponent {
       .login(data.email, data.password, "patient")
       .then(value => {
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-        console.log(returnUrl);
         this.router.navigate([returnUrl || '']);
       })
       .catch((err) => {

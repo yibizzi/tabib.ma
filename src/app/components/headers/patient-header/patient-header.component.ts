@@ -28,10 +28,12 @@ export class PatientHeaderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.loading = true;
 
     this.patientsService
       .patient$.subscribe((patient) => {
         this.patient = patient;
+        this.loading = false;
       });
 
     this.patientsService.getPatientById(this.patient?.userId as string);

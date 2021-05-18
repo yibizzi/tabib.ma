@@ -1,11 +1,16 @@
 <app-base-header>
+
     <ul>
         <li><a class="nav-link scrollto active" routerLink="">Home</a></li>
         <li><a class="nav-link scrollto" routerLink="/Patient/doctors">Doctors</a></li>
         <li><a class="nav-link scrollto" routerLink="/Patient/profile/id/edit">Profile</a></li>
         <li><a class="nav-link scrollto" routerLink="/Patient/payments/id">Payments</a></li>
 
-        <li class="dropdown">
+        <li>
+            <mat-spinner strokeWidth="3" diameter="20" *ngIf="loading"></mat-spinner>
+        </li>
+
+        <li *ngIf="!loading" class="dropdown">
             <a [routerLink]="['/profile', patient?.userId]">
                 <div class="wrapper">
                     <img [src]="patient?.imageUrl" class="image--cover">
