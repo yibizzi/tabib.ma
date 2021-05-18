@@ -10,8 +10,12 @@ import { catchError, filter, take, switchMap } from "rxjs/operators";
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
+  // baseApiUrl : string = "http://localhost:9000/";
+
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    
     
     const token: string | null= localStorage.getItem('token'); // This retrieves a token from local storage
 

@@ -6,10 +6,10 @@
         <li><a class="nav-link scrollto" routerLink="/Patient/payments/id">Payments</a></li>
 
         <li class="dropdown">
-            <a [routerLink]="['/profile', user.id]">
+            <a [routerLink]="['/profile', patient?.userId]">
                 <div class="wrapper">
-                    <img [src]="user.image" class="image--cover">
-                    <span class="username"> {{user.fname + " " }} {{user.lname | uppercase}}</span>
+                    <img [src]="patient?.imageUrl" class="image--cover">
+                    <span class="username"> {{patient?.firstName + " " }} {{patient?.lastName}}</span>
                     <i class="bi bi-chevron-down"></i>
                 </div>
             </a>

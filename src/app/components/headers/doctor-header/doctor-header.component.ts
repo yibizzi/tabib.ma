@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Doctor } from './../../../models/userModels/doctor.model';
+import { Component, OnInit, Input } from '@angular/core';
 
 //temprary interface
 interface UserModel{
@@ -19,6 +20,10 @@ export class DoctorHeaderComponent implements OnInit {
     lname: "ibizzi",
     image: "https://i.kinja-img.com/gawker-media/image/upload/gd8ljenaeahpn0wslmlz.jpg"
   };
+
+  @Input('currentUser')
+  doctor: Doctor | null;
+
   constructor() { }
 
   ngOnInit(): void {

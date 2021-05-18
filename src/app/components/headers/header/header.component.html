@@ -3,6 +3,6 @@
 </div>
 
 <ng-template #authenticatedHeader [ngSwitch]="type">
-    <app-patient-header *ngSwitchCase="'patient'"></app-patient-header>
-    <app-doctor-header *ngSwitchCase="'doctor'"></app-doctor-header>
+    <app-patient-header *ngSwitchCase="'patient'" [currentUser]="currentPatient"></app-patient-header>
+    <app-doctor-header *ngSwitchCase="'doctor'" [currentUser]="currentDoctor"></app-doctor-header>
 </ng-template>

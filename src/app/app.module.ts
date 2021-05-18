@@ -61,7 +61,7 @@ import { PaymentMethodsComponent } from './pages/patient-pages/patient-profile/p
 import { PaymentProceedComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-proceed/payment-proceed.component';
 import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
 import { PatientComponent } from './pages/patient-pages/patient.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { DoctorAppointmentsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments.component';
 import { DoctorAppointmentDetailsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-details/doctor-appointment-details.component';
@@ -157,6 +157,7 @@ import { AuthInterceptorService } from './services/backend/auth-interceptor.serv
   ],
   providers: [
     AuthGuard,
+    LoggedOutGuard,
     AuthService,
     HttpClient,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
