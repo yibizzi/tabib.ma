@@ -61,7 +61,6 @@ import { PaymentMethodsComponent } from './pages/patient-pages/patient-profile/p
 import { PaymentProceedComponent } from './pages/patient-pages/patient-profile/patient-payments/payment-proceed/payment-proceed.component';
 import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
 import { PatientComponent } from './pages/patient-pages/patient.component';
-import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { DoctorAppointmentsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointments.component';
 import { DoctorAppointmentDetailsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-details/doctor-appointment-details.component';
@@ -73,9 +72,11 @@ import { PatientsListComponent } from './pages/doctor-pages/doctor-patients/pati
 import { DoctorProfileCardComponent } from './pages/doctor-pages/doctor-profile-card/doctor-profile-card.component';
 import { DoctorProfilePageComponent } from './pages/doctor-pages/doctor-profile-page/doctor-profile-page.component';
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
-import { AuthInterceptorService } from './services/backend/auth-interceptor.service';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthInterceptorService } from './services/backend/auth-interceptor.service';
+import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service';
+import { UserTypeComponent } from './pages/authentication/user-type/user-type.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DoctorAppointmentDemandsComponent,
     DoctorAppointmentsHistoryComponent,
     DoctorAppointmentsConfirmedComponent,
-    DoctorAppointmentEditComponent
+    DoctorAppointmentEditComponent,
+    UserTypeComponent
 
 
   ],
