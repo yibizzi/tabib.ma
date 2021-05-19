@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaymentFormComponent } from './components/payment/payment-form/payment-form.component';
 import { ForgotPasswordPageComponent } from './pages/authentication/forgot-password-page/forgot-password-page.component';
+import { LoginPageFormComponent } from './pages/authentication/loginpage/form/login-page-form/login-page-form.component';
 import { LoginPageComponent } from './pages/authentication/loginpage/loginpage.component';
 import { SignupPageComponent } from './pages/authentication/signup-page/signup-page.component';
+import { SingupPageFormComponent } from './pages/authentication/signup-page/singup-page-form/singup-page-form.component';
+import { UserTypeComponent } from './pages/authentication/user-type/user-type.component';
 import { DoctorAppointmentDemandsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-demands/doctor-appointment-demands.component';
 import { DoctorAppointmentDetailsComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-details/doctor-appointment-details.component';
 import { DoctorAppointmentEditComponent } from './pages/doctor-pages/doctor-appointments/doctor-appointment-edit/doctor-appointment-edit.component';
@@ -108,15 +111,34 @@ const routes: Routes = [
       { path: '**', redirectTo: 'Home' }
     ]
   },
+  // {
+  //   path: "ChooseType", component: UserTypeComponent, canActivate:[LoggedOutGuard]
+  // },
+
   {
-    path: "Signin", component: LoginPageComponent, canActivate: [LoggedOutGuard]
+    path: 'Signin', component: LoginPageComponent,
+    canActivate: [LoggedOutGuard],
+    children: [
+      {path: "ChooseType", component: UserTypeComponent, canActivate:[LoggedOutGuard]},
+      {path: ":userType", component: LoginPageFormComponent, canActivate:[LoggedOutGuard]},
+      {path: '', pathMatch: 'full', redirectTo: 'ChooseType'},
+    ]
   },
   {
-    path: "signin", redirectTo: "Signin"
+    path: 'Signup', component: SignupPageComponent,
+    canActivate: [LoggedOutGuard],
+    children: [
+      {path: "ChooseType", component: UserTypeComponent, canActivate:[LoggedOutGuard]},
+      {path: ":userType", component: SingupPageFormComponent, canActivate:[LoggedOutGuard]},
+      {path: '', pathMatch: 'full', redirectTo: 'ChooseType'},
+    ]
   },
-  {
-    path: "signup", component: SignupPageComponent, canActivate: [LoggedOutGuard]
-  },
+  // {
+  //   path: "Signin/:userType", component: LoginPageComponent, canActivate: [LoggedOutGuard]
+  // },
+  // {
+  //   path: "Signup/:userType", component: SignupPageComponent, canActivate: [LoggedOutGuard]
+  // },
   {
     path: "forgotPassword", component: ForgotPasswordPageComponent, canActivate: [LoggedOutGuard]
   },

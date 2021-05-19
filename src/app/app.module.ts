@@ -77,6 +77,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthInterceptorService } from './services/backend/auth-interceptor.service';
 import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service';
 import { UserTypeComponent } from './pages/authentication/user-type/user-type.component';
+import { LoginPageFormComponent } from './pages/authentication/loginpage/form/login-page-form/login-page-form.component';
+import { SingupPageFormComponent } from './pages/authentication/signup-page/singup-page-form/singup-page-form.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,9 @@ import { UserTypeComponent } from './pages/authentication/user-type/user-type.co
     DoctorAppointmentsHistoryComponent,
     DoctorAppointmentsConfirmedComponent,
     DoctorAppointmentEditComponent,
-    UserTypeComponent
+    UserTypeComponent,
+    LoginPageFormComponent,
+    SingupPageFormComponent
 
 
   ],
