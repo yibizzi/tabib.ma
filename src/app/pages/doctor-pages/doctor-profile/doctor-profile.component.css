@@ -1,0 +1,45 @@
+mat-sidenav {
+    margin: 16px;
+    width: 25%;
+    border-right: none;
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+mat-sidenav-container {
+    margin: 16px;
+    padding: 16px;
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+}
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.name {
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.designation {
+    margin-top: 2px;
+    font-size: 0.7rem;
+}
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}

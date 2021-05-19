@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import {LayoutModule} from '@angular/cdk/layout';
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -162,7 +162,7 @@ import { SingupPageFormComponent } from './pages/authentication/signup-page/sing
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-
+    LayoutModule,
     MatProgressSpinnerModule
   ],
   providers: [

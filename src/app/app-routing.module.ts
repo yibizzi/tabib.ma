@@ -101,9 +101,10 @@ const routes: Routes = [
       },
       {
         path: 'profile/:id', component: DoctorProfileComponent, children: [
-          { path: '', component: DoctorProfileDetailsComponent },
+          { path: 'view', component: DoctorProfileDetailsComponent },
           { path: 'edit', component: DoctorEditProfileComponent },
-          { path: 'History', component: DoctorHistoryComponent }
+          { path: 'History', component: DoctorHistoryComponent },
+          { path: '', pathMatch: 'full', redirectTo: 'view' },
         ]
       },
       // { path: 'payments',  redirectTo: 'all-stuff'},

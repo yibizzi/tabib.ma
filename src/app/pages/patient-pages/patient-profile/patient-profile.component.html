@@ -1,7 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav mode="side" [opened]="true">
         <div class="sidenav-logo-container">
-            <img src="assets/images/logo.png" alt="">
+            <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+
+            <h4 class="name">John Smith</h4>
+            <p class="designation">Software Engineer</p>
+
+            <mat-divider></mat-divider>
         </div>
         <mat-nav-list>
             <app-nav-menu-item routerLink="edit" title="Edit profile" icon="home"></app-nav-menu-item>
