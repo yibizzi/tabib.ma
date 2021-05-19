@@ -37,4 +37,8 @@ export class DoctorHeaderComponent implements OnInit {
 
   }
 
+  logOut() {
+    this.auth.logout();
+  }
+
 }

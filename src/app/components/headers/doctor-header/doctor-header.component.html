@@ -1,13 +1,13 @@
 <app-base-header>
     <ul>
-        <li><a class="nav-link scrollto active" routerLink="">Home</a></li>
-        <li><a class="nav-link scrollto" href="#about">Patients</a></li>
-        <li><a class="nav-link scrollto" href="#about">Schedules</a></li>
-        <li><a class="nav-link scrollto" href="#portfolio">Profile</a></li>
-        <li><a class="nav-link scrollto" href="#portfolio">Payments</a></li>
+        <li><a class="nav-link scrollto active" routerLink="/Doctor/Home">Home</a></li>
+        <li><a class="nav-link scrollto" routerLink="/Doctor/Patients">Patients</a></li>
+        <li><a class="nav-link scrollto" routerLink="/Doctor/Appointments">Appointments</a></li>
+        <li><a class="nav-link scrollto" [routerLink]="['/Doctor/profile', doctor?.userId]">Profile</a></li>
+        <!-- <li><a class="nav-link scrollto"  routerLink="/Patient/doctors">Payments</a></li> -->
 
         <li class="dropdown">
-            <a [routerLink]="['/profile', doctor?.userId]">
+            <a [routerLink]="['/Doctor/profile', doctor?.userId]">
                 <div class="wrapper">
                     <img [src]="doctor?.image" class="image--cover">
                     <span class="username"> Dr. {{doctor?.firstName + " " }} {{doctor?.lastName}}</span>
@@ -25,7 +25,7 @@
                     </ul>
                 </li>
                 <li><a routerLink="">Payments Console</a></li>
-                <li><a routerLink="">Log out <i class="bi bi-box-arrow-right"></i></a>
+                <li><a (click)="logOut()">Log out <i class="bi bi-box-arrow-right"></i></a>
             </ul>
             </li>
 
