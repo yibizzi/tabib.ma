@@ -16,7 +16,7 @@ export class AuthService {
 
 
 
-  userType = new BehaviorSubject<"doctor" | "patient" | null>('patient');
+  userType = new BehaviorSubject<"doctor" | "patient" | null>(null);
 
   token: string | null | undefined = localStorage.getItem('token');
 
@@ -120,7 +120,7 @@ export class AuthService {
 
 
 
-  getCurrentUser(): User | null {
+  getCurrentUser(): Patient | Doctor | null {
     let helper = new JwtHelperService();
     let token = localStorage.getItem('token');
 
@@ -133,13 +133,10 @@ export class AuthService {
       role: "doctor" | "patient"
     } = helper.decodeToken(token);
 
-
-    console.log(`----->`); console.log(userData);
-
     return userData.role == "doctor" ?
       new Doctor({ userId: userData.doctorId })
       :
-      new Patient({userId: userData.patientId });
+      new Patient({ userId: userData.patientId });
 
 
   }

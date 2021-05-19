@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Doctor } from 'src/app/models/userModels/doctor.model';
+import { Patient } from 'src/app/models/userModels/patient.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  
+
   isAuthenticated: boolean = false;
 
   type: "patient" | "doctor" | null = 'patient';
@@ -21,12 +23,16 @@ export class HomeComponent implements OnInit {
 
     this.auth.isAuthenticated.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
-    });
 
-    this.auth.userType.subscribe((userType) => {
-      this.type = userType;
-    })
-    
+      if (isAuthenticated) {
+        let currentUser = this.auth.getCurrentUser();
+        this.type = currentUser instanceof Doctor ?
+          "doctor"
+          :
+          "patient";
+
+      }
+    });
   }
 
 }

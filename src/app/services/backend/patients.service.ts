@@ -38,7 +38,7 @@ export class PatientsService {
     private http: HttpClient) { }
 
 
-  getPatientById(patientId: string) {
+  getPatientById(patientId: string) : Promise<Patient>{
     return new Promise((resolve, reject) => {
       this.http.get<patientServer>(this.apiEndpoint + patientId).subscribe(
         (response) => {

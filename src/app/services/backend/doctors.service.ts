@@ -28,8 +28,8 @@ interface doctorServer {
 export class DoctorsService {
 
   private apiEndpoint: string = "http://localhost:9000/doctors/";
-  
-  doctor$ = new Subject<Doctor>();
+
+  currentDoctor$ = new Subject<Doctor>();
 
   constructor(
     private http: HttpClient) { }
@@ -39,7 +39,7 @@ export class DoctorsService {
     return new Promise((resolve, reject) => {
       this.http.get<doctorServer>(this.apiEndpoint + doctorId).subscribe(
         (response) => {
-          this.doctor$.next(new Doctor({
+          this.currentDoctor$.next(new Doctor({
             firstName: response.fullName.firstName,
             lastName: response.fullName.lastName,
             email: response.email,
@@ -55,11 +55,11 @@ export class DoctorsService {
     });
   }
 
-  getDoctorById(doctorId: string) : Promise<Doctor>{
+  getDoctorById(doctorId: string): Promise<Doctor> {
     return new Promise((resolve, reject) => {
       this.http.get<doctorServer>(this.apiEndpoint + doctorId).subscribe(
         (response) => {
-          resolve(new Doctor({
+          this.currentDoctor$.next(new Doctor({
             firstName: response.fullName.firstName,
             lastName: response.fullName.lastName,
             email: response.email,
@@ -67,6 +67,26 @@ export class DoctorsService {
             phoneNumber: response.phoneNumber,
             userId: doctorId
           }));
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getDoctorAppointments(doctorId: string, offset: number, limit: number): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<string[]>(this.apiEndpoint + `${doctorId}/appointments`, {
+        params: {
+          'offset': `${offset}`,
+          'limit': `${limit}`,
+
+          'doctorId': `${doctorId}`,
+        }
+      }).subscribe(
+        (response: string[]) => {
+          resolve(response);
         },
         (error) => {
           reject(error);

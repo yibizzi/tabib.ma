@@ -7,10 +7,10 @@
         <li><a class="nav-link scrollto" href="#portfolio">Payments</a></li>
 
         <li class="dropdown">
-            <a [routerLink]="['/profile', doctor?.id]">
+            <a [routerLink]="['/profile', doctor?.userId]">
                 <div class="wrapper">
                     <img [src]="doctor?.image" class="image--cover">
-                    <span class="username"> Dr. {{doctor?.fname + " " }} {{doctor?.lname}}</span>
+                    <span class="username"> Dr. {{doctor?.firstName + " " }} {{doctor?.lastName}}</span>
                     <i class="bi bi-chevron-down"></i>
                 </div>
             </a>
