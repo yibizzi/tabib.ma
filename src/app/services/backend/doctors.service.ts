@@ -35,11 +35,31 @@ export class DoctorsService {
     private http: HttpClient) { }
 
 
-  getDoctorById(doctorId: string) {
+  getCurrentDoctorById(doctorId: string) {
     return new Promise((resolve, reject) => {
       this.http.get<doctorServer>(this.apiEndpoint + doctorId).subscribe(
         (response) => {
           this.doctor$.next(new Doctor({
+            firstName: response.fullName.firstName,
+            lastName: response.fullName.lastName,
+            email: response.email,
+            age: response.age,
+            phoneNumber: response.phoneNumber,
+            userId: doctorId
+          }));
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getDoctorById(doctorId: string) : Promise<Doctor>{
+    return new Promise((resolve, reject) => {
+      this.http.get<doctorServer>(this.apiEndpoint + doctorId).subscribe(
+        (response) => {
+          resolve(new Doctor({
             firstName: response.fullName.firstName,
             lastName: response.fullName.lastName,
             email: response.email,
