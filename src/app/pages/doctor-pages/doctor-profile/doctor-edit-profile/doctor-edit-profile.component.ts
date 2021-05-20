@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Doctor } from 'src/app/models/userModels/doctor.model';
+import { DoctorsService } from 'src/app/services/backend/doctors.service';
 
 @Component({
   selector: 'app-doctor-edit-profile',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorEditProfileComponent implements OnInit {
 
-  constructor() { }
+  loadingDoctor: boolean = false;
+
+  loadingRatings = false;
+
+  currentDoctor: Doctor;
+
+  constructor(private doctorsService: DoctorsService,) { }
 
   ngOnInit(): void {
+
+    this.doctorsService
+    .currentDoctor$.subscribe((doctor) => {
+      this.currentDoctor = doctor;
+      this.loadingDoctor = false;
+
+    });
+
+  this.doctorsService.getDoctorById(this.currentDoctor?.userId as string);
+
   }
 
 }

@@ -26,35 +26,29 @@ export class DoctorProfileDetailsComponent implements OnInit {
 
 
   constructor(
-    private authService: AuthService,
-    private patientsService: PatientsService,
-    private doctorsService: DoctorsService,
-    private appointmentsService: AppointmentsService,
-    private router: Router) { }
+    private doctorsService: DoctorsService,) { }
 
   ngOnInit(): void {
 
     this.doctorsService
-    .currentDoctor$.subscribe((doctor) => {
-      this.currentDoctor = doctor;
-      this.googleMapsUrl += `${doctor.addresse?.details}+${doctor.addresse?.city}+${doctor.addresse?.country}`
-      this.loadingDoctor = false;
+      .currentDoctor$.subscribe((doctor) => {
+        this.currentDoctor = doctor;
+        this.googleMapsUrl += `${doctor.addresse?.details}+${doctor.addresse?.city}+${doctor.addresse?.country}`
+        this.loadingDoctor = false;
 
-      this.loadDoctorRatings();
+        this.loadDoctorRatings();
 
-
-
-    });
+      });
 
     this.doctorsService.getDoctorById(this.currentDoctor?.userId as string);
 
   }
 
-  loadDoctorRatings(){
+  loadDoctorRatings() {
 
-    if(this.currentDoctor.userId) this.doctorsService.getDoctorRatings(this.currentDoctor.userId).then((rating)=>{
+    if (this.currentDoctor.userId) this.doctorsService.getDoctorRatings(this.currentDoctor.userId).then((rating) => {
       this.currentDoctor.updateInfos({
-        "rating" : rating
+        "rating": rating
       })
     });
 

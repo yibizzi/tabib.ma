@@ -69,14 +69,15 @@ body {
     margin-bottom: 1rem;
 }
 
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited {
-    position: absolute;
-    margin-left: 700px;
+input {
+    margin: 10px;
+    padding: 10px;
 }
 
-.buttons {
-    margin-top: 15px;
+.row div {
+    text-align: center;
+}
+
+button {
+    margin: 10px;
 }
