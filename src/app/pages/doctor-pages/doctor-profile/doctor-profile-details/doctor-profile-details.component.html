@@ -16,12 +16,12 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star"></span>
                                     <span class="fa fa-star"></span>
-                                    <div class="rating-text"> <span>46 ratings </span> </div>
+                                    <div class="rating-text"> <span>{{currentDoctor?.rating?.totalRatings}} ratings </span> </div>
 
-                                    <h4>Anastasia </h4>
-                                    <p class="text-secondary mb-1">Cardiologist</p>
-                                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                                    <button class="btn btn-outline-primary">Demander un rendez-vous</button>
+                                    <h4>{{currentDoctor?.firstName}} {{currentDoctor?.lastName}} </h4>
+                                    <p class="text-secondary mb-1">{{currentDoctor?.speciality}}</p>
+                                    <p class="text-muted font-size-sm">{{currentDoctor?.addresse?.details}}, {{currentDoctor?.addresse?.city}}</p>
+                                    <button class="btn btn-outline-primary" disabled>Demander un rendez-vous</button>
                                 </div>
                             </div>
                         </div>
@@ -32,10 +32,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Nom & Prénom</h6>
+                                    <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Anastasia
+                                    Dr. {{currentDoctor?.firstName}} {{currentDoctor?.lastName}}
                                 </div>
                             </div>
                             <hr>
@@ -44,7 +44,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    fip@jukmuh.al
+                                    {{currentDoctor?.email}}
                                 </div>
                             </div>
                             <hr>
@@ -53,7 +53,7 @@
                                     <h6 class="mb-0">Téléphone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    (239) 816-9029
+                                    {{currentDoctor?.phoneNumber}}
                                 </div>
                             </div>
                             <hr>
@@ -62,7 +62,7 @@
                                     <h6 class="mb-0">Description</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Lorem Epsum Lorem Epsum...
+                                    {{currentDoctor?.description}}
                                 </div>
                             </div>
                             <hr>
@@ -71,7 +71,7 @@
                                     <h6 class="mb-0">Adresse</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Bay Area, San Francisco, CA
+                                    {{currentDoctor?.addresse?.details}}, {{currentDoctor?.addresse?.city}}
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <div class="map-responsive">
-                                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                        <iframe [src]="googleMapsUrl" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 import { Appointment } from './../../models/Appointment/appointment.model';
-import { Doctor } from './../../models/userModels/doctor.model';
+import { Doctor, Rating } from './../../models/userModels/doctor.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -81,8 +81,6 @@ export class DoctorsService {
         params: {
           'offset': `${offset}`,
           'limit': `${limit}`,
-
-          'doctorId': `${doctorId}`,
         }
       }).subscribe(
         (response: string[]) => {
@@ -92,6 +90,29 @@ export class DoctorsService {
           reject(error);
         }
       );
+    });
+  }
+
+  getDoctorRatings(doctorId: string): Promise<Rating> {
+
+    interface receivedRating {
+      "_id"?: string,
+      "patientId"?: string,
+      "rating": number
+    };
+    return new Promise((resolve, reject) => {
+      this.http.get<receivedRating[]>(this.apiEndpoint + `${doctorId}/rating`)
+        .subscribe(
+          (response: receivedRating[]) => {
+            resolve({
+              averageRating: (response.reduce((accumulator, currentValue) => { return { "rating": accumulator.rating + currentValue.rating } }).rating) / response.length,
+              totalRatings: response?.length
+            });
+          },
+          (error) => {
+            reject(error);
+          }
+        );
     });
   }
 
