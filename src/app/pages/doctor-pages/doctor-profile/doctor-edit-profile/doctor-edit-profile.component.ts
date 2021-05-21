@@ -126,11 +126,12 @@ export class DoctorEditProfileComponent implements OnInit {
 
     this.doctorsService.updateDoctor(this.currentDoctor).then((value)=>{
       this.savingInfos = false;
+      this.ngOnInit();
     });
   }
 
   cancel() {
-
+    this.form.reset();
   }
 
 

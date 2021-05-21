@@ -15,9 +15,9 @@
                                     <span *ngFor="let i of [1,2,3,4, 5]" class="fa fa-star" [ngClass]="i <= averageRating ? 'checked': ''"></span>
 
 
-                                    <div class="rating-text" *ngIf="!loadingRatings">
-                                        <mat-spinner strokeWidth="3" diameter="10" *ngIf="loadingRatings"></mat-spinner>
-                                        <span *ngIf="!loadingRatings">{{currentDoctor?.rating?.totalRatings}}</span> ratings
+                                    <div class="rating-text">
+                                        <span *ngIf="loadingRatings"><mat-spinner strokeWidth="3" diameter="20"></mat-spinner></span>
+                                        <span *ngIf="!loadingRatings">{{currentDoctor?.rating?.totalRatings}} ratings</span>
 
                                     </div>
 

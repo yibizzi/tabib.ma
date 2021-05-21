@@ -1,4 +1,10 @@
-mat-sidenav {
+.sidenav-container {
+    margin: 16px;
+    padding-top: 16px;
+    min-height: 50%;
+}
+
+.sidenav {
     margin: 16px;
     width: 25%;
     border-right: none;
@@ -8,9 +14,8 @@ mat-sidenav {
     text-align: center;
 }
 
-mat-sidenav-container {
-    margin: 16px;
-    padding: 16px;
+.content {
+    padding-left: 10%;
 }
 
 .menu-button {

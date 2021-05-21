@@ -63,7 +63,7 @@ export class DoctorProfileDetailsComponent implements OnInit {
 
       this.averageRating = rating.averageRating;
       
-      this.loadingRatings = false;
+      // this.loadingRatings = false;
     });
 
   }

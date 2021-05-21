@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row gutters">
-        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+        <div class="col-12">
             <div class="card h-100">
                 <div class="card-body">
 
-                    <mat-spinner strokeWidth="3" diameter="50" *ngIf="loadingDoctor"></mat-spinner>
+                    <mat-spinner class="" strokeWidth="3" diameter="50" *ngIf="loadingDoctor"></mat-spinner>
                     <form [formGroup]="form" *ngIf="!loadingDoctor" class="row gutters" (ngSubmit)="updateDoctorInfos() ">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
