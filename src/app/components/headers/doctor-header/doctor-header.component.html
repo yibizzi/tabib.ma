@@ -1,9 +1,9 @@
 <app-base-header>
     <ul>
-        <li><a class="nav-link scrollto" routerLink="/Doctor/Home">Home</a></li>
-        <li><a class="nav-link scrollto" routerLink="/Doctor/Patients">Patients</a></li>
-        <li><a class="nav-link scrollto" routerLink="/Doctor/Appointments">Appointments</a></li>
-        <li><a class="nav-link scrollto" [routerLink]="['/Doctor/profile', doctor?.userId]">Profile</a></li>
+        <li><a class="nav-link scrollto" routerLinkActive="active" routerLink="/Doctor/Home">Home</a></li>
+        <li><a class="nav-link scrollto" routerLinkActive="active" routerLink="/Doctor/Patients">Patients</a></li>
+        <li><a class="nav-link scrollto" routerLinkActive="active" routerLink="/Doctor/Appointments">Appointments</a></li>
+        <li><a class="nav-link scrollto" routerLinkActive="active" [routerLink]="['/Doctor/profile', doctor?.userId]">Profile</a></li>
         <!-- <li><a class="nav-link scrollto"  routerLink="/Patient/doctors">Payments</a></li> -->
 
         <li class="dropdown">
