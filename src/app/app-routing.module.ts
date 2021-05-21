@@ -23,7 +23,7 @@ import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profi
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
 import { DoctorComponent } from './pages/doctor-pages/doctor.component';
 import { HomeComponent } from './pages/home-page/home/home.component';
-import { PatientDemandAppointmentComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/patient-demand-appointment.component';
+import { PatientDemandAppointmentComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/patient-demand-appointment.component';
 import { PatientDoctorProfileComponent } from './pages/patient-pages/patient-doctors/patient-doctor-profile/patient-doctor-profile.component';
 import { PatientDoctorsListComponent } from './pages/patient-pages/patient-doctors/patient-doctors-list/patient-doctors-list.component';
 import { PatientDoctorsComponent } from './pages/patient-pages/patient-doctors/patient-doctors.component';
@@ -40,6 +40,8 @@ import { PaymentProceedComponent } from './pages/patient-pages/patient-profile/p
 import { PatientProfileComponent } from './pages/patient-pages/patient-profile/patient-profile.component';
 import { PatientComponent } from './pages/patient-pages/patient.component';
 import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service';
+import { ValidateTimeComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/validate-time/validate-time.component';
+import { ChooseTimeComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/choose-time/choose-time.component';
 const routes: Routes = [
   {
     path: 'Patient', component: PatientComponent,
@@ -47,8 +49,17 @@ const routes: Routes = [
     children: [
       { path: 'Home', component: PatientHomepageComponent },
       {
-        path: 'doctors', component: PatientDoctorsComponent, children: [
-          { path: ':id/AskForAppointment', component: PatientDemandAppointmentComponent },
+        path: 'doctors', component: PatientDoctorsComponent,
+
+        children: [
+          {
+            path: ':id/AskForAppointment', component: PatientDemandAppointmentComponent, children: [
+              { path: 'ChooseTime', component: ChooseTimeComponent },
+              { path: 'ValidateTime', component: ValidateTimeComponent },
+              { path: '', redirectTo: "ChooseTime", pathMatch: "full" }
+
+            ]
+          },
           { path: ':id', component: PatientDoctorProfileComponent },
           { path: '', component: PatientDoctorsListComponent },
         ]
@@ -122,18 +133,18 @@ const routes: Routes = [
     path: 'Signin', component: LoginPageComponent,
     canActivate: [LoggedOutGuard],
     children: [
-      {path: "ChooseType", component: UserTypeComponent, canActivate:[LoggedOutGuard]},
-      {path: ":userType", component: LoginPageFormComponent, canActivate:[LoggedOutGuard]},
-      {path: '', pathMatch: 'full', redirectTo: 'ChooseType'},
+      { path: "ChooseType", component: UserTypeComponent, canActivate: [LoggedOutGuard] },
+      { path: ":userType", component: LoginPageFormComponent, canActivate: [LoggedOutGuard] },
+      { path: '', pathMatch: 'full', redirectTo: 'ChooseType' },
     ]
   },
   {
     path: 'Signup', component: SignupPageComponent,
     canActivate: [LoggedOutGuard],
     children: [
-      {path: "ChooseType", component: UserTypeComponent, canActivate:[LoggedOutGuard]},
-      {path: ":userType", component: SingupPageFormComponent, canActivate:[LoggedOutGuard]},
-      {path: '', pathMatch: 'full', redirectTo: 'ChooseType'},
+      { path: "ChooseType", component: UserTypeComponent, canActivate: [LoggedOutGuard] },
+      { path: ":userType", component: SingupPageFormComponent, canActivate: [LoggedOutGuard] },
+      { path: '', pathMatch: 'full', redirectTo: 'ChooseType' },
     ]
   },
   // {
