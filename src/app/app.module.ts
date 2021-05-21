@@ -80,6 +80,9 @@ import { UserTypeComponent } from './pages/authentication/user-type/user-type.co
 import { LoginPageFormComponent } from './pages/authentication/loginpage/form/login-page-form/login-page-form.component';
 import { SingupPageFormComponent } from './pages/authentication/signup-page/singup-page-form/singup-page-form.component';
 import { ChangePasswordComponent } from './pages/doctor-pages/doctor-profile/change-password/change-password.component';
+import { PatientDemandAppointmentComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/patient-demand-appointment.component';
+import { ChooseTimeComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/choose-time/choose-time.component';
+import { ValidateTimeComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/validate-time/validate-time.component';
 
 @NgModule({
   declarations: [
@@ -145,7 +148,10 @@ import { ChangePasswordComponent } from './pages/doctor-pages/doctor-profile/cha
     UserTypeComponent,
     LoginPageFormComponent,
     SingupPageFormComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PatientDemandAppointmentComponent,
+    ChooseTimeComponent,
+    ValidateTimeComponent
 
 
   ],

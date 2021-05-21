@@ -23,6 +23,7 @@ import { DoctorProfileDetailsComponent } from './pages/doctor-pages/doctor-profi
 import { DoctorProfileComponent } from './pages/doctor-pages/doctor-profile/doctor-profile.component';
 import { DoctorComponent } from './pages/doctor-pages/doctor.component';
 import { HomeComponent } from './pages/home-page/home/home.component';
+import { PatientDemandAppointmentComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/patient-demand-appointment.component';
 import { PatientDoctorProfileComponent } from './pages/patient-pages/patient-doctors/patient-doctor-profile/patient-doctor-profile.component';
 import { PatientDoctorsListComponent } from './pages/patient-pages/patient-doctors/patient-doctors-list/patient-doctors-list.component';
 import { PatientDoctorsComponent } from './pages/patient-pages/patient-doctors/patient-doctors.component';
@@ -47,8 +48,9 @@ const routes: Routes = [
       { path: 'Home', component: PatientHomepageComponent },
       {
         path: 'doctors', component: PatientDoctorsComponent, children: [
+          { path: ':id/AskForAppointment', component: PatientDemandAppointmentComponent },
+          { path: ':id', component: PatientDoctorProfileComponent },
           { path: '', component: PatientDoctorsListComponent },
-          { path: ':id', component: PatientDoctorProfileComponent }
         ]
       },
       {
@@ -56,8 +58,8 @@ const routes: Routes = [
           { path: 'edit', component: PatientEditProfileComponent },
           {
             path: 'Appointments', component: PatientAppointmentsComponent, children: [
+              { path: ':id', component: PatientAppointmentDetailsComponent },
               { path: '', component: PatientAppointmentsListComponent },
-              { path: ':id', component: PatientAppointmentDetailsComponent }
             ]
           },
           {

@@ -59,7 +59,7 @@ export class DoctorsService {
     return new Promise((resolve, reject) => {
       this.http.get<doctorServer>(this.apiEndpoint + doctorId).subscribe(
         (response) => {
-          this.currentDoctor$.next(new Doctor({
+          resolve(new Doctor({
             firstName: response.fullName.firstName,
             lastName: response.fullName.lastName,
             email: response.email,

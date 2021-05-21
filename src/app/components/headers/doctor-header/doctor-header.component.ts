@@ -33,7 +33,7 @@ export class DoctorHeaderComponent implements OnInit {
         this.doctor = doctor;
       });
 
-    this.doctorsService.getDoctorById(this.doctor?.userId as string);
+    this.doctorsService.getCurrentDoctorById(this.doctor?.userId as string);
 
   }
 

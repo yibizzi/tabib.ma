@@ -1,3 +1,4 @@
+import { GoogleMapsService } from './../../../../services/Tools/google-maps.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Doctor } from 'src/app/models/userModels/doctor.model';
@@ -22,12 +23,13 @@ export class DoctorProfileDetailsComponent implements OnInit {
   averageRating: number = 3.5;
 
   //Apis
-  googleMapsUrl : string = "https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=";
+  googleMapsUrl : string;
 
 
   constructor(
     private doctorsService: DoctorsService,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private maps: GoogleMapsService) { }
 
   ngOnInit(): void {
 
@@ -39,14 +41,14 @@ export class DoctorProfileDetailsComponent implements OnInit {
     this.doctorsService
       .currentDoctor$.subscribe((doctor) => {
         this.currentDoctor = doctor;
-        this.googleMapsUrl += `${doctor.addresse?.details}+${doctor.addresse?.city}+${doctor.addresse?.country}`
+        this.googleMapsUrl = this.maps.getLinkFromAddress(doctor.addresse);
         this.loadingDoctor = false;
 
         this.loadDoctorRatings();
 
       });
 
-    this.doctorsService.getDoctorById(this.auth.getCurrentUser()?.userId as string);
+    this.doctorsService.getCurrentDoctorById(this.auth.getCurrentUser()?.userId as string);
 
   }
 

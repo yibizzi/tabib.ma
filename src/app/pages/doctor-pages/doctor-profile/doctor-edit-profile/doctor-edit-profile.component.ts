@@ -94,7 +94,7 @@ export class DoctorEditProfileComponent implements OnInit {
 
       });
 
-    this.doctorsService.getDoctorById(this.auth.getCurrentUser()?.userId as string);
+    this.doctorsService.getCurrentDoctorById(this.auth.getCurrentUser()?.userId as string);
 
   }
 
