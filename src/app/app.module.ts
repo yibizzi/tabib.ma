@@ -79,6 +79,7 @@ import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service'
 import { UserTypeComponent } from './pages/authentication/user-type/user-type.component';
 import { LoginPageFormComponent } from './pages/authentication/loginpage/form/login-page-form/login-page-form.component';
 import { SingupPageFormComponent } from './pages/authentication/signup-page/singup-page-form/singup-page-form.component';
+import { ChangePasswordComponent } from './pages/doctor-pages/doctor-profile/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -143,7 +144,8 @@ import { SingupPageFormComponent } from './pages/authentication/signup-page/sing
     DoctorAppointmentEditComponent,
     UserTypeComponent,
     LoginPageFormComponent,
-    SingupPageFormComponent
+    SingupPageFormComponent,
+    ChangePasswordComponent
 
 
   ],

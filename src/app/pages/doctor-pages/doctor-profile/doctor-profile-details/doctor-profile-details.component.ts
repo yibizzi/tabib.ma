@@ -19,16 +19,22 @@ export class DoctorProfileDetailsComponent implements OnInit {
 
   currentDoctor: Doctor;
 
-
+  averageRating: number = 3.5;
 
   //Apis
-  googleMapsUrl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=";
+  googleMapsUrl : string = "https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=";
 
 
   constructor(
-    private doctorsService: DoctorsService,) { }
+    private doctorsService: DoctorsService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
+
+    
+    this.loadingDoctor = true;
+    
+    this.loadingRatings = true;
 
     this.doctorsService
       .currentDoctor$.subscribe((doctor) => {
@@ -40,16 +46,22 @@ export class DoctorProfileDetailsComponent implements OnInit {
 
       });
 
-    this.doctorsService.getDoctorById(this.currentDoctor?.userId as string);
+    this.doctorsService.getDoctorById(this.auth.getCurrentUser()?.userId as string);
 
   }
 
   loadDoctorRatings() {
 
-    if (this.currentDoctor.userId) this.doctorsService.getDoctorRatings(this.currentDoctor.userId).then((rating) => {
+    if (this.currentDoctor.userId) this.doctorsService.getDoctorRatings(this.currentDoctor.userId)
+    
+    .then((rating) => {
       this.currentDoctor.updateInfos({
         "rating": rating
       })
+
+      this.averageRating = rating.averageRating;
+      
+      this.loadingRatings = false;
     });
 
   }

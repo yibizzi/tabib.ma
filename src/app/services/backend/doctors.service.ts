@@ -104,10 +104,17 @@ export class DoctorsService {
       this.http.get<receivedRating[]>(this.apiEndpoint + `${doctorId}/rating`)
         .subscribe(
           (response: receivedRating[]) => {
-            resolve({
-              averageRating: (response.reduce((accumulator, currentValue) => { return { "rating": accumulator.rating + currentValue.rating } }).rating) / response.length,
-              totalRatings: response?.length
-            });
+            resolve(
+              response.length > 0 ?
+                {
+                  averageRating: (response.reduce((accumulator, currentValue) => { return { "rating": accumulator.rating + currentValue.rating } }).rating) / response.length,
+                  totalRatings: response?.length
+                }
+                :
+                {
+                  averageRating: 5,
+                  totalRatings: 0
+                });
           },
           (error) => {
             reject(error);

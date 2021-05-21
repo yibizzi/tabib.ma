@@ -80,7 +80,7 @@ const routes: Routes = [
   },
   {
     path: 'Doctor', component: DoctorComponent,
-    canActivate: [],
+    canActivate: [AuthGuard],
     children: [
       { path: 'Home', component: DoctorHomePageComponent },
       {

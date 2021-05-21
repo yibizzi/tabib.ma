@@ -3,83 +3,80 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="card h-100">
                 <div class="card-body">
-                    <form class="row gutters">
+
+                    <mat-spinner strokeWidth="3" diameter="50" *ngIf="loadingDoctor"></mat-spinner>
+                    <form [formGroup]="form" *ngIf="!loadingDoctor" class="row gutters" (ngSubmit)="updateDoctorInfos() ">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="firstName">Prénom</label>
-                                <input type="text" class="form-control" id="firstName" [placeholder]="currentDoctor?.firstName || 'Enter your first name'">
+                                <input type="text" class="form-control" id="firstName" formControlName="firstName" [placeholder]="currentDoctor?.firstName || 'Enter your first name'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="lastName">Nom</label>
-                                <input type="text" class="form-control" id="lastName" [placeholder]="currentDoctor?.lastName|| 'Enter your last name'">
+                                <input type="text" class="form-control" id="lastName" formControlName="lastName" [placeholder]="currentDoctor?.lastName|| 'Enter your last name'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="eMail">Email</label>
-                                <input type="email" class="form-control" id="email" [placeholder]="currentDoctor?.email|| 'Enter your email'">
+                                <input type="email" class="form-control" id="email" formControlName="email" [placeholder]="currentDoctor?.email|| 'Enter your email'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="phone">Téléphone</label>
-                                <input type="text" class="form-control" id="phone" [placeholder]="currentDoctor?.phoneNumber|| 'Enter your phoneNumber'">
+                                <input type="text" class="form-control" id="phone" formControlName="phoneNumber" [placeholder]="currentDoctor?.phoneNumber|| 'Enter your phoneNumber'">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="bday">Date de naissance</label>
+                                <input type="date" class="form-control" id="bday" formControlName="bday" [placeholder]="currentDoctor?.bday|| 'Enter your bday'">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="speciality">speciality</label>
+                                <input type="text" class="form-control" id="speciality" formControlName="speciality" [placeholder]="currentDoctor?.speciality|| 'Enter your speciality'">
                             </div>
                         </div>
 
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 
                             <label for="addresse">Adresse</label>
-                            <div id="addresse" class="form-group">
+                            <div id="addresse" class="form-group" formGroupName="address">
                                 <label for="Street">Street</label>
-                                <input type="text" class="form-control" id="Street" [placeholder]="currentDoctor?.addresse?.details|| 'Enter your details'">
+                                <input type="text" class="form-control" id="Street" formControlName="street" [placeholder]="currentDoctor?.addresse?.details|| 'Enter your details'">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" id="city" [placeholder]="currentDoctor?.addresse?.city|| 'Enter your city'">
+                                <input type="text" class="form-control" id="city" formControlName="city" [placeholder]="currentDoctor?.addresse?.city|| 'Enter your city'">
                                 <label for="country">Country</label>
-                                <input type="text" class="form-control" id="country" [placeholder]="currentDoctor?.addresse?.country|| 'Enter your country'">
+                                <input type="text" class="form-control" id="country" formControlName="country" [placeholder]="currentDoctor?.addresse?.country|| 'Enter your country'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="website">Description</label>
-                                <textarea class="form-control" id="description" rows="6" [placeholder]="currentDoctor?.description|| 'Enter your description'" required></textarea>
+                                <textarea class="form-control" id="description" formControlName="description" rows="6" [placeholder]="currentDoctor?.description|| 'Enter your description'" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+
+                            <div class="col-sm">
+                                <button type="button" id="cancel" name="cancel" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+                            </div>
+                            <div class=" col-sm ">
+
+                                <button type="button " id="submit " name="submit " class="btn btn-primary " [disabled]="savingInfos">Mettre à jour</button>
+                                <mat-spinner strokeWidth="3" diameter="10" *ngIf="savingInfos"></mat-spinner>
                             </div>
                         </div>
                     </form>
 
-                    <div class="row">
-                        <button class="btn btn-warning" data-toggle="collapse" data-target="#changePasswordForm" role="button" aria-expanded="false" aria-controls="changePasswordForm">
-                            <div class="wrapper">
-                                <span style="margin-right: 15px; ">Change Password</span>
-                                <i class="bi bi-chevron-down"></i>
-                            </div>
-                        </button>
-                    </div>
-                    <form id="changePasswordForm" class="row collapse form-group">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <label for="password">Current password</label>
-                            <input type="password" class="form-control" id="password" placeholder="*********">
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <label for="confirmPassword">New Password </label>
-                            <input type="confirmPassword" class="form-control" id="confirmPassword" placeholder="*********">
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                            <label for="confirmPassword">Confim New Password </label>
-                            <input type="confirmPassword" class="form-control" id="confirmPassword" placeholder="*********">
-                        </div>
-                    </form>
-                    <div class="row gutters">
-
-                        <div class="col-sm">
-                            <button type="button" id="cancel" name="cancel" class="btn btn-secondary">Annuler</button>
-                        </div>
-                        <div class="col-sm">
-                            <button type="button" id="submit" name="submit" class="btn btn-primary">Mettre à jour</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
