@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { GoogleMapsService } from './../../../../services/Tools/google-maps.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Doctor } from 'src/app/models/userModels/doctor.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,7 +13,7 @@ import { PatientsService } from 'src/app/services/backend/patients.service';
   templateUrl: './doctor-profile-details.component.html',
   styleUrls: ['./doctor-profile-details.component.css']
 })
-export class DoctorProfileDetailsComponent implements OnInit {
+export class DoctorProfileDetailsComponent implements OnInit, OnDestroy {
 
   loadingDoctor: boolean = false;
 
@@ -24,6 +25,9 @@ export class DoctorProfileDetailsComponent implements OnInit {
 
   //Apis
   googleMapsUrl : string;
+
+  
+  private docSubscription: Subscription;
 
 
   constructor(
@@ -38,11 +42,13 @@ export class DoctorProfileDetailsComponent implements OnInit {
     
     this.loadingRatings = true;
 
-    this.doctorsService
+    this.docSubscription = this.doctorsService
       .currentDoctor$.subscribe((doctor) => {
         this.currentDoctor = doctor;
         this.googleMapsUrl = this.maps.getLinkFromAddress(doctor.addresse);
         this.loadingDoctor = false;
+
+        console.log(this.currentDoctor)
 
         this.loadDoctorRatings();
 
@@ -50,6 +56,10 @@ export class DoctorProfileDetailsComponent implements OnInit {
 
     this.doctorsService.getCurrentDoctorById(this.auth.getCurrentUser()?.userId as string);
 
+  }
+
+  ngOnDestroy(){
+    this.docSubscription.unsubscribe();
   }
 
   loadDoctorRatings() {
@@ -63,7 +73,7 @@ export class DoctorProfileDetailsComponent implements OnInit {
 
       this.averageRating = rating.averageRating;
       
-      // this.loadingRatings = false;
+      this.loadingRatings = false;
     });
 
   }

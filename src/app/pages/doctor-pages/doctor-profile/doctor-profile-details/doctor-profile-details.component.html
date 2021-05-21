@@ -83,8 +83,8 @@
                         <div class="col-sm-6 mb-3">
                             <div class="card h-100">
                                 <div class="card-body">
-                                    <div class="map-responsive">
-                                        <iframe [src]="googleMapsUrl" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <div *ngIf="!loadingDoctor && currentDoctor?.addresse" class="map-responsive">
+                                        <iframe [src]="googleMapsUrl | safe: 'resourceUrl'" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>

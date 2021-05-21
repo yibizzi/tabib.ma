@@ -49,8 +49,8 @@
 
                             <label for="addresse">Adresse</label>
                             <div id="addresse" class="form-group" formGroupName="address">
-                                <label for="Street">Street</label>
-                                <input type="text" class="form-control" id="Street" formControlName="street" [placeholder]="currentDoctor?.addresse?.details|| 'Enter your details'">
+                                <label for="Details">Details</label>
+                                <input type="text" class="form-control" id="Details" formControlName="details" [placeholder]="currentDoctor?.addresse?.details|| 'Enter your details'">
                                 <label for="city">City</label>
                                 <input type="text" class="form-control" id="city" formControlName="city" [placeholder]="currentDoctor?.addresse?.city|| 'Enter your city'">
                                 <label for="country">Country</label>
@@ -75,6 +75,8 @@
                                 <mat-spinner strokeWidth="3" diameter="10" *ngIf="savingInfos"></mat-spinner>
                             </div>
                         </div>
+
+                        <div class="col-12 alert alert-danger" *ngIf="showError"> An internal error has occured, please try again later.</div>
                     </form>
 
                 </div>

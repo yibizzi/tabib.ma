@@ -17,7 +17,7 @@ export class DoctorEditProfileComponent implements OnInit {
 
   savingInfos: boolean = false;
 
-
+  showError = false;
   currentDoctor: Doctor;
 
 
@@ -38,7 +38,7 @@ export class DoctorEditProfileComponent implements OnInit {
       speciality: ['', Validators.required],
 
       address: fb.group({
-        street: ['', [Validators.required, Validators.minLength(8)]],
+        details: ['', [Validators.required, Validators.minLength(8)]],
         city: ['', [Validators.required, Validators.minLength(8)]],
         country: ['', [Validators.required, Validators.minLength(8)]]
       }
@@ -67,8 +67,8 @@ export class DoctorEditProfileComponent implements OnInit {
   get address() {
     return this.form.get('description');
   }
-  get street() {
-    return this.address?.get('street');
+  get details() {
+    return this.address?.get('details');
   }
   get city() {
     return this.address?.get('city');
@@ -116,7 +116,7 @@ export class DoctorEditProfileComponent implements OnInit {
         formChanges[controlName] = this.form.controls[controlName].value;
       });
 
-    if(formChanges.bday){
+    if (formChanges.bday) {
       formChanges.age = moment().diff(formChanges.bday, 'years')
       delete formChanges.bday;
     }
@@ -124,10 +124,15 @@ export class DoctorEditProfileComponent implements OnInit {
     this.currentDoctor.updateInfos(formChanges);
 
 
-    this.doctorsService.updateDoctor(this.currentDoctor).then((value)=>{
-      this.savingInfos = false;
-      this.ngOnInit();
-    });
+    this.doctorsService.updateDoctor(this.currentDoctor)
+      .then((value) => {
+        this.savingInfos = false;
+        this.ngOnInit();
+      })
+      .catch((error)=>{
+        this.showError = true;
+        this.savingInfos = false;
+      });
   }
 
   cancel() {

@@ -9,6 +9,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class PatientProfileComponent implements AfterViewInit {
 
+  loadingPatient: boolean = true;
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   constructor(private observer: BreakpointObserver) { }

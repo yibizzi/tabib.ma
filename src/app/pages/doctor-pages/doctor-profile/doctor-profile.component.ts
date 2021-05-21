@@ -1,5 +1,8 @@
+import { DoctorsService } from 'src/app/services/backend/doctors.service';
+import { Subscription } from 'rxjs';
+import { Doctor } from 'src/app/models/userModels/doctor.model';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 
@@ -8,13 +11,34 @@ import { MatToolbar } from '@angular/material/toolbar';
   templateUrl: './doctor-profile.component.html',
   styleUrls: ['./doctor-profile.component.css']
 })
-export class DoctorProfileComponent implements AfterViewInit {
+export class DoctorProfileComponent implements AfterViewInit, OnInit, OnDestroy {
+
+  loadingDoctor = true;
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  
+
+  currentDoctor: Doctor;
+
+  private docSubscription: Subscription;
 
 
-  constructor(private observer: BreakpointObserver) { }
+
+  constructor(private observer: BreakpointObserver,
+    private doctorsService: DoctorsService) { }
+
+
+  ngOnInit() {
+    this.docSubscription = this.doctorsService
+      .currentDoctor$.subscribe((doctor) => {
+        this.currentDoctor = doctor;
+        this.loadingDoctor = false;
+      });
+  }
+
+  ngOnDestroy(){
+    this.docSubscription.unsubscribe();
+  }
 
   ngAfterViewInit() {
     this.observer

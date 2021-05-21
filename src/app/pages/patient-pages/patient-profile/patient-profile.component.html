@@ -12,7 +12,12 @@
 
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav="matSidenav" mode="side" [opened]="true">
-        <div class="justify-center-center">
+
+        <div class="justify-center-center" *ngIf="loadingPatient">
+            <mat-spinner></mat-spinner>
+
+        </div>
+        <div class="justify-center-center" *ngIf="!loadingPatient">
             <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
 
             <h4 class="name">John Smith</h4>

@@ -1,5 +1,5 @@
 import { Doctor } from 'src/app/models/userModels/doctor.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppointmentsService } from 'src/app/services/backend/appointments.service';
@@ -7,17 +7,21 @@ import { DoctorsService } from 'src/app/services/backend/doctors.service';
 import { PatientsService } from 'src/app/services/backend/patients.service';
 import { Appointment } from 'src/app/models/Appointment/appointment.model';
 import { Patient } from 'src/app/models/userModels/patient.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-doctor-home-page',
   templateUrl: './doctor-home-page.component.html',
   styleUrls: ['./doctor-home-page.component.css']
 })
-export class DoctorHomePageComponent implements OnInit {
+export class DoctorHomePageComponent implements OnInit, OnDestroy {
 
   doctor: Doctor;
 
   loadingAppointments = false;
+
+
+  private docSubscription: Subscription;
 
   appointmentsDetails: {
     [appointmentId: string]: {
@@ -47,11 +51,18 @@ export class DoctorHomePageComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.doctorsService
+    this.docSubscription = this.doctorsService
       .currentDoctor$.subscribe((doctor) => {
         this.doctor = doctor;
         this.loadAppointments();
       });
+
+    
+    this.doctorsService.getCurrentDoctorById(this.authService.getCurrentUser()?.userId as string);
+  }
+
+  ngOnDestroy(){
+    this.docSubscription.unsubscribe();
   }
 
   //Load list of user Appointments
@@ -102,6 +113,12 @@ export class DoctorHomePageComponent implements OnInit {
         });
     }
 
+
+  }
+
+  get appointmentsDetailsArray() {
+
+    return Object.keys(this.appointmentsDetails).map(key => this.appointmentsDetails[key]);
 
   }
 
