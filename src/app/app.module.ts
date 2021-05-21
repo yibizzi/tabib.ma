@@ -84,6 +84,7 @@ import { PatientDemandAppointmentComponent } from './pages/patient-pages/patiens
 import { ChooseTimeComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/choose-time/choose-time.component';
 import { ValidateTimeComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/validate-time/validate-time.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { ImagesServiceService } from './services/images-service.service';
 
 @NgModule({
   declarations: [
@@ -180,6 +181,7 @@ import { SafePipe } from './pipes/safe.pipe';
     LoggedOutGuard,
     AuthService,
     HttpClient,
+    ImagesServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
