@@ -83,6 +83,8 @@ import { ChangePasswordComponent } from './pages/doctor-pages/doctor-profile/cha
 import { PatientDemandAppointmentComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/patient-demand-appointment.component';
 import { ChooseTimeComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/choose-time/choose-time.component';
 import { ValidateTimeComponent } from './pages/patient-pages/patiens-doctors/patient-demand-appointment/validate-time/validate-time.component';
+import { ChangePatientPasswordComponent } from './change-patient-password/change-patient-password.component';
+import { PatientProfileDetailsComponent } from './patient-profile-details/patient-profile-details.component';
 
 @NgModule({
   declarations: [
@@ -151,7 +153,9 @@ import { ValidateTimeComponent } from './pages/patient-pages/patiens-doctors/pat
     ChangePasswordComponent,
     PatientDemandAppointmentComponent,
     ChooseTimeComponent,
-    ValidateTimeComponent
+    ValidateTimeComponent,
+    ChangePatientPasswordComponent,
+    PatientProfileDetailsComponent
 
 
   ],
