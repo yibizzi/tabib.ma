@@ -61,15 +61,12 @@ export class PatientsService {
 
 
   getPatientsList(params: { [key: string]: any }, offset: number, limit: number): Promise<Patient[]> {
-
-    let body = new FormData();
-
-    body.append('offset', offset.toString());
-    body.append('limit', limit.toString());
-
     return new Promise((resolve, reject) => {
       this.http.get<patientServer[]>(this.apiEndpoint, {
-        params: params
+        params: {
+          'offset': `${offset}`,
+          'limit': `${limit}`,
+        } && params
       }).subscribe(
         (response) => {
           resolve(response.map((patServer) => new Patient({

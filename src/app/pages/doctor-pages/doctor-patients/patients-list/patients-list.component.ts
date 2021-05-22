@@ -11,10 +11,6 @@ type Filter = "firstName" | "lastName" | "city" | "country" | "age";
 })
 export class PatientsListComponent implements OnInit {
 
-
-  filterByCity: boolean;
-  filterByAge: Filter;
-
   filters: Filter[] = ["firstName", "lastName", "city", "country", "age"];
 
   choosedFilter: Filter = "firstName";

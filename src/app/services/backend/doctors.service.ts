@@ -14,7 +14,7 @@ interface doctorServer {
   "sendRequest": [],
   "appointments": [],
   "description": string,
-  "profileImg"?:string,
+  "profileImg"?: string,
   "history": [],
   "_id": string,
   "email": string,
@@ -50,7 +50,7 @@ export class DoctorsService {
             phoneNumber: response.phoneNumber,
             addresse: response.address,
             description: response.description,
-            profileImg:response.profileImg,
+            profileImg: response.profileImg,
             userId: doctorId
           }));
         },
@@ -73,7 +73,7 @@ export class DoctorsService {
             phoneNumber: response.phoneNumber,
             userId: doctorId,
             description: response.description,
-            profileImg:response.profileImg,
+            profileImg: response.profileImg,
             addresse: response.address
           }));
         },
@@ -133,16 +133,25 @@ export class DoctorsService {
   }
 
 
-  getDoctorsList(offset: number, limit: number) {
+  getDoctorsList(params: { [key: string]: any }, offset: number, limit: number): Promise<Doctor[]> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiEndpoint, {
+      this.http.get<doctorServer[]>(this.apiEndpoint, {
         params: {
           'offset': `${offset}`,
           'limit': `${limit}`,
-        }
+        } && params
       }).subscribe(
         (response) => {
-          resolve(response);
+          resolve(response.map((patServer) => new Doctor({
+
+            firstName: patServer.fullName.firstName,
+            lastName: patServer.fullName.lastName,
+            email: patServer.email,
+            age: patServer.age,
+            phoneNumber: patServer.phoneNumber,
+            userId: patServer._id
+
+          })));
         },
         (error) => {
           reject(error);
