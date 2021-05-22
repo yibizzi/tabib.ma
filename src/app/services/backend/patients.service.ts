@@ -38,7 +38,7 @@ export class PatientsService {
     private http: HttpClient) { }
 
 
-  getPatientById(patientId: string) : Promise<Patient>{
+  getPatientById(patientId: string): Promise<Patient> {
     return new Promise((resolve, reject) => {
       this.http.get<patientServer>(this.apiEndpoint + patientId).subscribe(
         (response) => {
@@ -60,16 +60,28 @@ export class PatientsService {
   }
 
 
-  getPatientsList(offset: number, limit: number) {
+  getPatientsList(params: { [key: string]: any }, offset: number, limit: number): Promise<Patient[]> {
+
+    let body = new FormData();
+
+    body.append('offset', offset.toString());
+    body.append('limit', limit.toString());
+
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiEndpoint, {
-        params: {
-          'offset': `${offset}`,
-          'limit': `${limit}`,
-        }
+      this.http.get<patientServer[]>(this.apiEndpoint, {
+        params: params
       }).subscribe(
         (response) => {
-          resolve(response);
+          resolve(response.map((patServer) => new Patient({
+
+            firstName: patServer.fullName.firstName,
+            lastName: patServer.fullName.lastName,
+            email: patServer.email,
+            age: patServer.age,
+            phoneNumber: patServer.phoneNumber,
+            userId: patServer._id
+
+          })));
         },
         (error) => {
           reject(error);

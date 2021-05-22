@@ -85,6 +85,7 @@ import { ChooseTimeComponent } from './pages/patient-pages/patient-doctors/patie
 import { ValidateTimeComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/validate-time/validate-time.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { ImagesServiceService } from './services/images-service.service';
+import {MatRadioModule} from '@angular/material/radio'; 
 
 @NgModule({
   declarations: [
@@ -174,7 +175,8 @@ import { ImagesServiceService } from './services/images-service.service';
     MatButtonModule,
     MatExpansionModule,
     LayoutModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule
   ],
   providers: [
     AuthGuard,

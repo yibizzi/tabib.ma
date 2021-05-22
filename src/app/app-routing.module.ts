@@ -156,6 +156,9 @@ const routes: Routes = [
   {
     path: "forgotPassword", component: ForgotPasswordPageComponent, canActivate: [LoggedOutGuard]
   },
+    {
+    path: "resetPassword", component: ForgotPasswordPageComponent, canActivate: [LoggedOutGuard]
+  },
   {
     path: "payments", component: PaymentFormComponent
   },
