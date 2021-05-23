@@ -33,6 +33,7 @@ export class ImagesServiceService {
 
 
   getImageSrcFromBase64(base64String: string | undefined): string {
+    console.log("---------->" + base64String);
 
     if (base64String && base64String.match("https.*")){
       return base64String;

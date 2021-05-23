@@ -3,6 +3,7 @@ import { Appointment } from './../../models/Appointment/appointment.model';
 import { Doctor, Rating, Addresse } from './../../models/userModels/doctor.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ImagesServiceService } from '../images-service.service';
 
 //Temporary
 interface doctorServer {
@@ -14,7 +15,7 @@ interface doctorServer {
   "sendRequest": [],
   "appointments": [],
   "description": string,
-  "profileImg"?: string,
+  "ProfileImg"?: string,
   "speciality"?: string,
   "history": [],
   "_id": string,
@@ -36,7 +37,8 @@ export class DoctorsService {
   currentDoctor$ = new Subject<Doctor>();
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private imagesService: ImagesServiceService) { }
 
 
   getCurrentDoctorById(doctorId: string) {
@@ -52,7 +54,7 @@ export class DoctorsService {
             speciality: response.speciality,
             addresse: response.address,
             description: response.description,
-            profileImg: response.profileImg,
+            ProfileImg: this.imagesService.getImageSrcFromBase64(response.ProfileImg),
             userId: doctorId
           }));
         },
@@ -75,7 +77,7 @@ export class DoctorsService {
             phoneNumber: response.phoneNumber,
             userId: doctorId,
             description: response.description,
-            profileImg: response.profileImg,
+            ProfileImg: this.imagesService.getImageSrcFromBase64(response.ProfileImg),
             addresse: response.address,
             speciality: response.speciality
           }));
