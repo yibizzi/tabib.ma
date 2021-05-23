@@ -4,11 +4,17 @@ import { Appointment } from "../Appointment/appointment.model";
 import { Doctor } from "./doctor.model";
 import { User } from "./user.model";
 
+export interface Addresse{
+    details: string,
+    city: string,
+    country: string        
+};
+
 
 /**
  * different types of standard properties of a patient
  */
-type PatientAttributeType = number | string | Payment[] | Appointment[] | Doctor[] | MedicalRecord | undefined | null | Function;
+type PatientAttributeType = number | string | Payment[] | Appointment[] | Doctor[] | MedicalRecord | undefined | null | Function | Addresse;
 
 /**
  * Required params structure to create a new patient
@@ -23,7 +29,8 @@ interface PatientParams {
     appointments?: Appointment[],
     doctors?: Doctor[],
     medicalRecord?: MedicalRecord,
-    payments?: Payment[]
+    payments?: Payment[],
+    addresse?: Addresse,
     password?: string,
 
     /**
@@ -40,6 +47,7 @@ export class Patient extends User {
     doctors: Doctor[] = [];
     medicalRecord: MedicalRecord;
     payments: Payment[] = [];
+    addresse: Addresse;
     password: string;
     [key: string]: PatientAttributeType;
 
