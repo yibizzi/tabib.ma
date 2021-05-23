@@ -65,7 +65,7 @@ export class DoctorEditProfileComponent implements OnInit {
     return this.form.get('description');
   }
   get address() {
-    return this.form.get('description');
+    return this.form.get('address');
   }
   get details() {
     return this.address?.get('details');

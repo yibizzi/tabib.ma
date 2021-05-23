@@ -23,7 +23,7 @@ interface signUpUser {
   templateUrl: './singup-page-form.component.html',
   styleUrls: ['./singup-page-form.component.css']
 })
-export class SingupPageFormComponent {
+export class SingupPageFormComponent implements OnInit{
 
   form: FormGroup;
 
@@ -42,6 +42,11 @@ export class SingupPageFormComponent {
       email: ['', Validators.required],
       bday: ['', Validators.required],
       speciality: ['', Validators.required],
+      address: fb.group({
+        details: ['', [Validators.required]],
+        city: ['', [Validators.required]],
+        country: ['', [Validators.required]]
+      }),
       passwords: fb.group({
         password: ['', [Validators.required, Validators.minLength(8)]],
         cpassword: ['', [Validators.required, Validators.minLength(8)]]
@@ -50,6 +55,14 @@ export class SingupPageFormComponent {
       }
       )
     });
+  }
+
+  ngOnInit(){
+
+    if(this.userType != 'doctor'){
+      this.form.removeControl('speciality');
+    }
+
   }
 
 
@@ -66,6 +79,19 @@ export class SingupPageFormComponent {
 
 
 
+  }
+
+  get address() {
+    return this.form.get('address');
+  }
+  get details() {
+    return this.address?.get('details');
+  }
+  get city() {
+    return this.address?.get('city');
+  }
+  get country() {
+    return this.address?.get('country');
   }
 
   get passwords() {
@@ -93,7 +119,7 @@ export class SingupPageFormComponent {
     return this.passwords?.get('cpassword');
   }
 
-  get speciality(){
+  get speciality() {
     return this.form.get('speciality');
 
   }
@@ -116,6 +142,7 @@ export class SingupPageFormComponent {
       phoneNumber: this.phoneNumber?.value,
       email: this.email?.value,
       password: this.password?.value,
+      address: this.address?.value,
       age: moment().diff(this.bday?.value, 'years'),
     });
 
@@ -148,6 +175,7 @@ export class SingupPageFormComponent {
       email: this.email?.value,
       password: this.password?.value,
       age: moment().diff(this.bday?.value, 'years'),
+      address: this.address?.value,
       speciality: this.speciality?.value
     });
 
@@ -171,6 +199,10 @@ export class SingupPageFormComponent {
       });;
 
 
+  }
+
+  debug(){
+    console.log(this.form);
   }
 
 }

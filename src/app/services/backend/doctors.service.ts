@@ -15,6 +15,7 @@ interface doctorServer {
   "appointments": [],
   "description": string,
   "profileImg"?: string,
+  "speciality"?: string,
   "history": [],
   "_id": string,
   "email": string,
@@ -48,6 +49,7 @@ export class DoctorsService {
             email: response.email,
             age: response.age,
             phoneNumber: response.phoneNumber,
+            speciality: response.speciality,
             addresse: response.address,
             description: response.description,
             profileImg: response.profileImg,
@@ -74,7 +76,8 @@ export class DoctorsService {
             userId: doctorId,
             description: response.description,
             profileImg: response.profileImg,
-            addresse: response.address
+            addresse: response.address,
+            speciality: response.speciality
           }));
         },
         (error) => {

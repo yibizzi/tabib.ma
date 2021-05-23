@@ -1,7 +1,7 @@
 <div class="row d-flex">
     <div class="col-lg-6 d-flex align-items-center justify-content-center">
-        <img src="assets/images/patients.png" *ngIf="userType == 'patient'" class="image">
-        <img src="assets/images/doctors.png" *ngIf="userType == 'doctor'" class="image">
+        <img src="https://i.imgur.com/uNGdWHi.png" *ngIf="userType == 'patient'" class="image">
+        <img src="https://i.imgur.com/uNGdWHi.png" *ngIf="userType == 'doctor'" class="image">
     </div>
     <div class="col-lg-6">
         <div class="card2 card border-0 px-4 py-5">
@@ -47,7 +47,21 @@
                 </label> <input required class="mb-4" [ngClass]="{'required-empty': phoneNumber?.touched && phoneNumber?.errors?.required}" type="phone" formControlName="phoneNumber" placeholder="Enter your phone">
                 </div>
 
-                <div class="row px-3"> <label class="mb-1">
+                <div class="row px-3">
+                    <!-- <input required class="mb-4" [ngClass]="{'required-empty': phoneNumber?.touched && phoneNumber?.errors?.required}" type="phone" formControlName="phoneNumber" placeholder="Enter your phone"> -->
+
+                    <div id="addresse" class="row mx-0 form-group" formGroupName="address">
+                        <label for="Details">Address Details</label>
+                        <input type="text" class="form-control" [ngClass]="{'required-empty': details?.touched && details?.errors?.required}" id="Details" formControlName="details" placeholder=" Enter your street name ...">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" [ngClass]="{'required-empty': city?.touched && city?.errors?.required}" id="city" formControlName="city" placeholder="Enter your city ...">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" [ngClass]="{'required-empty': country?.touched && country?.errors?.required}" id="country" formControlName="country" placeholder="Enter your country ...">
+                    </div>
+                </div>
+
+
+                <div class="row px-3" *ngIf="userType=='doctor'"> <label class="mb-1">
                     <h6 class="mb-0 text-sm">Speciality</h6>
                 </label> <input required class="mb-4" [ngClass]="{'required-empty': speciality?.touched && speciality?.errors?.required}" type="text" formControlName="speciality" placeholder="Enter your speciality">
                 </div>
@@ -72,6 +86,7 @@
                 <div class="row mb-4 px-3"> <small class="font-weight-bold">You already have an account? <a
                             class="text-danger "  routerLink="/signin" >Signin</a></small> </div>
             </form>
+            <button (click)="debug()">debug</button>
         </div>
     </div>
 </div>
