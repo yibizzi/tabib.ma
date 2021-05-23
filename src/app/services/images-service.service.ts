@@ -32,6 +32,19 @@ export class ImagesServiceService {
   }
 
 
+  getImageSrcFromBase64(base64String: string | undefined): string {
+
+    if (base64String && base64String.match("https.*")){
+      return base64String;
+    }
+
+    return base64String ?
+      `data:image/png;base64,${base64String}`
+      :
+      "https://source.unsplash.com/c_GmwfHBDzk/200x200";
+  }
+
+
 }
 
 

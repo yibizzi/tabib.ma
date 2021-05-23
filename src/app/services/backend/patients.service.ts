@@ -1,3 +1,4 @@
+import { ImagesServiceService } from './../images-service.service';
 import { Doctor } from './../../models/userModels/doctor.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,6 +14,7 @@ interface patientServer {
     "firstName": string,
     "lastName": string
   },
+  "ProfileImg": string;
   "sendRequest": [],
   "appointments": [],
   "history": [],
@@ -35,7 +37,8 @@ export class PatientsService {
   patient$ = new Subject<Patient>();
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private imagesService: ImagesServiceService) { }
 
 
   getPatientById(patientId: string): Promise<Patient> {
@@ -48,6 +51,7 @@ export class PatientsService {
             email: response.email,
             age: response.age,
             phoneNumber: response.phoneNumber,
+            ProfileImg: this.imagesService.getImageSrcFromBase64(response.ProfileImg),
             userId: patientId
           }));
         },
@@ -76,6 +80,7 @@ export class PatientsService {
             email: patServer.email,
             age: patServer.age,
             phoneNumber: patServer.phoneNumber,
+            ProfileImg: this.imagesService.getImageSrcFromBase64(patServer.ProfileImg),
             userId: patServer._id
 
           })));

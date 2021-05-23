@@ -14,19 +14,18 @@
     <mat-sidenav #sidenav="matSidenav" mode="side" [opened]="true">
 
         <div class="justify-center-center" *ngIf="loadingPatient">
-            <mat-spinner></mat-spinner>
+            <mat-spinner style="margin: auto;"></mat-spinner>
 
         </div>
         <div class="justify-center-center" *ngIf="!loadingPatient">
-            <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+            <img class="avatar mat-elevation-z8" [src]="currentPatient?.ProfileImg | safe :'resourceUrl'" />
 
-            <h4 class="name">John Smith</h4>
-            <p class="designation">Software Engineer</p>
+            <h4 class="name">{{currentPatient?.firstName}} {{currentPatient?.lastName}}</h4>
 
         </div>
         <mat-divider></mat-divider>
         <mat-nav-list>
-            <app-nav-menu-item routerLink="edit" title="Edit profile" icon="home"></app-nav-menu-item>
+            <app-nav-menu-item routerLink="edit" title="Edit profile" icon="edit"></app-nav-menu-item>
             <app-nav-menu-item routerLink="Appointments" title="Appointments list" icon="calendar_today"></app-nav-menu-item>
             <app-nav-menu-item routerLink="payments" title="Payments Console" icon="attach_money"></app-nav-menu-item>
             <!-- <app-nav-menu-item routerLink="medicalRecord" title = "Medical Record" icon = "local_hospital"></app-nav-menu-item> -->
@@ -35,5 +34,6 @@
     </mat-sidenav>
     <mat-sidenav-content class="sidenave-content">
         <router-outlet></router-outlet>
+
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,3 +1,7 @@
+import { ImagesServiceService } from './../../../services/images-service.service';
+import { Subscription } from 'rxjs';
+import { Patient } from 'src/app/models/userModels/patient.model';
+import { PatientsService } from 'src/app/services/backend/patients.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -10,14 +14,26 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class PatientProfileComponent implements AfterViewInit {
 
   loadingPatient: boolean = true;
+  currentPatient: Patient;
+
+
+  private patientSubscription: Subscription;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  constructor(private observer: BreakpointObserver) { }
+  constructor(private observer: BreakpointObserver, private patientsService: PatientsService, private imagesService: ImagesServiceService) { }
 
-  ngOnInit(): void {
+
+  ngOnInit() {
+    this.patientSubscription = this.patientsService
+      .patient$.subscribe((patient) => {
+        this.currentPatient = patient;
+        this.loadingPatient = false;
+      });
   }
-
+  ngOnDestroy() {
+    this.patientSubscription.unsubscribe();
+  }
   ngAfterViewInit() {
     this.observer
       .observe(['(max-width: 800px)'])

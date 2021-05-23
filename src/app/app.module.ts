@@ -85,7 +85,10 @@ import { ChooseTimeComponent } from './pages/patient-pages/patient-doctors/patie
 import { ValidateTimeComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/validate-time/validate-time.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { ImagesServiceService } from './services/images-service.service';
-import {MatRadioModule} from '@angular/material/radio'; 
+import {MatRadioModule} from '@angular/material/radio';
+import { ChangePatientPasswordComponent } from './pages/patient-pages/patient-profile/change-patient-password/change-patient-password.component';
+import { PatientProfileDetailsComponent } from './pages/patient-pages/patient-profile/patient-profile-details/patient-profile-details.component';
+
 
 @NgModule({
   declarations: [
@@ -155,7 +158,9 @@ import {MatRadioModule} from '@angular/material/radio';
     PatientDemandAppointmentComponent,
     ChooseTimeComponent,
     ValidateTimeComponent,
-    SafePipe
+    SafePipe,
+    ChangePatientPasswordComponent,
+    PatientProfileDetailsComponent
 
 
   ],

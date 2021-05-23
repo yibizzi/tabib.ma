@@ -23,7 +23,8 @@ export class SafePipe implements PipeTransform {
    * @param value: string
    * @param type: string
    */
-  transform(value: string, type: string): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
+  transform(value: string | null | undefined, type: string): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
+    if (!value) value = "";
     switch (type) {
       case 'html':
         return this._sanitizer.bypassSecurityTrustHtml(value);
