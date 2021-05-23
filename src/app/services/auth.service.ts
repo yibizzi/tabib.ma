@@ -38,7 +38,7 @@ export class AuthService {
   createNewPatient(user: Patient) {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:9000/patients/auth/signup',
+        '/patients/auth/signup',
         user)
         .subscribe(
           () => {
@@ -68,7 +68,7 @@ export class AuthService {
   createNewDoctor(user: Doctor) {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:9000/doctors/auth/signup',
+        '/doctors/auth/signup',
         user)
         .subscribe(
           () => {
@@ -98,7 +98,7 @@ export class AuthService {
   login(email: string | undefined, password: string | undefined, userType: "doctor" | "patient") {
     return new Promise((resolve, reject) => {
       (this.http.post(
-        'http://localhost:9000/' + userType + 's/auth/login',
+        '/' + userType + 's/auth/login',
         { email: email, password: password }) as Observable<{ token: string, doctorId?: string, patientId?: string }>)
         .subscribe({
           next: (authData) => {
@@ -145,7 +145,7 @@ export class AuthService {
   sendResetPasswordEmail(email: string, userType: "doctor" | "patient") {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:9000/' + userType + 's/auth/reset-password',
+        '/' + userType + 's/auth/reset-password',
         { email: email })
         .subscribe({
           next: (response) => {

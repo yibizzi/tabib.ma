@@ -31,7 +31,7 @@ interface doctorServer {
 })
 export class DoctorsService {
 
-  private apiEndpoint: string = "http://localhost:9000/doctors/";
+  private apiEndpoint: string = "/doctors/";
 
   currentDoctor$ = new Subject<Doctor>();
 

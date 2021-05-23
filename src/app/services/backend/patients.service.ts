@@ -32,7 +32,7 @@ interface patientServer {
 })
 export class PatientsService {
 
-  private apiEndpoint: string = "http://localhost:9000/patients/";
+  private apiEndpoint: string = "/patients/";
 
   patient$ = new Subject<Patient>();
 

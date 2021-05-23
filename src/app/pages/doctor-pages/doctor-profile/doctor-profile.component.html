@@ -19,7 +19,7 @@
 
         </div>
         <div class="justify-center-center" *ngIf="!loadingDoctor">
-            <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+            <img class="avatar mat-elevation-z8" [src]="currentDoctor?.ProfileImg | safe :'resourceUrl'" />
 
             <h4 class="name">Dr. {{currentDoctor?.firstName}} {{currentDoctor?.lastName}}</h4>
             <p class="designation">{{currentDoctor?.speciality}}</p>
