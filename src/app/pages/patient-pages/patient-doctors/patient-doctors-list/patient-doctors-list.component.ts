@@ -1,6 +1,8 @@
+import { Observable, Subject } from 'rxjs';
 import { DoctorsService } from './../../../../services/backend/doctors.service';
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/models/userModels/doctor.model';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 type Filter = "fullName.firstName" | "fullName.lastName" | "city" | "country" | "age" | "speciality";
 
@@ -21,20 +23,46 @@ export class PatientDoctorsListComponent implements OnInit {
 
   searchComplete: boolean = false;
 
+
+
   doctorsList: Doctor[];
+
+
+  searchInput$ = new Subject<string>();
 
 
   constructor(
     private doctorsService: DoctorsService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
+    const autoSuggest$ = this.searchInput$.pipe(
+
+      debounceTime(500),
+      switchMap((text) => {
+        this.loadingDoctors = true;
+        this.searchComplete = false;
+        return this.searchDoctor(text);
+      })
+    ).subscribe(((doctors) => {
+      this.doctorsList = doctors;
+      this.loadingDoctors = false;
+      this.searchComplete = true;
+    }));
+  }
+
+  onInputChange(partialQuery: string) {
+
+    if (partialQuery.length < 3) return;
+    this.searchInput$.next(partialQuery);
+  }
+
+  onEnterClick(query: string){
+    this.searchInput$.next(query);
   }
 
   searchDoctor(query: string) {
-
-    this.loadingDoctors = true;
-    this.searchComplete = false;
 
     let params: {
       [key: string]: string
@@ -42,11 +70,8 @@ export class PatientDoctorsListComponent implements OnInit {
 
     params[this.choosedFilter] = query;
 
-    this.doctorsService.getDoctorsList(params, 0, 10).then((doctors) => {
-      this.doctorsList = doctors;
-      this.loadingDoctors = false;
-      this.searchComplete = true;
-    });
+    return this.doctorsService
+      .getDoctorsList(params, 0, 10);
 
   }
 

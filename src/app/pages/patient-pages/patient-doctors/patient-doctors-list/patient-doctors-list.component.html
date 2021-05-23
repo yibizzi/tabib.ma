@@ -25,9 +25,9 @@
                             <hr>
                             <!-- BEGIN SEARCH INPUT -->
                             <div class="input-group">
-                                <input #searchInput type="text" class="form-control" (keyup.enter)="searchDoctor(searchInput.value)" placeholder="Search with doctor name ...">
+                                <input #searchInput type="text" class="form-control" (input)="onInputChange(searchInput.value)" (keyup.enter)="onEnterClick(searchInput.value)" placeholder="Search with doctor name ...">
                                 <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button" (click)="searchDoctor(searchInput.value)"><i class="fa fa-search"></i></button>
+                  <button class="btn btn-primary" type="button" (click)="onEnterClick(searchInput.value)"><i class="fa fa-search"></i></button>
                 </span>
                             </div>
                             <!-- END SEARCH INPUT -->
