@@ -6,6 +6,15 @@
 
                     <mat-spinner strokeWidth="3" diameter="50" *ngIf="loadingPatient"></mat-spinner>
                     <form [formGroup]="form" *ngIf="!loadingPatient" class="row gutters" (ngSubmit)="updatePatientInfos() ">
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="profileImg">Upload a new profile image:</label>
+                                <input type="file" class="form-control" id="profileImg" (change)="handleImageInput($event)">
+                            </div>
+                        </div>
+
+
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="firstName">Prénom</label>

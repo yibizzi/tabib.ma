@@ -5,13 +5,14 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/userModels/patient.model';
 import { PatientsService } from 'src/app/services/backend/patients.service';
 import * as moment from 'moment';
+import { ImagesServiceService } from 'src/app/services/images-service.service';
 
 @Component({
   selector: 'app-patient-edit-profile',
   templateUrl: './patient-edit-profile.component.html',
   styleUrls: ['./patient-edit-profile.component.css']
 })
-export class PatientEditProfileComponent implements OnInit { 
+export class PatientEditProfileComponent implements OnInit {
   loadingPatient: boolean = false;
 
   savingInfos: boolean = false;
@@ -25,9 +26,11 @@ export class PatientEditProfileComponent implements OnInit {
 
   constructor(fb: FormBuilder,
     private patientsService: PatientsService,
-    private auth: AuthService) {
+    private auth: AuthService,
+    private imagesService: ImagesServiceService) {
 
     this.form = fb.group({
+      profileImg: [''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
@@ -61,7 +64,7 @@ export class PatientEditProfileComponent implements OnInit {
   }
   get description() {
     return this.form.get('description');
-  } 
+  }
   get address() {
     return this.form.get('address');
   }
@@ -75,7 +78,10 @@ export class PatientEditProfileComponent implements OnInit {
     return this.address?.get('country');
   }
 
+  get profileImg() {
+    return this.form.get('profileImg');
 
+  }
 
   ngOnInit(): void {
 
@@ -83,13 +89,21 @@ export class PatientEditProfileComponent implements OnInit {
     this.loadingPatient = true;
     this.patientsService
       .patient$.subscribe((patient) => {
-        this.patient= patient;
+        this.patient = patient;
         this.loadingPatient = false;
 
       });
 
     this.patientsService.getPatientById(this.auth.getCurrentUser()?.userId as string);
 
+  }
+  handleImageInput(InputEvent: Event) {
+
+    this.imagesService.encodeImageFileAsBase64((InputEvent?.target as HTMLInputElement)?.files?.item(0)).then((base64Image) => {
+      this.profileImg?.setValue(base64Image);
+
+      this.profileImg?.markAsDirty();
+    });
   }
 
 
@@ -110,7 +124,7 @@ export class PatientEditProfileComponent implements OnInit {
         formChanges[controlName] = this.form.controls[controlName].value;
       });
 
-    if(formChanges.bday){
+    if (formChanges.bday) {
       formChanges.age = moment().diff(formChanges.bday, 'years')
       delete formChanges.bday;
     }
@@ -118,7 +132,7 @@ export class PatientEditProfileComponent implements OnInit {
     this.patient.updateInfos(formChanges);
 
 
-    this.patientsService.updatePatient(this.patient).then((value)=>{
+    this.patientsService.updatePatient(this.patient).then((value) => {
       this.savingInfos = false;
     });
   }
