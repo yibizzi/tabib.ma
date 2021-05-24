@@ -105,6 +105,7 @@ export class DoctorHomePageComponent implements OnInit, OnDestroy {
                         .catch((error) => {
 
                           this.errors.serverError.doctors = true;
+                          console.error(error);
                         })
                     })
                 })).catch((error) => {

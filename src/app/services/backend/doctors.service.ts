@@ -15,7 +15,7 @@ interface doctorServer {
   "sendRequest": [],
   "appointments": [],
   "description": string,
-  "ProfileImg"?: string,
+  "profileImg"?: string,
   "speciality"?: string,
   "history": [],
   "_id": string,
@@ -54,7 +54,7 @@ export class DoctorsService {
             speciality: response.speciality,
             addresse: response.address,
             description: response.description,
-            ProfileImg: this.imagesService.getImageSrcFromBase64(response.ProfileImg),
+            profileImg: this.imagesService.getImageSrcFromBase64(response.profileImg),
             userId: doctorId
           }));
         },
@@ -77,7 +77,7 @@ export class DoctorsService {
             phoneNumber: response.phoneNumber,
             userId: doctorId,
             description: response.description,
-            ProfileImg: this.imagesService.getImageSrcFromBase64(response.ProfileImg),
+            profileImg: this.imagesService.getImageSrcFromBase64(response.profileImg),
             addresse: response.address,
             speciality: response.speciality
           }));

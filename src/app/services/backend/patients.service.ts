@@ -14,7 +14,7 @@ interface patientServer {
     "firstName": string,
     "lastName": string
   },
-  "ProfileImg": string;
+  "profileImg": string;
   "sendRequest": [],
   "appointments": [],
   "history": [],
@@ -51,7 +51,7 @@ export class PatientsService {
             email: response.email,
             age: response.age,
             phoneNumber: response.phoneNumber,
-            ProfileImg: this.imagesService.getImageSrcFromBase64(response.ProfileImg),
+            profileImg: this.imagesService.getImageSrcFromBase64(response.profileImg),
             userId: patientId
           }));
         },
@@ -80,7 +80,7 @@ export class PatientsService {
             email: patServer.email,
             age: patServer.age,
             phoneNumber: patServer.phoneNumber,
-            ProfileImg: this.imagesService.getImageSrcFromBase64(patServer.ProfileImg),
+            profileImg: this.imagesService.getImageSrcFromBase64(patServer.profileImg),
             userId: patServer._id
 
           })));

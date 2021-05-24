@@ -18,7 +18,7 @@
 
         </div>
         <div class="justify-center-center" *ngIf="!loadingPatient">
-            <img class="avatar mat-elevation-z8" [src]="currentPatient?.ProfileImg | safe :'resourceUrl'" />
+            <img class="avatar mat-elevation-z8" [src]="currentPatient?.profileImg | safe :'resourceUrl'" />
 
             <h4 class="name">{{currentPatient?.firstName}} {{currentPatient?.lastName}}</h4>
 

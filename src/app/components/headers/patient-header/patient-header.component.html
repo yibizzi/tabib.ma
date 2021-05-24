@@ -13,7 +13,7 @@
         <li *ngIf="!loading" class="dropdown">
             <a [routerLink]="['/Patient/profile', patient?.userId]">
                 <div class="wrapper">
-                    <img [src]="patient?.ProfileImg" class="image--cover">
+                    <img [src]="patient?.profileImg" class="image--cover">
                     <span class="username"> {{patient?.firstName + " " }} {{patient?.lastName}}</span>
                     <i class="bi bi-chevron-down"></i>
                 </div>

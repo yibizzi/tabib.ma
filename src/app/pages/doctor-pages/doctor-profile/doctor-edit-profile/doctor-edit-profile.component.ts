@@ -1,17 +1,21 @@
+import { ImagesServiceService } from './../../../../services/images-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Doctor } from 'src/app/models/userModels/doctor.model';
 import { DoctorsService } from 'src/app/services/backend/doctors.service';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-doctor-edit-profile',
   templateUrl: './doctor-edit-profile.component.html',
   styleUrls: ['./doctor-edit-profile.component.css']
 })
-export class DoctorEditProfileComponent implements OnInit {
+export class DoctorEditProfileComponent implements OnInit, OnDestroy {
+
+  docSubscription: Subscription;
 
   loadingDoctor: boolean = false;
 
@@ -26,9 +30,12 @@ export class DoctorEditProfileComponent implements OnInit {
 
   constructor(fb: FormBuilder,
     private doctorsService: DoctorsService,
-    private auth: AuthService) {
+    private auth: AuthService,
+    private imagesService: ImagesServiceService) {
 
     this.form = fb.group({
+
+      profileImg: [''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
@@ -82,12 +89,17 @@ export class DoctorEditProfileComponent implements OnInit {
 
   }
 
+  get profileImg() {
+    return this.form.get('profileImg');
+
+  }
+
 
   ngOnInit(): void {
 
 
     this.loadingDoctor = true;
-    this.doctorsService
+    this.docSubscription = this.doctorsService
       .currentDoctor$.subscribe((doctor) => {
         this.currentDoctor = doctor;
         this.loadingDoctor = false;
@@ -96,6 +108,22 @@ export class DoctorEditProfileComponent implements OnInit {
 
     this.doctorsService.getCurrentDoctorById(this.auth.getCurrentUser()?.userId as string);
 
+  }
+
+
+  ngOnDestroy() {
+
+    this.docSubscription.unsubscribe();
+
+  }
+
+  handleImageInput(InputEvent: Event) {
+
+    this.imagesService.encodeImageFileAsBase64((InputEvent?.target as HTMLInputElement)?.files?.item(0)).then((base64Image) => {
+      this.profileImg?.setValue(base64Image);
+
+      this.profileImg?.markAsDirty();
+    });
   }
 
 
@@ -129,7 +157,7 @@ export class DoctorEditProfileComponent implements OnInit {
         this.savingInfos = false;
         this.ngOnInit();
       })
-      .catch((error)=>{
+      .catch((error) => {
         this.showError = true;
         this.savingInfos = false;
       });
@@ -137,6 +165,10 @@ export class DoctorEditProfileComponent implements OnInit {
 
   cancel() {
     this.form.reset();
+  }
+
+  log() {
+    console.log(this.form.value);
   }
 
 

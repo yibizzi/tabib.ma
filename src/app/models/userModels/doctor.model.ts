@@ -48,7 +48,7 @@ interface DoctorParams {
     payments?: Payment[],
     password?: string,
     addresse?: Addresse,
-    ProfileImg?:string
+    profileImg?:string
 
     /**
      * Added to set properties dynamically with Object.keys
@@ -67,7 +67,7 @@ export class Doctor extends User {
     publicContactInfos: PublicInfos;
     payments: Payment[];
     addresse?: Addresse;
-    ProfileImg?:string;
+    profileImg?:string;
 
     password: string;
 

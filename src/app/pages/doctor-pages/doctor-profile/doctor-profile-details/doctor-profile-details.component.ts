@@ -60,7 +60,6 @@ export class DoctorProfileDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.docSubscription.unsubscribe();
-    this.ngOnInit();
   }
 
   loadDoctorRatings() {
