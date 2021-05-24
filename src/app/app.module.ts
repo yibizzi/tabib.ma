@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import {LayoutModule} from '@angular/cdk/layout';
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -77,6 +77,18 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthInterceptorService } from './services/backend/auth-interceptor.service';
 import { AuthGuard, LoggedOutGuard } from './services/Guards/auth-guard.service';
 import { UserTypeComponent } from './pages/authentication/user-type/user-type.component';
+import { LoginPageFormComponent } from './pages/authentication/loginpage/form/login-page-form/login-page-form.component';
+import { SingupPageFormComponent } from './pages/authentication/signup-page/singup-page-form/singup-page-form.component';
+import { ChangePasswordComponent } from './pages/doctor-pages/doctor-profile/change-password/change-password.component';
+import { PatientDemandAppointmentComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/patient-demand-appointment.component';
+import { ChooseTimeComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/choose-time/choose-time.component';
+import { ValidateTimeComponent } from './pages/patient-pages/patient-doctors/patient-demand-appointment/validate-time/validate-time.component';
+import { SafePipe } from './pipes/safe.pipe';
+import { ImagesServiceService } from './services/images-service.service';
+import {MatRadioModule} from '@angular/material/radio';
+import { ChangePatientPasswordComponent } from './pages/patient-pages/patient-profile/change-patient-password/change-patient-password.component';
+import { PatientProfileDetailsComponent } from './pages/patient-pages/patient-profile/patient-profile-details/patient-profile-details.component';
+
 
 @NgModule({
   declarations: [
@@ -139,7 +151,16 @@ import { UserTypeComponent } from './pages/authentication/user-type/user-type.co
     DoctorAppointmentsHistoryComponent,
     DoctorAppointmentsConfirmedComponent,
     DoctorAppointmentEditComponent,
-    UserTypeComponent
+    UserTypeComponent,
+    LoginPageFormComponent,
+    SingupPageFormComponent,
+    ChangePasswordComponent,
+    PatientDemandAppointmentComponent,
+    ChooseTimeComponent,
+    ValidateTimeComponent,
+    SafePipe,
+    ChangePatientPasswordComponent,
+    PatientProfileDetailsComponent
 
 
   ],
@@ -158,14 +179,16 @@ import { UserTypeComponent } from './pages/authentication/user-type/user-type.co
     MatIconModule,
     MatButtonModule,
     MatExpansionModule,
-
-    MatProgressSpinnerModule
+    LayoutModule,
+    MatProgressSpinnerModule,
+    MatRadioModule
   ],
   providers: [
     AuthGuard,
     LoggedOutGuard,
     AuthService,
     HttpClient,
+    ImagesServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -1,1 +1,40 @@
-<router-outlet></router-outlet>
+<mat-toolbar *ngIf="sidenav.mode == 'over'" class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            arrow_forward_ios
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+</mat-toolbar>
+
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="sidenav" #sidenav="matSidenav" mode="side" [opened]="true">
+
+
+        <div class="justify-center-center" *ngIf="loadingDoctor">
+            <mat-spinner style="margin: auto;"></mat-spinner>
+
+        </div>
+        <div class="justify-center-center" *ngIf="!loadingDoctor">
+            <img class="avatar mat-elevation-z8" [src]="currentDoctor?.profileImg | safe :'resourceUrl'" />
+
+            <h4 class="name">Dr. {{currentDoctor?.firstName}} {{currentDoctor?.lastName}}</h4>
+            <p class="designation">{{currentDoctor?.speciality}}</p>
+
+        </div>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <app-nav-menu-item routerLink="view" title="View Profile" icon="home"></app-nav-menu-item>
+            <app-nav-menu-item routerLink="edit" title="Edit profile" icon="edit"></app-nav-menu-item>
+            <app-nav-menu-item routerLink="History" title="Payments Hisotry" icon="calendar_today"></app-nav-menu-item>
+            <!-- <app-nav-menu-item routerLink="payments" title="Payments Console" icon="attach_money"></app-nav-menu-item> -->
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

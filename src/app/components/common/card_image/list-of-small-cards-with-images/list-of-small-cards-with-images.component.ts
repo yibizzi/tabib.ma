@@ -2,10 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 
 
 interface cardItem {
-  title: string,
+  title?: string,
   description?: string,
-  image: string,
-  router_link: string
+  image?: string,
+  router_link?: string,
+  stillLoading?: boolean
 }
 @Component({
   selector: 'app-list-of-small-cards-with-images',
@@ -20,6 +21,7 @@ export class ListOfSmallCardsWithImagesComponent implements OnInit {
 
   @Input("items")
   items: cardItem[];
+
 
 
 

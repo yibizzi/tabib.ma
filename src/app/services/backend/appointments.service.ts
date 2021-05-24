@@ -20,7 +20,7 @@ interface appointment {
 export class AppointmentsService {
 
 
-  private apiEndpoint: string = "http://localhost:9000/appointments/";
+  private apiEndpoint: string = "/appointments/";
 
   constructor(private http: HttpClient){
 

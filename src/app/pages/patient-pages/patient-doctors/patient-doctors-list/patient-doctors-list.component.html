@@ -1,1 +1,70 @@
-<p>patient-doctors-list works!</p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <!-- BEGIN SEARCH RESULT -->
+        <div class="col-md-12">
+            <div class="grid search">
+                <div class="grid-body">
+                    <div class="row">
+                        <!-- BEGIN FILTERS -->
+                        <div class="col-md-3">
+                            <h2 class="grid-title"><i class="fa fa-filter"></i> Filtres</h2>
+                            <hr>
+                            <!-- BEGIN FILTER BY CATEGORY -->
+                            <h4>Filter by:</h4>
+                            <mat-radio-group class="radio-group" [(ngModel)]="choosedFilter">
+                                <mat-radio-button *ngFor="let filter of filters" [value]="filter"> {{filter}} </mat-radio-button>
+                            </mat-radio-group>
+                            <!-- END FILTER BY CATEGORY -->
+
+                        </div>
+                        <!-- END FILTERS -->
+                        <!-- BEGIN RESULT -->
+                        <div class="col-md-9">
+                            <h2><i class="fa fa-file-o"></i> Result</h2>
+                            <hr>
+                            <!-- BEGIN SEARCH INPUT -->
+                            <div class="input-group">
+                                <input #searchInput type="text" class="form-control" (input)="onInputChange(searchInput.value)" (keyup.enter)="onEnterClick(searchInput.value)" placeholder="Search with doctor name ...">
+                                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button" (click)="onEnterClick(searchInput.value)"><i class="fa fa-search"></i></button>
+                </span>
+                            </div>
+                            <!-- END SEARCH INPUT -->
+
+                            <!-- BEGIN TABLE RESULT -->
+
+                            <div class="row mt-2 g-1" *ngIf="loadingDoctors">
+                                <mat-spinner style="margin:auto;"></mat-spinner>
+                            </div>
+
+                            <div class="row mt-2 g-1" *ngIf="!loadingDoctors && !doctorsList?.length && searchComplete">
+
+                                <h1>No results.</h1>
+                            </div>
+                            <div class="row mt-2 g-1" *ngIf="!loadingDoctors && !doctorsList?.length && !searchComplete">
+
+                                <h1>Search Something.</h1>
+                            </div>
+                            <div class="row mt-2 g-1" *ngIf="!loadingDoctors && doctorsList?.length">
+                                <div *ngFor="let doctor of doctorsList" class="col-md-3">
+                                    <div class="card p-2">
+                                        <a class="card-block stretched-link text-decoration-none" [routerLink]="doctor.userId">
+                                            <div class="text-center mt-2 p-3"> <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="60" />
+                                                <hr> <span>{{doctor.firstName}} {{doctor.lastName}}</span>
+                                                <div class="d-flex flex-row align-items-center justify-content-center"> <i class="fa fa-map-marker"></i> <small class="ml-1"> {{doctor.addresse?.city}}</small> </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END TABLE RESULT -->
+                        </div>
+                        <!-- END RESULT -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SEARCH RESULT -->
+    </div>
+</div>

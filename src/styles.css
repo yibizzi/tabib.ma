@@ -7,6 +7,22 @@
     border-color: red;
 }
 
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+/*
+    Iframes for google maps 
+*/
+
+iframe {
+    max-width: 100%;
+}
+
 
 /*--------------------------------------------------------------
 # Form Buttons

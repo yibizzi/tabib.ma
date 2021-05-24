@@ -2,4 +2,7 @@
     button-routerLink="../doctors" side-image="assets/images/homepage/doctor.png"></app-hero>
 
 <mat-spinner id="appointmentsSpinner" class="centered isolated" strokeWidth="3" diameter="40" *ngIf="loadingAppointments"></mat-spinner>
-<app-list-of-small-cards-with-images title="Upcoming appointments" [items]="appointmentsDetails" *ngIf="!loadingAppointments"></app-list-of-small-cards-with-images>
+<app-list-of-small-cards-with-images title="Upcoming appointments" [items]="appointmentsDetailsArray" *ngIf="!loadingAppointments">
+    <div class="aler alert-danger" *ngIf="errors.serverError.appointments">An internal server error occured when loading appointments.</div>
+    <div class="aler alert-danger" *ngIf="errors.serverError.doctors">An internal server error occured when loading Doctors infos.</div>
+</app-list-of-small-cards-with-images>

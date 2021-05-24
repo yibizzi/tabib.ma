@@ -1,3 +1,4 @@
+import { ImagesServiceService } from './../images-service.service';
 import { Doctor } from './../../models/userModels/doctor.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,6 +14,7 @@ interface patientServer {
     "firstName": string,
     "lastName": string
   },
+  "profileImg": string;
   "sendRequest": [],
   "appointments": [],
   "history": [],
@@ -30,15 +32,16 @@ interface patientServer {
 })
 export class PatientsService {
 
-  private apiEndpoint: string = "http://localhost:9000/patients/";
+  private apiEndpoint: string = "/patients/";
 
   patient$ = new Subject<Patient>();
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private imagesService: ImagesServiceService) { }
 
 
-  getPatientById(patientId: string) {
+  getPatientById(patientId: string): Promise<Patient> {
     return new Promise((resolve, reject) => {
       this.http.get<patientServer>(this.apiEndpoint + patientId).subscribe(
         (response) => {
@@ -48,6 +51,7 @@ export class PatientsService {
             email: response.email,
             age: response.age,
             phoneNumber: response.phoneNumber,
+            profileImg: this.imagesService.getImageSrcFromBase64(response.profileImg),
             userId: patientId
           }));
         },
@@ -60,16 +64,26 @@ export class PatientsService {
   }
 
 
-  getPatientsList(offset: number, limit: number) {
+  getPatientsList(params: { [key: string]: any }, offset: number, limit: number): Promise<Patient[]> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiEndpoint, {
+      this.http.get<patientServer[]>(this.apiEndpoint, {
         params: {
           'offset': `${offset}`,
           'limit': `${limit}`,
-        }
+        } && params
       }).subscribe(
         (response) => {
-          resolve(response);
+          resolve(response.map((patServer) => new Patient({
+
+            firstName: patServer.fullName.firstName,
+            lastName: patServer.fullName.lastName,
+            email: patServer.email,
+            age: patServer.age,
+            phoneNumber: patServer.phoneNumber,
+            profileImg: this.imagesService.getImageSrcFromBase64(patServer.profileImg),
+            userId: patServer._id
+
+          })));
         },
         (error) => {
           reject(error);

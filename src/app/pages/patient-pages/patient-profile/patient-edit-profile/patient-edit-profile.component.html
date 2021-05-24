@@ -1,1 +1,88 @@
-<p>patient-edit-profile works!</p>
+<div class="container">
+    <div class="row gutters">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+
+                    <mat-spinner strokeWidth="3" diameter="50" *ngIf="loadingPatient"></mat-spinner>
+                    <form [formGroup]="form" *ngIf="!loadingPatient" class="row gutters" (ngSubmit)="updatePatientInfos() ">
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="profileImg">Upload a new profile image:</label>
+                                <input type="file" class="form-control" id="profileImg" (change)="handleImageInput($event)">
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="firstName">Prénom</label>
+                                <input type="text" class="form-control" id="firstName" formControlName="firstName" [placeholder]="patient?.firstName || 'Enter your first name'">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="lastName">Nom</label>
+                                <input type="text" class="form-control" id="lastName" formControlName="lastName" [placeholder]="patient?.lastName|| 'Enter your last name'">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="eMail">Email</label>
+                                <input type="email" class="form-control" id="email" formControlName="email" [placeholder]="patient?.email|| 'Enter your email'">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="text" class="form-control" id="phone" formControlName="phoneNumber" [placeholder]="patient?.phoneNumber|| 'Enter your phoneNumber'">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="bday">Date de naissance</label>
+                                <input type="date" class="form-control" id="bday" formControlName="bday" [placeholder]="patient?.bday|| 'Enter your bday'">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="website">Description</label>
+                                <textarea class="form-control" id="description" formControlName="description" rows="6" [placeholder]="patient?.description|| 'Enter your description'" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                            <label for="addresse">Adresse</label>
+                            <div id="addresse" class="form-group" formGroupName="address">
+                                <label for="Details">Street</label>
+                                <input type="text" class="form-control" id="Details" formControlName="details" [placeholder]="patient?.addresse?.details|| 'Enter your details'">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" formControlName="city" [placeholder]="patient?.addresse?.city|| 'Enter your city'">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" formControlName="country" [placeholder]="patient?.addresse?.country|| 'Enter your country'">
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+
+                            <div class="col-sm">
+                                <button type="button" id="cancel" name="cancel" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+                            </div>
+                            <div class=" col-sm ">
+
+                                <button type="button " id="submit " name="submit " class="btn btn-primary " [disabled]="savingInfos">Mettre à jour</button>
+                                <mat-spinner strokeWidth="3" diameter="10" *ngIf="savingInfos"></mat-spinner>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -31,3 +31,11 @@
        font-family: "Nunito", sans-serif;
        margin-top: 3px;
    }
+   /*
+
+    NavBar on mobile
+*/
+   
+   .navbar-mobile {
+       z-index: 999;
+   }

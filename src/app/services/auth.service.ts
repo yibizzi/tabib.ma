@@ -16,7 +16,7 @@ export class AuthService {
 
 
 
-  userType = new BehaviorSubject<"doctor" | "patient" | null>('patient');
+  userType = new BehaviorSubject<"doctor" | "patient" | null>(null);
 
   token: string | null | undefined = localStorage.getItem('token');
 
@@ -38,7 +38,7 @@ export class AuthService {
   createNewPatient(user: Patient) {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:9000/patients/auth/signup',
+        '/patients/auth/signup',
         user)
         .subscribe(
           () => {
@@ -68,7 +68,7 @@ export class AuthService {
   createNewDoctor(user: Doctor) {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:9000/doctors/auth/signup',
+        '/doctors/auth/signup',
         user)
         .subscribe(
           () => {
@@ -98,7 +98,7 @@ export class AuthService {
   login(email: string | undefined, password: string | undefined, userType: "doctor" | "patient") {
     return new Promise((resolve, reject) => {
       (this.http.post(
-        'http://localhost:9000/' + userType + 's/auth/login',
+        '/' + userType + 's/auth/login',
         { email: email, password: password }) as Observable<{ token: string, doctorId?: string, patientId?: string }>)
         .subscribe({
           next: (authData) => {
@@ -120,7 +120,7 @@ export class AuthService {
 
 
 
-  getCurrentUser(): User | null {
+  getCurrentUser(): Patient | Doctor | null {
     let helper = new JwtHelperService();
     let token = localStorage.getItem('token');
 
@@ -133,13 +133,10 @@ export class AuthService {
       role: "doctor" | "patient"
     } = helper.decodeToken(token);
 
-
-    console.log(`----->`); console.log(userData);
-
     return userData.role == "doctor" ?
       new Doctor({ userId: userData.doctorId })
       :
-      new Patient({userId: userData.patientId });
+      new Patient({ userId: userData.patientId });
 
 
   }
@@ -148,7 +145,7 @@ export class AuthService {
   sendResetPasswordEmail(email: string, userType: "doctor" | "patient") {
     return new Promise((resolve, reject) => {
       this.http.post(
-        'http://localhost:9000/' + userType + 's/auth/reset-password',
+        '/' + userType + 's/auth/reset-password',
         { email: email })
         .subscribe({
           next: (response) => {

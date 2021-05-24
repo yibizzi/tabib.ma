@@ -1,3 +1,4 @@
+import { DoctorsService } from './../../../services/backend/doctors.service';
 import { Appointment } from 'src/app/models/Appointment/appointment.model';
 import { AppointmentsService } from './../../../services/backend/appointments.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -5,6 +6,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PatientsService } from 'src/app/services/backend/patients.service';
 import { Patient } from 'src/app/models/userModels/patient.model';
+import { Doctor } from 'src/app/models/userModels/doctor.model';
 
 @Component({
   selector: 'app-patient-homepage',
@@ -18,15 +20,29 @@ export class PatientHomepageComponent implements OnInit {
   loadingAppointments = false;
 
   appointmentsDetails: {
-    image: string,
-    title: string,
-    description: string,
-    router_link: string
-  }[] = [];
+    [appointmentId: string]: {
+      image?: string,
+      title?: string,
+      description?: string,
+      router_link?: string,
+      stillLoading?: boolean
+    }
+  } = {};
+
+  errors: {
+    [errorName: string]: {
+      [sectionName: string]: boolean
+    }
+  } = {
+    serverError: {
+      
+    }
+  };
 
   constructor(
     private authService: AuthService,
     private patientsService: PatientsService,
+    private doctorsService: DoctorsService,
     private appointmentsService: AppointmentsService,
     private router: Router
   ) { }
@@ -52,25 +68,48 @@ export class PatientHomepageComponent implements OnInit {
         .then((listOfAppointmentsIds: string[]) => {
 
           //Then get details of each appointment
-          Promise.all(listOfAppointmentsIds.map((id: string) => {
-            this.appointmentsService
-              .getAppointmentById(id)
-              .then((appointmentDetails: Appointment) => {
+          Promise
+            .all(
+              listOfAppointmentsIds
+                .map((id: string) => {
+                  this.appointmentsService
+                    .getAppointmentById(id)
+                    .then((appointmentDetails: Appointment) => {
 
-                //Add details to Patient Instance
-                this.patient.appointments.push(appointmentDetails);
-                this.appointmentsDetails.push({
-                  image: "https://bootstrapmade.com/demo/templates/FlexStart/assets/img/testimonials/testimonials-5.jpg",
-                  title: appointmentDetails.doctorId,
-                  description: appointmentDetails.date.toString(),
-                  router_link: `/appointments/${appointmentDetails.appointmentId}`
+                      this.appointmentsDetails[appointmentDetails.appointmentId] = {
+                        stillLoading: true,
+                      };
+                      if (this.loadingAppointments) this.loadingAppointments = false;
+
+                      this.doctorsService
+                        .getDoctorById(appointmentDetails.doctorId)
+                        .then((doctorInfos: Doctor) => {
+                          //Add details to Patient Instance
+                          this.patient.appointments.push(appointmentDetails);
+                          this.appointmentsDetails[appointmentDetails.appointmentId] = {
+                            stillLoading: false,
+                            image: "https://bootstrapmade.com/demo/templates/FlexStart/assets/img/testimonials/testimonials-5.jpg",
+                            title: `Dr. ${doctorInfos.firstName} ${doctorInfos.lastName}`,
+                            description: `At ${appointmentDetails.date.toUTCString()}`,
+                            router_link: `/appointments/${appointmentDetails.appointmentId}`
+                          };
+                        })
+                        .catch((error) => {
+
+                          this.errors.serverError.doctors = true;
+                        })
+                    })
+                })).catch((error) => {
+                  this.errors.serverError.appointments = true;
                 })
-              })
-          })).then((value) => {
-            this.loadingAppointments = false;
-          })
         });
     }
+  }
+
+
+  get appointmentsDetailsArray() {
+
+    return Object.keys(this.appointmentsDetails).map(key => this.appointmentsDetails[key]);
 
   }
 

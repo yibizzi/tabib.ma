@@ -29,12 +29,16 @@ export class DoctorHeaderComponent implements OnInit {
 
 
     this.doctorsService
-      .doctor$.subscribe((doctor) => {
+      .currentDoctor$.subscribe((doctor) => {
         this.doctor = doctor;
       });
 
-    this.doctorsService.getDoctorById(this.doctor?.userId as string);
+    this.doctorsService.getCurrentDoctorById(this.doctor?.userId as string);
 
+  }
+
+  logOut() {
+    this.auth.logout();
   }
 
 }

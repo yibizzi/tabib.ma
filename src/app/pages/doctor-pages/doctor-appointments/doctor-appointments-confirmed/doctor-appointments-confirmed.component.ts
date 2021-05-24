@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorAppointmentsConfirmedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  deleteAppointment(appointmentId: string) {
+    alert("Are you sure? ");
+  }
+
+  editAppointment(appointmentId: string){
+    this.router.navigate([`../${appointmentId}`, 'edit'], {
+      relativeTo: this.route
+    });
+
+  }
+  goToAppointmentDetails(appointmentId: string){
+
+    this.router.navigate([`../${appointmentId}`], {
+      relativeTo: this.route
+    });
   }
 
 }

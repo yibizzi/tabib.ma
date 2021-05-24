@@ -29,23 +29,20 @@ export class HeaderComponent implements OnInit {
 
     this.auth.isAuthenticated.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
-    });
 
-    this.auth.userType.subscribe((userType) => {
-      this.type = userType;
+      if (isAuthenticated) {
+        let currentUser = this.auth.getCurrentUser();
 
+        console.log(currentUser)
 
-      switch (this.type) {
-        case 'doctor':
-          this.currentDoctor = this.auth.getCurrentUser() as Doctor; 
-          console.log(`-----> ${userType} , ${this.currentDoctor?.userId}`);
-          break;
-
-        default:
+        if (currentUser instanceof Doctor) {
+          this.type = "doctor";
+          this.currentDoctor = this.auth.getCurrentUser() as Doctor;
+        } else {
+          this.type = "patient";
           this.currentPatient = this.auth.getCurrentUser() as Patient;
-          console.log(`-----> ${userType} , ${this.currentPatient?.userId}`);
-           break;
-      };
+        }
+      }
     });
   }
 

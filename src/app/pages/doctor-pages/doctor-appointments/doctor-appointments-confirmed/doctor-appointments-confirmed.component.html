@@ -30,72 +30,14 @@
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <tbody>
-                                        <tr>
-                                            <td class="number text-center">1</td>
+                                        <tr *ngFor="let appointmentId of [1,2,3,4,5,6,7,8,9]" (click)="goToAppointmentDetails(appointmentId.toString())">
+                                            <td class="number text-center">{{appointmentId}}</td>
                                             <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
                                             <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
                                             <td class="type text-center"><strong>Vidéo Conférence</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
+                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" (click)="editAppointment(appointmentId.toString())" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
+                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" (click)="deleteAppointment(appointmentId.toString())" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
                                         </tr>
-                                        <tr>
-                                            <td class="number text-center">2</td>
-                                            <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
-                                            <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
-                                            <td class="type text-center"><strong>A domicile</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number text-center">3</td>
-                                            <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
-                                            <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
-                                            <td class="type text-center"><strong>A domicile</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number text-center">4</td>
-                                            <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
-                                            <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
-                                            <td class="type text-center"><strong>Vidéo Conférence</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number text-center">5</td>
-                                            <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
-                                            <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
-                                            <td class="type text-center"><strong>A domicile</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number text-center">6</td>
-                                            <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
-                                            <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
-                                            <td class="type text-center"><strong>A domicile</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number text-center">7</td>
-                                            <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
-                                            <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
-                                            <td class="type text-center"><strong>A domicile</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number text-center">8</td>
-                                            <td class="image"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""></td>
-                                            <td class="name "><strong>Hassan ALAOUI</strong><br>16/05/2021 à 10:30</td>
-                                            <td class="type text-center"><strong>A domicile</strong></td>
-                                            <td class="edit text-right"><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></td>
-                                            <td class="delete text-right"><button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-
-
 
                                     </tbody>
                                 </table>

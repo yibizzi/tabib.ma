@@ -1,86 +1,91 @@
 <div class="container">
     <div class="row gutters">
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+        <div class="col-12">
             <div class="card h-100">
                 <div class="card-body">
-                    <div class="account-settings">
-                        <div class="user-profile">
-                            <div class="user-avatar">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+
+                    <mat-spinner class="" strokeWidth="3" diameter="50" *ngIf="loadingDoctor"></mat-spinner>
+                    <form [formGroup]="form" *ngIf="!loadingDoctor" class="row gutters" (ngSubmit)="updateDoctorInfos() ">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="profileImg">Upload a new profile image:</label>
+                                <input type="file" class="form-control" id="profileImg" (change)="handleImageInput($event)">
                             </div>
-                            <h5 class="user-name">Anastasia</h5>
-                            <h6 class="user-email">fip@jukmuh.al</h6>
                         </div>
-                        <div class="about">
-                            <h5>Description</h5>
-                            <p>Lorem Epsum Lorem Epsume...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="row gutters">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="firstName">Prénom</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="Entrer votre prénom">
+                                <input type="text" class="form-control" id="firstName" formControlName="firstName" [placeholder]="currentDoctor?.firstName || 'Enter your first name'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="lastName">Nom</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Entrer votre nom">
+                                <input type="text" class="form-control" id="lastName" formControlName="lastName" [placeholder]="currentDoctor?.lastName|| 'Enter your last name'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="eMail">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Entrer votre email">
+                                <input type="email" class="form-control" id="email" formControlName="email" [placeholder]="currentDoctor?.email|| 'Enter your email'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="phone">Téléphone</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Entrer phone numéro de téléphone">
+                                <input type="text" class="form-control" id="phone" formControlName="phoneNumber" [placeholder]="currentDoctor?.phoneNumber|| 'Enter your phoneNumber'">
                             </div>
                         </div>
 
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="Street">Adresse</label>
-                                <input type="name" class="form-control" id="Street" placeholder="Entrer votre adresse">
+                                <label for="bday">Date de naissance</label>
+                                <input type="date" class="form-control" id="bday" formControlName="bday" [placeholder]="currentDoctor?.bday|| 'Enter your bday'">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="speciality">speciality</label>
+                                <input type="text" class="form-control" id="speciality" formControlName="speciality" [placeholder]="currentDoctor?.speciality|| 'Enter your speciality'">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                            <label for="addresse">Adresse</label>
+                            <div id="addresse" class="form-group" formGroupName="address">
+                                <label for="Details">Details</label>
+                                <input type="text" class="form-control" id="Details" formControlName="details" [placeholder]="currentDoctor?.addresse?.details|| 'Enter your details'">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" formControlName="city" [placeholder]="currentDoctor?.addresse?.city|| 'Enter your city'">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" formControlName="country" [placeholder]="currentDoctor?.addresse?.country|| 'Enter your country'">
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="website">Description</label>
-                                <textarea class="form-control" id="description" rows="6" placeholder="Description" required></textarea>
+                                <textarea class="form-control" id="description" formControlName="description" rows="6" [placeholder]="currentDoctor?.description|| 'Enter your description'" required></textarea>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="password">Mot de passe</label>
-                                <input type="password" class="form-control" id="password" placeholder="*********">
+
+                        <div class="col-12">
+
+                            <div class="col-sm">
+                                <button type="button" id="cancel" name="cancel" class="btn btn-secondary" (click)="cancel()">Annuler</button>
                             </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirmation de mot de passe</label>
-                                <input type="confirmPassword" class="form-control" id="confirmPassword" placeholder="*********">
+                            <div class=" col-sm ">
+
+                                <button type="button " id="submit " name="submit " class="btn btn-primary " [disabled]="savingInfos">Mettre à jour</button>
+                                <mat-spinner strokeWidth="3" diameter="10" *ngIf="savingInfos"></mat-spinner>
                             </div>
+                            <button class="col-sm" (click)="log()">Debug</button>
                         </div>
-                    </div>
-                    <div class="row gutters">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="buttons">
-                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Annuler</button>
-                                <button type="button" id="submit" name="submit" class="btn btn-primary">Mettre à jour</button>
-                            </div>
-                        </div>
-                    </div>
+
+                        <div class="col-12 alert alert-danger" *ngIf="showError"> An internal error has occured, please try again later.</div>
+                    </form>
+
                 </div>
             </div>
         </div>

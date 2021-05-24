@@ -14,10 +14,20 @@ interface PublicInfos {
     ConfirmationTax: number
 }
 
+export interface Rating {
+    totalRatings: number,
+    averageRating: number
+}
+
+export interface Addresse{
+    details: string,
+    city: string,
+    country: string        
+};
 /**
  * different types of standard properties of a doctor
  */
-type DoctorAttribute = number | string | PublicInfos | Payment[] | Appointment[] | undefined | null | Function;
+type DoctorAttribute = number | string | PublicInfos | Payment[] | Appointment[] | Rating | Addresse | undefined | null | Function;
 
 /**
  * Required params structure to create a new doctor
@@ -29,7 +39,7 @@ interface DoctorParams {
     lastName?: string,
     age?: number,
     phoneNumber?: string,
-    rating?: number,
+    rating?: Rating,
     speciality?: string,
     description?: string,
     appointments?: Appointment[],
@@ -37,6 +47,8 @@ interface DoctorParams {
     publicContactInfos?: PublicInfos,
     payments?: Payment[],
     password?: string,
+    addresse?: Addresse,
+    profileImg?:string
 
     /**
      * Added to set properties dynamically with Object.keys
@@ -47,13 +59,16 @@ interface DoctorParams {
 export class Doctor extends User {
 
 
-    rating: number;
+    rating: Rating;
     speciality: string;
     description: string;
     appointments: Appointment[];
     appointmentsRequests: Appointment[];
     publicContactInfos: PublicInfos;
     payments: Payment[];
+    addresse?: Addresse;
+    profileImg?:string;
+
     password: string;
 
 
