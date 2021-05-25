@@ -1,9 +1,10 @@
 import { Doctor } from './../userModels/doctor.model';
 import { Patient } from './../userModels/patient.model';
 
-interface Creaneau {
+export interface Creaneau {
     date: Date,
-    length: number
+    length: number,
+    type: "presentiel" | "domicile" | "enligne"
 }
 export class Appointment {
 
