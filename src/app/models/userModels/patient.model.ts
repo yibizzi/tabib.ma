@@ -31,7 +31,7 @@ interface PatientParams {
     medicalRecord?: MedicalRecord,
     payments?: Payment[],
     addresse?: Addresse,
-    profileImg?: string,
+    ProfileImg?: string,
     password?: string,
 
     /**
@@ -50,7 +50,7 @@ export class Patient extends User {
     payments: Payment[] = [];
     addresse: Addresse;
     password: string;
-    profileImg?: string;
+    ProfileImg?: string;
     [key: string]: PatientAttributeType;
 
     /**

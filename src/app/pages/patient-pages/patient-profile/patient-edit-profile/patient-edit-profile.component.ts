@@ -30,7 +30,7 @@ export class PatientEditProfileComponent implements OnInit {
     private imagesService: ImagesServiceService) {
 
     this.form = fb.group({
-      profileImg: [''],
+      ProfileImg: [''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
@@ -78,8 +78,8 @@ export class PatientEditProfileComponent implements OnInit {
     return this.address?.get('country');
   }
 
-  get profileImg() {
-    return this.form.get('profileImg');
+  get ProfileImg() {
+    return this.form.get('ProfileImg');
 
   }
 
@@ -100,9 +100,9 @@ export class PatientEditProfileComponent implements OnInit {
   handleImageInput(InputEvent: Event) {
 
     this.imagesService.encodeImageFileAsBase64((InputEvent?.target as HTMLInputElement)?.files?.item(0)).then((base64Image) => {
-      this.profileImg?.setValue(base64Image);
+      this.ProfileImg?.setValue(base64Image);
 
-      this.profileImg?.markAsDirty();
+      this.ProfileImg?.markAsDirty();
     });
   }
 
