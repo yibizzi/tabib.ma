@@ -112,3 +112,7 @@ body {
 .col-sm {
     text-align: center;
 }
+
+a {
+    color: blue !important;
+}
