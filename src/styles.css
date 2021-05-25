@@ -24,6 +24,19 @@ iframe {
 }
 
 
+/*
+    Material components
+*/
+
+mat-sidenav-content {
+    min-height: 100px;
+}
+
+mat-spinner {
+    margin: auto;
+}
+
+
 /*--------------------------------------------------------------
 # Form Buttons
 --------------------------------------------------------------*/

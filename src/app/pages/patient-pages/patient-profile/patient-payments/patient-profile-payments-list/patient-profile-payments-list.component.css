@@ -2,6 +2,11 @@ body {
     background-color: #eee
 }
 
+.container {
+    padding: 20px;
+    margin: 20px;
+}
+
 .card {
     border: none
 }
@@ -88,14 +93,6 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
-}
-
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited {
-    position: relative;
-    margin-left: 950px;
 }
 
 .buttons {

@@ -76,9 +76,9 @@ const routes: Routes = [
           {
             path: 'payments', component: PatientPaymentsComponent, children: [
               { path: '', component: PatientProfilePaymentsListComponent },
+              { path: 'payment-method', component: PaymentMethodsComponent },
+              { path: 'proceed', component: PaymentProceedComponent },
               { path: ':id', component: PaymentDetailsComponent },
-              { path: ':id/payment-method', component: PaymentMethodsComponent },
-              { path: ':id/proceed', component: PaymentProceedComponent },
             ]
           },
 

@@ -1,9 +1,11 @@
-<div class="container mt-5">
+<div class="container" *ngIf=isLoading>
+    <mat-spinner></mat-spinner>
+</div>
+
+
+<div class="container mt-5" *ngIf="!isLoading">
     <div>
-        <h1><strong>Mes paiements</strong></h1>
-    </div>
-    <div>
-        <h3>Avis de paiment</h3>
+        <h1><strong>Unpaid Appointments</strong></h1>
     </div>
     <div class="row mt-2 g-1">
         <div class="col-md-3">
@@ -59,7 +61,7 @@
         <div class="row gutters">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="buttons">
-                    <button type="button" id="submit" name="submit" class="btn btn-primary">Je sélectionne</button>
+                    <button type="button" id="submit" name="submit" class="btn btn-primary" (click)="proceedToPayement()">Select & Pay</button>
                 </div>
             </div>
         </div>
