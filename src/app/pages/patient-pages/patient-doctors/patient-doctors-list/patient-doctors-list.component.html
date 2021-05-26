@@ -13,7 +13,7 @@
                             <!-- BEGIN FILTER BY CATEGORY -->
                             <h4>Filter by:</h4>
                             <mat-radio-group class="radio-group" [(ngModel)]="choosedFilter">
-                                <mat-radio-button *ngFor="let filter of filters" [value]="filter"> {{filter}} </mat-radio-button>
+                                <mat-radio-button *ngFor="let filter of filters" [value]="filter"> {{filterNames[filter]}} </mat-radio-button>
                             </mat-radio-group>
                             <!-- END FILTER BY CATEGORY -->
 
@@ -44,13 +44,13 @@
                             </div>
                             <div class="row mt-2 g-1" *ngIf="!loadingDoctors && !doctorsList?.length && !searchComplete">
 
-                                <h1>Search Something.</h1>
+                                <h1>Search for nearby doctors.</h1>
                             </div>
                             <div class="row mt-2 g-1" *ngIf="!loadingDoctors && doctorsList?.length">
                                 <div *ngFor="let doctor of doctorsList" class="col-md-3">
                                     <div class="card p-2">
                                         <a class="card-block stretched-link text-decoration-none" [routerLink]="doctor.userId">
-                                            <div class="text-center mt-2 p-3"> <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="60" />
+                                            <div class="text-center mt-2 p-3"> <img [src]="doctor.profileImg" width="60" />
                                                 <hr> <span>{{doctor.firstName}} {{doctor.lastName}}</span>
                                                 <div class="d-flex flex-row align-items-center justify-content-center"> <i class="fa fa-map-marker"></i> <small class="ml-1"> {{doctor.addresse?.city}}</small> </div>
                                             </div>

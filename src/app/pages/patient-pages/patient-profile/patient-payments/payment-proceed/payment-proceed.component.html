@@ -1,1 +1,3 @@
-<p>payment-proceed works!</p>
+<app-payment-form *ngIf="!paid" (click)="paid=!paid"></app-payment-form>
+
+<app-payment-success *ngIf="paid" (click)="paid=!paid"></app-payment-success>

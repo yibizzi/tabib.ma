@@ -5,6 +5,7 @@ import { PatientsService } from 'src/app/services/backend/patients.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-patient-profile',
@@ -21,7 +22,7 @@ export class PatientProfileComponent implements AfterViewInit {
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  constructor(private observer: BreakpointObserver, private patientsService: PatientsService, private imagesService: ImagesServiceService) { }
+  constructor(private observer: BreakpointObserver, private authService: AuthService, private patientsService: PatientsService, private imagesService: ImagesServiceService) { }
 
 
   ngOnInit() {
@@ -30,6 +31,10 @@ export class PatientProfileComponent implements AfterViewInit {
         this.currentPatient = patient;
         this.loadingPatient = false;
       });
+
+    setTimeout(() => {
+      if (!this.currentPatient) this.patientsService.getPatientById(this.authService.getCurrentUser()?.userId as string);
+    }, 3000)
   }
   ngOnDestroy() {
     this.patientSubscription.unsubscribe();

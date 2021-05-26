@@ -10,7 +10,7 @@ import { catchError, filter, take, switchMap } from "rxjs/operators";
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  baseApiUrl : string = "http://rocky-ravine-29875.herokuapp.com";
+  baseApiUrl : string = "https://rocky-ravine-29875.herokuapp.com";
 
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -23,7 +23,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     req = req.clone({ headers: req.headers.set('Content-Type', 'application/json') });
     req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
 
-    req = req.clone({ url: this.baseApiUrl  + req.urlWithParams }); 
+    req = req.clone({ url: this.baseApiUrl  + req.url }); 
 
     return next.handle(req)
       .pipe(

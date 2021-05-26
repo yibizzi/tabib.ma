@@ -17,6 +17,14 @@ export class PatientsListComponent implements OnInit {
 
   choosedFilter: Filter = "fullName.firstName";
 
+  filterNames = {
+    "fullName.firstName": "First name",
+    "fullName.lastName": "Last name",
+    "age": "age",
+    "city": "city",
+    "country": "country"
+  };
+
   loadingPatients: boolean = false;
 
   searchComplete: boolean = false;

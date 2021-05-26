@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChooseTimeComponent implements OnInit {
 
-  constructor() { }
+
+  appointmentLength: number = 15;
+  appointmentType: string = "presentiel";
+  appointmentDateTime: string = "2011-08-19T13:45:00";
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+  }
+
+
+  goToValidate() {
+
+    console.log();
+    console.log(this.appointmentDateTime);
+
+    this.router.navigate(["..", "ValidateTime"], {
+      relativeTo: this.route,
+      queryParams: {
+        date: this.appointmentDateTime,
+        length: this.appointmentLength,
+        type: this.appointmentType
+      }
+    });
   }
 
 }

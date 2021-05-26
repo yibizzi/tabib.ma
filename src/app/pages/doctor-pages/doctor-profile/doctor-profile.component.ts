@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { DoctorsService } from 'src/app/services/backend/doctors.service';
 import { Subscription } from 'rxjs';
 import { Doctor } from 'src/app/models/userModels/doctor.model';
@@ -25,7 +26,8 @@ export class DoctorProfileComponent implements AfterViewInit, OnInit, OnDestroy 
 
 
   constructor(private observer: BreakpointObserver,
-    private doctorsService: DoctorsService) { }
+    private doctorsService: DoctorsService,
+    private authService: AuthService) { }
 
 
   ngOnInit() {
@@ -34,9 +36,13 @@ export class DoctorProfileComponent implements AfterViewInit, OnInit, OnDestroy 
         this.currentDoctor = doctor;
         this.loadingDoctor = false;
       });
+
+    setTimeout(() => {
+      if (!this.currentDoctor) this.doctorsService.getCurrentDoctorById(this.authService.getCurrentUser()?.userId as string);
+    }, 3000)
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.docSubscription.unsubscribe();
   }
 

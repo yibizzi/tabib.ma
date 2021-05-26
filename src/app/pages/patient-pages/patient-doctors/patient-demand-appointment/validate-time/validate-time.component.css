@@ -1,3 +1,15 @@
+.creneau {
+    margin-inline: auto;
+}
+
+.doctor-name {
+    color: rgba(23, 104, 158);
+}
+
+.price {
+    margin-inline: auto;
+}
+
 body {
     margin-top: 20px;
     color: #1a202c;

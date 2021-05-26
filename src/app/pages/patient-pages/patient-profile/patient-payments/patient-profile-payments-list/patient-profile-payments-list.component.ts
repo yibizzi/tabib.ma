@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientProfilePaymentsListComponent implements OnInit {
 
-  constructor() { }
+  isLoading: boolean = true;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
+    setTimeout(()=>{
+      this.isLoading = false;
+    }, 2000);
+  }
+
+  proceedToPayement() {
+
+    this.router.navigate(['./payment-method'], {
+      relativeTo: this.route
+    });
+
   }
 
 }

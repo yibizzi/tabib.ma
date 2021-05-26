@@ -76,9 +76,10 @@ const routes: Routes = [
           {
             path: 'payments', component: PatientPaymentsComponent, children: [
               { path: '', component: PatientProfilePaymentsListComponent },
+              { path: 'payment-method', component: PaymentMethodsComponent },
+              { path: 'payment-proceed', component: PaymentProceedComponent },
+              { path: 'proceed', component: PaymentProceedComponent },
               { path: ':id', component: PaymentDetailsComponent },
-              { path: ':id/payment-method', component: PaymentMethodsComponent },
-              { path: ':id/proceed', component: PaymentProceedComponent },
             ]
           },
 
@@ -87,8 +88,8 @@ const routes: Routes = [
         ]
       },
       { path: 'payments/:id', redirectTo: 'profile/:id/payments' },
-      { path: '', pathMatch: 'full', redirectTo: 'Home' },
-      { path: '**', redirectTo: 'Home' }
+      // { path: '', pathMatch: 'full', redirectTo: 'Home' },
+      // { path: '**', redirectTo: 'Home' }
     ]
   },
   {
@@ -125,10 +126,6 @@ const routes: Routes = [
       { path: '**', redirectTo: 'Home' }
     ]
   },
-  // {
-  //   path: "ChooseType", component: UserTypeComponent, canActivate:[LoggedOutGuard]
-  // },
-
   {
     path: 'Signin', component: LoginPageComponent,
     canActivate: [LoggedOutGuard],
@@ -147,12 +144,6 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'ChooseType' },
     ]
   },
-  // {
-  //   path: "Signin/:userType", component: LoginPageComponent, canActivate: [LoggedOutGuard]
-  // },
-  // {
-  //   path: "Signup/:userType", component: SignupPageComponent, canActivate: [LoggedOutGuard]
-  // },
   {
     path: "forgotPassword", component: ForgotPasswordPageComponent, canActivate: [LoggedOutGuard]
   },
