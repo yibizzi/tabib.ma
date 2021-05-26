@@ -1,6 +1,5 @@
 mat-sidenav {
     margin: 16px;
-    width: 25%;
     border-right: none;
     background: white;
     border-radius: 10px;
@@ -11,6 +10,7 @@ mat-sidenav {
 mat-sidenav-container {
     margin: 16px;
     padding: 16px;
+    min-height: 100%;
 }
 
 .menu-button {

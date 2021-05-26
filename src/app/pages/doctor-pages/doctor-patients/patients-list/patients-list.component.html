@@ -13,7 +13,7 @@
                             <!-- BEGIN FILTER BY CATEGORY -->
                             <h4>Filter by:</h4>
                             <mat-radio-group class="radio-group" [(ngModel)]="choosedFilter">
-                                <mat-radio-button *ngFor="let filter of filters" [value]="filter"> {{filter}} </mat-radio-button>
+                                <mat-radio-button *ngFor="let filter of filters" [value]="filter"> {{filterNames[filter]}} </mat-radio-button>
                             </mat-radio-group>
                             <!-- END FILTER BY CATEGORY -->
 
@@ -44,7 +44,7 @@
                             </div>
                             <div class="row mt-2 g-1" *ngIf="!loadingPatients && !patientsList?.length && !searchComplete">
 
-                                <h1>Search Something.</h1>
+                                <h1>Search in your patients list.</h1>
                             </div>
                             <div class="row mt-2 g-1" *ngIf="!loadingPatients && patientsList?.length">
                                 <div *ngFor="let patient of patientsList" class="col-md-3">

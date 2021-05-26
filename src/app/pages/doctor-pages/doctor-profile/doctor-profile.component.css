@@ -1,12 +1,11 @@
 .sidenav-container {
     margin: 16px;
     padding-top: 16px;
-    min-height: 50%;
+    min-height: 100%;
 }
 
 .sidenav {
     margin: 16px;
-    width: 25%;
     border-right: none;
     background: white;
     border-radius: 10px;

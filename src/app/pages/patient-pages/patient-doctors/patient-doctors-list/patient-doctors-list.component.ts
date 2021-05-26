@@ -17,6 +17,15 @@ export class PatientDoctorsListComponent implements OnInit {
 
   filters: Filter[] = ["fullName.firstName", "fullName.lastName", "city", "country", "age", "speciality"];
 
+  filterNames = {
+    "fullName.firstName": "First name",
+    "fullName.lastName": "Last name",
+    "city": "city",
+    "country": "country",
+    "age": "age",
+    "speciality": "speciality"
+  }
+
   choosedFilter: Filter = "fullName.firstName";
 
   loadingDoctors: boolean = false;
@@ -58,7 +67,7 @@ export class PatientDoctorsListComponent implements OnInit {
     this.searchInput$.next(partialQuery);
   }
 
-  onEnterClick(query: string){
+  onEnterClick(query: string) {
     this.searchInput$.next(query);
   }
 

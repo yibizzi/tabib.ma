@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentProceedComponent implements OnInit {
 
+  paid: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {

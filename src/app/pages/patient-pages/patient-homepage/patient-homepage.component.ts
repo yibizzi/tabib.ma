@@ -54,6 +54,10 @@ export class PatientHomepageComponent implements OnInit {
         this.patient = patient;
         this.loadAppointments();
       });
+    
+      setTimeout(()=>{
+        if(!this.patient) this.patientsService.getPatientById(this.authService.getCurrentUser()?.userId as string);
+      }, 3000)
 
   }
 
@@ -99,7 +103,12 @@ export class PatientHomepageComponent implements OnInit {
                           this.errors.serverError.doctors = true;
                         })
                     })
-                })).catch((error) => {
+                }))
+                .then((value)=>{
+                  this.loadingAppointments = false;
+                })
+                
+                .catch((error) => {
                   this.errors.serverError.appointments = true;
                 })
         });

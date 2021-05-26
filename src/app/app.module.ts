@@ -88,7 +88,7 @@ import { ImagesServiceService } from './services/images-service.service';
 import {MatRadioModule} from '@angular/material/radio';
 import { ChangePatientPasswordComponent } from './pages/patient-pages/patient-profile/change-patient-password/change-patient-password.component';
 import { PatientProfileDetailsComponent } from './pages/patient-pages/patient-profile/patient-profile-details/patient-profile-details.component';
-import { CommentsContainerComponent } from './component/common/comments-container/comments-container.component';
+import { CommentsContainerComponent } from './components/common/comments-container/comments-container.component';
 
 
 @NgModule({
